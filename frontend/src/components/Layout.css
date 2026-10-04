@@ -1,0 +1,260 @@
+/*
+  Fichier : src/components/Layout.css
+
+ les règles de base visent le téléphone, le bloc
+  @media en bas ajoute la version grand écran.
+*/
+
+/* Conteneur général de l'application. */
+.cadre {
+  min-height: 100dvh;
+}
+
+/* -------------------------------------------------------------------------
+   Barre du haut (petit écran uniquement)
+   ------------------------------------------------------------------------- */
+
+.barre-haut {
+  position: sticky; /* reste collée en haut pendant le défilement */
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: calc(56px + env(safe-area-inset-top)); /* tient compte de l'encoche */
+  padding: env(safe-area-inset-top) 12px 0;
+  /* Fond de la couleur des cartes, à 90 % : légèrement transparent, avec un
+     flou derrière. color-mix permet de garder ce réglage dans les deux modes. */
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--bordure);
+}
+
+/* -------------------------------------------------------------------------
+   Voile sombre derrière le tiroir ouvert
+   ------------------------------------------------------------------------- */
+
+.voile {
+  position: fixed;
+  inset: 0; /* couvre tout l'écran */
+  z-index: 30;
+  background: rgba(28, 25, 23, 0.45);
+  animation: apparition 200ms ease;
+}
+
+@keyframes apparition {
+  from {
+    opacity: 0;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Le menu
+   ------------------------------------------------------------------------- */
+
+/* Sur petit écran : un tiroir fixé à gauche, caché hors de l'écran
+   (décalé de toute sa largeur vers la gauche) tant qu'il n'est pas ouvert. */
+.menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  width: min(300px, 85vw);
+  padding: calc(16px + env(safe-area-inset-top)) 14px calc(16px + env(safe-area-inset-bottom));
+  /* Fond gris clair : le menu se détache de la page blanche sans avoir
+     besoin d'une ombre, et le gris prend sa place dans l'identité visuelle. */
+  background: var(--gris-100);
+  border-right: 1px solid var(--bordure);
+  transform: translateX(-100%);
+  transition: transform 250ms ease;
+}
+
+/* Tiroir ouvert : il revient à sa place, avec une ombre pour le détacher. */
+.menu.ouvert {
+  transform: translateX(0);
+  box-shadow: var(--ombre-forte);
+}
+
+.menu-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px 20px;
+}
+
+/* Liste des liens : prend toute la hauteur disponible, ce qui pousse
+   le bloc du compte tout en bas du menu. */
+.menu-liens {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menu-lien {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px; /* zone confortable à toucher au doigt */
+  padding: 10px 12px;
+  border-radius: var(--rayon);
+  color: var(--gris-600);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.menu-lien:hover {
+  background: var(--gris-200);
+  color: var(--gris-900);
+}
+
+/* Lien de la page affichée : fond blanc, texte rouge et petit relief,
+   comme un onglet posé sur le gris du menu. */
+.menu-lien.actif {
+  background: var(--surface);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: var(--ombre-legere);
+}
+
+/* Sélecteur du thème : trois boutons côte à côte dans une pilule grise,
+   le choix actif ressortant comme un petit onglet blanc. */
+.selecteur-theme {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 14px;
+  padding: 3px;
+  border-radius: var(--rayon);
+  background: var(--gris-200);
+}
+
+.selecteur-theme-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 7px 4px;
+  border: none;
+  border-radius: var(--rayon-petit);
+  background: transparent;
+  color: var(--gris-600);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.selecteur-theme-option:hover {
+  color: var(--gris-900);
+}
+
+.selecteur-theme-option.actif {
+  background: var(--surface);
+  color: var(--texte);
+  font-weight: 600;
+  box-shadow: var(--ombre-legere);
+}
+
+/* Bloc du compte en bas du menu, séparé par un filet. */
+.menu-compte {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 6px 0;
+  border-top: 1px solid var(--gris-200);
+}
+
+/* La pastille et le nom forment un lien vers "Mon profil". Il prend toute
+   la place disponible, à gauche du bouton de déconnexion. */
+.menu-compte-lien {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  margin: -6px;
+  padding: 6px;
+  border-radius: var(--rayon);
+  color: inherit;
+  transition: background-color var(--transition);
+}
+
+.menu-compte-lien:hover {
+  background: var(--gris-200);
+}
+
+/* min-width: 0 autorise ce bloc à rétrécir, ce qui permet de couper un
+   email trop long avec "..." au lieu de le laisser déborder du menu. */
+.menu-compte-texte {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-compte-nom {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.menu-compte-nom,
+.menu-compte-email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-compte-email {
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+}
+
+/* -------------------------------------------------------------------------
+   Zone de la page en cours
+   ------------------------------------------------------------------------- */
+
+.zone-page {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 16px calc(40px + env(safe-area-inset-bottom));
+}
+
+/* -------------------------------------------------------------------------
+   Grand écran (900 pixels et plus)
+   La valeur doit rester identique à REQUETE_GRAND_ECRAN dans Layout.tsx.
+   ------------------------------------------------------------------------- */
+
+@media (min-width: 900px) {
+  /* Deux colonnes : le menu à gauche, la page à droite. */
+  .cadre {
+    display: grid;
+    grid-template-columns: 264px 1fr;
+  }
+
+  /* Plus de barre du haut ni de bouton de fermeture : le menu est toujours visible. */
+  .barre-haut,
+  .menu-fermer {
+    display: none;
+  }
+
+  /* Le menu redevient une colonne normale, collée en haut pendant le défilement. */
+  .menu {
+    position: sticky;
+    height: 100dvh;
+    width: auto;
+    padding: 24px 16px;
+    transform: none;
+    transition: none;
+  }
+
+  .zone-page {
+    padding: 40px 48px 64px;
+  }
+}

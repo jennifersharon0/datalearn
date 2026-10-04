@@ -1,0 +1,1518 @@
+/*
+  Fichier : src/index.css
+
+  Les styles communs à toute l'application : variables (couleurs, ombres,
+  arrondis), mode sombre, éléments réutilisés partout (boutons, cartes,
+  champs, messages), puis la connexion, la leçon, l'assistant et le quiz.
+  Les autres pages ont leur propre fichier CSS, à côté de leur fichier
+  .tsx (Accueil.css, Dashboard.css, Profil.css...).
+
+  Le fichier est écrit "mobile d'abord" : les règles de base visent un
+  écran de téléphone, et les blocs @media (min-width: ...) ajoutent les
+  ajustements pour les écrans plus larges. C'est plus simple dans ce sens,
+  parce qu'une mise en page de téléphone (une seule colonne) s'élargit plus
+  naturellement qu'une mise en page d'ordinateur ne se rétrécit.
+
+  Palette : gris, rouge et blanc uniquement.
+*/
+
+/* -------------------------------------------------------------------------
+   1. Variables
+   Chaque couleur, ombre et arrondi est défini une seule fois ici. Pour
+   changer le rouge de toute l'application, il suffit de modifier une ligne.
+   ------------------------------------------------------------------------- */
+
+:root {
+  /* Rouge, du plus clair au plus foncé. Le 600 est la couleur principale. */
+  --rouge-50: #fdf2f2;
+  --rouge-100: #fbe1e1;
+  --rouge-200: #f5bcbc;
+  --rouge-600: #c62828;
+  --rouge-700: #a61f1f;
+  --rouge-800: #861a1a;
+
+  /* Gris chauds, du plus clair au plus foncé. Ils tirent très légèrement
+     vers le brun plutôt que vers le bleu : c'est ce qui les accorde avec le
+     rouge, qui est lui-même une couleur chaude. Un gris froid (bleuté) à
+     côté d'un rouge donne un contraste plus dur et moins harmonieux. */
+  --gris-50: #fafaf9;
+  --gris-100: #f3f2f0;
+  --gris-200: #e6e3e0;
+  --gris-300: #d4d0cc;
+  --gris-400: #a8a29e;
+  --gris-500: #78716c;
+  --gris-600: #57534e;
+  --gris-700: #44403c;
+  --gris-800: #292524;
+  --gris-900: #1c1917;
+
+  --blanc: #ffffff;
+
+  /* "Encre" : gris très foncés qui restent foncés dans les deux modes.
+     Ils servent aux surfaces volontairement sombres (bandeau d'accueil,
+     présentation de la connexion, vignettes sombres, blocs de code).
+     Les --gris-*, eux, s'inversent en mode sombre (voir plus bas). */
+  --encre: #1c1917;
+  --encre-200: #e6e3e0;
+  --encre-300: #d4d0cc;
+  --encre-400: #a8a29e;
+  --encre-500: #78716c;
+  --encre-600: #57534e;
+
+  /* Rôles : on utilise ces noms dans le reste du fichier plutôt que les
+     couleurs directement, pour que le sens reste clair. */
+  --fond: var(--gris-50);
+  --surface: var(--blanc);
+  --texte: var(--gris-900);
+  --texte-secondaire: var(--gris-500);
+  --bordure: var(--gris-200);
+  /* Rouge pour le texte et les icônes (liens, page active...). */
+  --accent: var(--rouge-600);
+  /* Rouge pour les fonds qui portent un texte blanc (boutons, bulles...).
+     Il reste le même dans les deux modes, pour garder un bon contraste
+     avec le blanc. */
+  --accent-fond: #c62828;
+  --accent-survol: #a61f1f;
+  --accent-doux: var(--rouge-50);
+
+  /* Arrondis. */
+  --rayon-petit: 8px;
+  --rayon: 12px;
+  --rayon-grand: 16px;
+  --rayon-plein: 999px;
+
+  /* Ombres, très discrètes, pour détacher les cartes du fond. */
+  --ombre-legere: 0 1px 2px rgba(28, 25, 23, 0.05);
+  --ombre: 0 1px 3px rgba(28, 25, 23, 0.06), 0 4px 16px rgba(28, 25, 23, 0.05);
+  --ombre-forte: 0 12px 40px rgba(28, 25, 23, 0.12);
+
+  /* Contour visible quand on navigue au clavier (touche Tab). */
+  --focus: 0 0 0 3px var(--rouge-200);
+
+
+  /* Transition utilisée pour tous les survols. */
+  --transition: 150ms ease;
+
+  /* L'application n'a qu'un thème clair : on le dit au navigateur pour que
+     ses propres éléments (barres de défilement, champs) restent clairs. */
+  color-scheme: light;
+}
+
+/* -------------------------------------------------------------------------
+   Mode sombre
+   Activé quand la balise <html> porte data-theme="sombre" (posé par
+   ThemeContext.tsx, ou dès le chargement par le petit script de index.html).
+   On ne redéfinit que des variables : tous les composants qui les utilisent
+   changent d'apparence automatiquement.
+
+   L'échelle des gris est inversée : --gris-50, le plus clair en mode clair,
+   devient le plus foncé. Un texte en --gris-900 reste ainsi "le texte le plus
+   contrasté" dans les deux modes. Le fond n'est pas noir pur mais un gris
+   très foncé et chaud, plus reposant pour les yeux.
+   ------------------------------------------------------------------------- */
+
+:root[data-theme="sombre"] {
+  --gris-50: #12100f;
+  --gris-100: #1f1c1a;
+  --gris-200: #2c2926;
+  --gris-300: #3d3935;
+  --gris-400: #6b655f;
+  --gris-500: #9c958f;
+  --gris-600: #b5afa9;
+  --gris-700: #cdc8c3;
+  --gris-800: #e4e0db;
+  --gris-900: #f3f1ee;
+
+  /* Teintes rouges adaptées au fond sombre : les fonds pâles deviennent
+     des rouges très sombres, les textes rouges foncés deviennent clairs. */
+  --rouge-50: #2a1615;
+  --rouge-100: #3d1d1b;
+  --rouge-200: #6e2b27;
+  --rouge-700: #f08a84;
+  --rouge-800: #f6aaa5;
+
+  /* Les cartes sont légèrement plus claires que le fond de page,
+     pour rester distinctes sans ombre marquée. */
+  --surface: #1a1816;
+
+  /* Rouge plus lumineux pour le texte : le rouge habituel serait trop
+     sombre pour être bien lu sur un fond foncé. */
+  --accent: #ea5f57;
+  --accent-survol: #d4352f;
+
+  /* Les ombres se voient peu sur fond sombre : on les renforce un peu. */
+  --ombre-legere: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --ombre: 0 1px 3px rgba(0, 0, 0, 0.35), 0 4px 16px rgba(0, 0, 0, 0.3);
+  --ombre-forte: 0 12px 40px rgba(0, 0, 0, 0.5);
+
+  /* Les barres de défilement et champs du navigateur passent en sombre aussi. */
+  color-scheme: dark;
+}
+
+/* -------------------------------------------------------------------------
+   2. Réglages de base
+   ------------------------------------------------------------------------- */
+
+/* La largeur d'un élément inclut ses marges intérieures et sa bordure,
+   ce qui rend les tailles beaucoup plus prévisibles. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Empêche les téléphones d'agrandir le texte d'eux-mêmes en mode paysage. */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh; /* dvh suit la hauteur réelle de l'écran sur téléphone */
+  font-family: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--texte);
+  background-color: var(--fond);
+  -webkit-font-smoothing: antialiased; /* texte plus net sur Mac et iPhone */
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 1.125rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Boutons et champs héritent de la police du site au lieu de celle du système. */
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Contour de focus au clavier uniquement (pas au clic de souris). */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+/* L'attribut hidden doit toujours masquer, même si une classe impose un display. */
+[hidden] {
+  display: none !important;
+}
+
+/* Réduit les animations pour les personnes qui l'ont demandé dans leur système. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   3. Éléments réutilisables
+   ------------------------------------------------------------------------- */
+
+.texte-secondaire {
+  color: var(--texte-secondaire);
+}
+
+/* Carte : fond blanc, bord fin, coins arrondis. */
+.carte {
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-grand);
+  box-shadow: var(--ombre-legere);
+  padding: 20px;
+}
+
+/* Boutons : une base commune, puis des variantes. */
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px; /* taille minimale confortable au doigt */
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  border-radius: var(--rayon);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.bouton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Bouton principal : fond rouge, texte blanc. */
+.bouton-primaire {
+  background: var(--accent-fond);
+  color: var(--blanc);
+}
+
+.bouton-primaire:hover:not(:disabled) {
+  background: var(--accent-survol);
+}
+
+/* Bouton secondaire : fond blanc, bord gris. */
+.bouton-secondaire {
+  background: var(--surface);
+  border-color: var(--gris-300);
+  color: var(--gris-800);
+}
+
+.bouton-secondaire:hover:not(:disabled) {
+  border-color: var(--gris-400);
+  background: var(--gris-50);
+}
+
+/* Bouton discret : pas de fond tant qu'on ne le survole pas. */
+.bouton-fantome {
+  background: transparent;
+  color: var(--gris-700);
+}
+
+.bouton-fantome:hover:not(:disabled) {
+  background: var(--gris-100);
+}
+
+.bouton-large {
+  width: 100%;
+}
+
+/* Bouton carré qui ne contient qu'une icône. */
+.bouton-carre {
+  width: 44px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* Petit bouton rond avec une icône (déconnexion). */
+.bouton-icone {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: var(--rayon);
+  background: transparent;
+  color: var(--gris-600);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.bouton-icone:hover {
+  background: var(--gris-100);
+  color: var(--accent);
+}
+
+/* Roue de chargement : un cercle dont un quart est coloré, qui tourne. */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: rotation 0.7s linear infinite;
+}
+
+.spinner-grand {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+  color: var(--accent);
+}
+
+@keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Squelette de chargement : un bloc gris traversé par un reflet qui se déplace. */
+.squelette {
+  position: relative;
+  overflow: hidden;
+  background: var(--gris-100);
+  border-color: transparent !important;
+  box-shadow: none !important;
+  border-radius: var(--rayon);
+}
+
+.squelette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--surface) 70%, transparent), transparent);
+  animation: reflet 1.4s ease-in-out infinite;
+}
+
+@keyframes reflet {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.squelette-titre {
+  height: 36px;
+  width: 60%;
+  margin-bottom: 20px;
+}
+
+.squelette-bloc {
+  height: 320px;
+}
+
+/* Pastille cliquable (suggestions de questions). */
+.puce {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border: 1px solid var(--gris-300);
+  border-radius: var(--rayon-plein);
+  background: var(--surface);
+  color: var(--gris-700);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.puce:hover:not(:disabled) {
+  border-color: var(--gris-400);
+}
+
+.puce.actif {
+  background: var(--gris-900);
+  border-color: var(--gris-900);
+  /* --gris-50 plutôt que blanc : en mode sombre, le fond devient clair
+     et le texte foncé, ce qui garde le contraste. */
+  color: var(--gris-50);
+}
+
+/* Étiquette de catégorie, en rouge pâle. */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--rayon-plein);
+  background: var(--accent-doux);
+  color: var(--rouge-700);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* Petit compteur gris à côté d'un titre. */
+.compteur {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: var(--rayon-plein);
+  background: var(--gris-100);
+  color: var(--gris-600);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Messages d'alerte avec icône. */
+.alerte {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--rayon);
+  font-size: 0.875rem;
+}
+
+.alerte svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.alerte-erreur {
+  background: var(--rouge-50);
+  color: var(--rouge-800);
+  border: 1px solid var(--rouge-100);
+}
+
+.alerte-succes {
+  background: var(--gris-100);
+  color: var(--gris-800);
+  border: 1px solid var(--gris-200);
+}
+
+/* Écran vide ou d'erreur, centré, avec icône et bouton. */
+.etat-vide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--texte-secondaire);
+}
+
+.etat-vide svg {
+  color: var(--gris-400);
+}
+
+/* Barre de progression : une piste grise et un remplissage rouge.
+   La largeur du remplissage est donnée par le composant (style width). */
+.barre-progression {
+  height: 6px;
+  border-radius: var(--rayon-plein);
+  background: var(--gris-100);
+  overflow: hidden;
+}
+
+.barre-progression > div {
+  height: 100%;
+  border-radius: var(--rayon-plein);
+  background: var(--accent-fond);
+  transition: width 300ms ease;
+}
+
+.barre-epaisse {
+  height: 10px;
+}
+
+/* -------------------------------------------------------------------------
+   4. Éléments communs de la structure
+   Le menu et le cadre des pages ont leur propre fichier (components/Layout.css).
+   Restent ici les éléments utilisés à plusieurs endroits.
+   ------------------------------------------------------------------------- */
+
+/* Logo : carré rouge avec une icône, puis le nom (menu, connexion). */
+.marque {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+}
+
+.marque-logo {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--accent-fond);
+  color: var(--blanc);
+}
+
+/* Pastille ronde avec l'initiale de l'utilisateur. */
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gris-900);
+  color: var(--gris-50); /* s'inverse avec le fond en mode sombre */
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Écran de chargement plein écran. */
+.ecran-chargement {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+}
+
+/* -------------------------------------------------------------------------
+   5. Page de connexion
+   ------------------------------------------------------------------------- */
+
+.page-connexion {
+  display: grid;
+  min-height: 100dvh;
+}
+
+/* Partie présentation : masquée sur téléphone. */
+.connexion-presentation {
+  display: none;
+}
+
+.connexion-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+.carte-connexion {
+  width: 100%;
+  max-width: 400px;
+}
+
+.carte-connexion h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.marque-mobile {
+  margin-bottom: 32px;
+}
+
+/* Sélecteur Connexion / Inscription, en forme de pilule segmentée. */
+.selecteur-mode {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  margin: 24px 0;
+  border-radius: var(--rayon);
+  background: var(--gris-100);
+}
+
+.selecteur-option {
+  padding: 9px;
+  border: none;
+  border-radius: var(--rayon-petit);
+  background: transparent;
+  color: var(--gris-600);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.selecteur-option.actif {
+  background: var(--surface);
+  color: var(--gris-900);
+  font-weight: 600;
+  box-shadow: var(--ombre-legere);
+}
+
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.champ label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--gris-700);
+}
+
+/* Conteneur du champ : l'icône est placée par-dessus, à gauche. */
+.champ-saisie {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.champ-icone {
+  position: absolute;
+  left: 14px;
+  color: var(--gris-400);
+  pointer-events: none; /* un clic sur l'icône atteint le champ */
+}
+
+.champ-saisie input {
+  width: 100%;
+  height: 48px;
+  padding: 0 44px 0 42px; /* place pour l'icône à gauche et le bouton œil à droite */
+  border: 1px solid var(--gris-300);
+  border-radius: var(--rayon);
+  background: var(--surface);
+  font-size: 1rem; /* 16px minimum : en dessous, l'iPhone zoome sur le champ */
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.champ-saisie input::placeholder {
+  color: var(--gris-400);
+}
+
+.champ-saisie input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: var(--focus);
+}
+
+.bouton-voir-mdp {
+  position: absolute;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--rayon-petit);
+  background: transparent;
+  color: var(--gris-500);
+}
+
+.bouton-voir-mdp:hover {
+  color: var(--gris-900);
+}
+
+/* -------------------------------------------------------------------------
+   6. Pages : éléments communs
+   ------------------------------------------------------------------------- */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.page-entete {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.lien-retour {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  color: var(--gris-600);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.lien-retour:hover {
+  color: var(--accent);
+}
+
+/* -------------------------------------------------------------------------
+   7. Barre de recherche (page Mes cours)
+   ------------------------------------------------------------------------- */
+
+.recherche {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.recherche-icone {
+  position: absolute;
+  left: 16px;
+  color: var(--gris-400);
+  pointer-events: none;
+}
+
+.recherche input {
+  width: 100%;
+  height: 50px;
+  padding: 0 46px;
+  border: 1px solid var(--gris-300);
+  border-radius: var(--rayon);
+  background: var(--surface);
+  font-size: 1rem;
+  box-shadow: var(--ombre-legere);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.recherche input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: var(--focus);
+}
+
+/* Retire la croix ajoutée par certains navigateurs : on a la nôtre. */
+.recherche input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.recherche-effacer {
+  position: absolute;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: var(--gris-100);
+  color: var(--gris-600);
+}
+
+/* -------------------------------------------------------------------------
+   8. Page de leçon
+   ------------------------------------------------------------------------- */
+
+.meta-lecon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+}
+
+/* Onglets de la leçon. */
+.onglets {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--rayon);
+  background: var(--gris-100);
+}
+
+.onglet {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 8px;
+  border: none;
+  border-radius: var(--rayon-petit);
+  background: transparent;
+  color: var(--gris-600);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.onglet:hover {
+  color: var(--gris-900);
+}
+
+.onglet.actif {
+  background: var(--surface);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: var(--ombre-legere);
+}
+
+/* Chaque panneau d'onglet empile ses blocs avec un espace régulier. */
+[role="tabpanel"] {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Encadré "En bref" : fond gris clair, filet rouge à gauche. */
+.encadre {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--rayon) var(--rayon) 0;
+  background: var(--gris-100);
+}
+
+.encadre-titre {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.encadre .bouton-fantome {
+  margin-left: -12px;
+  min-height: 36px;
+  padding: 6px 12px;
+}
+
+/* Texte de la leçon : taille et interligne pensés pour la lecture.
+   max-width limite la longueur des lignes, plus confortable à lire. */
+.texte-lecon {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px 20px;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--gris-800);
+}
+
+.texte-lecon p {
+  max-width: 70ch;
+  white-space: pre-line; /* conserve les retours à la ligne simples */
+}
+
+.suite-lecon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  text-align: center;
+  color: var(--texte-secondaire);
+}
+
+/* -------------------------------------------------------------------------
+   9. Conversation avec l'assistant
+   ------------------------------------------------------------------------- */
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  /* La conversation occupe la hauteur de l'écran, moins la place prise par
+     la barre du haut et l'en-tête de la leçon : la zone de saisie reste
+     ainsi visible sans avoir à faire défiler la page. */
+  height: calc(100dvh - 370px);
+  min-height: 360px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-grand);
+  box-shadow: var(--ombre-legere);
+  overflow: hidden;
+}
+
+.chat-messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.chat-accueil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin: auto 0;
+  text-align: center;
+  color: var(--gris-600);
+}
+
+.chat-accueil-icone {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--accent-doux);
+  color: var(--accent);
+}
+
+.chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Bulles de message. */
+.bulle {
+  max-width: 85%;
+  padding: 11px 15px;
+  border-radius: 18px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  white-space: pre-wrap; /* conserve les retours à la ligne de la réponse */
+  overflow-wrap: anywhere; /* coupe les mots très longs plutôt que de déborder */
+}
+
+.bulle-utilisateur {
+  align-self: flex-end;
+  background: var(--accent-fond);
+  color: var(--blanc);
+  border-bottom-right-radius: 6px;
+}
+
+.bulle-assistant {
+  align-self: flex-start;
+  background: var(--gris-100);
+  color: var(--gris-900);
+  border-bottom-left-radius: 6px;
+}
+
+.bulle-erreur {
+  background: var(--rouge-50);
+  color: var(--rouge-800);
+  border: 1px solid var(--rouge-100);
+}
+
+/* Trois points animés pendant l'attente. */
+.bulle-attente {
+  display: flex;
+  gap: 5px;
+  padding: 15px 18px;
+}
+
+.bulle-attente span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gris-400);
+  animation: rebond 1.2s infinite ease-in-out;
+}
+
+.bulle-attente span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.bulle-attente span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes rebond {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* Zone de saisie en bas de la conversation. */
+.chat-saisie {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--bordure);
+  background: var(--surface);
+}
+
+.chat-saisie textarea {
+  flex: 1;
+  min-height: 44px;
+  max-height: 140px;
+  padding: 11px 14px;
+  border: 1px solid var(--gris-300);
+  border-radius: var(--rayon);
+  background: var(--gris-50);
+  font-size: 1rem;
+  line-height: 1.4;
+  resize: none;
+  field-sizing: content; /* le champ grandit avec le texte (navigateurs récents) */
+}
+
+.chat-saisie textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: var(--focus);
+}
+
+.chat-compteur {
+  padding: 0 14px 10px;
+  text-align: right;
+  color: var(--texte-secondaire);
+  font-size: 0.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   10. Quiz
+   ------------------------------------------------------------------------- */
+
+.quiz {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quiz-progression {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Pastilles numérotées pour sauter à une question. */
+.quiz-pastilles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.quiz-pastille {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--gris-300);
+  border-radius: var(--rayon-petit);
+  background: var(--surface);
+  color: var(--gris-600);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: all var(--transition);
+}
+
+.quiz-pastille.repondue {
+  background: var(--gris-800);
+  border-color: var(--gris-800);
+  color: var(--gris-50);
+}
+
+.quiz-pastille.courante {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 0 2px var(--rouge-100);
+}
+
+.question-carte {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.question-enonce {
+  font-size: 1.125rem;
+  line-height: 1.45;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Une option de réponse : grande zone cliquable avec sa lettre. */
+.option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--gris-200);
+  border-radius: var(--rayon);
+  background: var(--surface);
+  text-align: left;
+  font-size: 0.9375rem;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.option:hover {
+  border-color: var(--gris-400);
+}
+
+.option.choisie {
+  border-color: var(--accent);
+  background: var(--accent-doux);
+}
+
+/* Lettre A, B, C, D dans un petit carré. */
+.option-lettre {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--rayon-petit);
+  background: var(--gris-100);
+  color: var(--gris-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.option.choisie .option-lettre {
+  background: var(--accent-fond);
+  color: var(--blanc);
+}
+
+.quiz-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Résultat : cercle de score et message. */
+.quiz-resultat {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.score-carte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.score-cercle {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+/* Le SVG est tourné d'un quart de tour pour que le cercle démarre en haut. */
+.score-cercle svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.score-cercle circle {
+  fill: none;
+  stroke-width: 10;
+}
+
+.score-cercle-fond {
+  stroke: var(--gris-100);
+}
+
+.score-cercle-valeur {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 800ms ease;
+}
+
+.score-cercle-texte {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-cercle-texte strong {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.score-cercle-texte span {
+  color: var(--texte-secondaire);
+  font-size: 0.875rem;
+}
+
+.score-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gris-700);
+  font-weight: 500;
+}
+
+.score-message svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.titre-corrige {
+  margin-top: 8px;
+}
+
+/* Corrigé détaillé. */
+.liste-corrige {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.corrige-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+}
+
+.corrige-entete {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Pastille ronde : grise foncée avec coche si juste, rouge avec croix si faux. */
+.corrige-pastille {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: var(--blanc);
+}
+
+.corrige-item.juste .corrige-pastille {
+  background: var(--gris-800);
+  color: var(--gris-50);
+}
+
+.corrige-item.faux .corrige-pastille {
+  background: var(--accent-fond);
+}
+
+.corrige-question {
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.corrige-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.corrige-option {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--rayon-petit);
+  color: var(--gris-600);
+  font-size: 0.9375rem;
+}
+
+.corrige-option.bonne {
+  background: var(--gris-100);
+  color: var(--gris-900);
+  font-weight: 500;
+}
+
+.corrige-option.bonne .option-lettre {
+  background: var(--gris-800);
+  color: var(--gris-50);
+}
+
+.corrige-option.mauvaise {
+  background: var(--rouge-50);
+  color: var(--rouge-800);
+}
+
+.corrige-option.mauvaise .option-lettre {
+  background: var(--accent-fond);
+  color: var(--blanc);
+}
+
+/* Petite étiquette "Bonne réponse" ou "Ta réponse", poussée à droite. */
+.etiquette {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* -------------------------------------------------------------------------
+   11. Écran de secours (ErrorBoundary)
+   ------------------------------------------------------------------------- */
+
+.ecran-secours {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 20px;
+}
+
+.ecran-secours-carte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 420px;
+  padding: 32px 24px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-grand);
+  box-shadow: var(--ombre);
+  text-align: center;
+}
+
+.ecran-secours-carte p {
+  color: var(--texte-secondaire);
+}
+
+.ecran-secours-icone {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--accent-doux);
+  color: var(--accent);
+}
+
+/* -------------------------------------------------------------------------
+   12. Écrans moyens (tablette), à partir de 640px
+   ------------------------------------------------------------------------- */
+
+@media (min-width: 640px) {
+  .texte-lecon {
+    padding: 32px 36px;
+  }
+
+  .carte {
+    padding: 24px;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   13. Grands écrans (ordinateur), à partir de 900px
+   ------------------------------------------------------------------------- */
+
+@media (min-width: 900px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .page {
+    gap: 24px;
+  }
+
+  /* Plus de barre du haut sur grand écran : la conversation peut prendre plus de place. */
+  .chat {
+    height: min(620px, calc(100dvh - 320px));
+  }
+
+  /* Onglets de la leçon : largeur naturelle au lieu de tout l'espace. */
+  .onglets {
+    align-self: flex-start;
+  }
+
+  .onglet {
+    flex: none;
+    padding: 10px 20px;
+  }
+
+  /* Page de connexion en deux colonnes. */
+  .page-connexion {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .connexion-presentation {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px;
+    background: var(--encre); /* reste sombre dans les deux modes */
+    color: var(--blanc);
+    overflow: hidden;
+  }
+
+  /* Halo rouge en fond de la présentation, purement décoratif. */
+  .connexion-presentation::before {
+    content: "";
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    right: -180px;
+    bottom: -200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(198, 40, 40, 0.55), transparent 65%);
+    pointer-events: none;
+  }
+
+  .presentation-texte {
+    position: relative; /* passe au-dessus du halo */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 460px;
+  }
+
+  .presentation-texte h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  .presentation-texte p {
+    color: var(--encre-300);
+    font-size: 1.0625rem;
+  }
+
+  .liste-atouts {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--encre-200);
+  }
+
+  .liste-atouts li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .atout-icone {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--blanc);
+  }
+
+  .marque-claire {
+    position: relative;
+    color: var(--blanc);
+  }
+
+  /* Le logo au-dessus du formulaire ne sert plus : il est dans la présentation. */
+  .marque-mobile {
+    display: none;
+  }
+
+  .connexion-zone {
+    padding: 48px;
+  }
+}

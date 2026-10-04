@@ -1,0 +1,19 @@
+# Fichier : requirements-outils.txt
+#
+# Bibliothèques des scripts lancés à la main pour préparer le contenu :
+# generer_base_connaissances.py, corriger_titres.py, verifier_quiz.py,
+# ainsi que les tests automatiques (pytest).
+# Elles ne sont pas nécessaires au serveur en ligne.
+#     pip install -r requirements-outils.txt
+
+# Tout ce qu'il faut au serveur (les scripts réutilisent llm_client.py).
+-r requirements.txt
+
+# Recherche de sources sur le web pour rédiger les leçons.
+ddgs==9.16.0
+
+# Tests automatiques, lancés avec la commande : pytest
+pytest==9.1.1
+# Client HTTP utilisé par le client de test de FastAPI (TestClient), qui
+# envoie des requêtes au serveur sans le lancer.
+httpx2==2.13.1

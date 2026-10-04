@@ -1,0 +1,31 @@
+# Fichier : .gitignore (à la racine du projet)
+#
+# Liste des fichiers que Git ne doit jamais envoyer sur GitHub.
+
+# Secrets : clés Groq et Supabase, adresse de la base de données.
+# Seul .env.example, sans les vraies valeurs, est partagé.
+.env
+.env.*
+!.env.example
+
+# Environnement virtuel Python : il se recrée avec
+# "pip install -r requirements.txt".
+.venv/
+venv/
+
+# Fichiers générés automatiquement par Python.
+__pycache__/
+*.pyc
+
+# Cache de pytest, recréé à chaque lancement des tests.
+.pytest_cache/
+
+# Sauvegardes créées par corriger_titres.py.
+knowledge_db.sauvegarde-*.json
+*.tmp
+
+# Réglages personnels de l'éditeur et fichiers du système.
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,211 @@
+/*
+  Fichier : src/pages/NotionDuJour.css
+
+  Styles de la page "Notion du jour" : une grande carte avec la vignette de
+  la catégorie en haut, puis le titre, l'aperçu, la raison du choix et les
+  boutons. Toutes les classes commencent par "notion-".
+*/
+
+/* Toute la page tient dans une colonne centrée : il n'y a qu'une chose à
+   regarder, la notion proposée, et on la place au milieu de l'écran plutôt
+   que de laisser un grand vide à droite. */
+.notion-page {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* En-tête centré au-dessus de la carte. */
+.notion-page .page-entete {
+  align-items: center;
+  text-align: center;
+}
+
+/* Date au-dessus du titre, en petites capitales rouges. */
+.notion-date {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* La carte de la notion. overflow: hidden coupe la vignette aux coins
+   arrondis de la carte, comme sur la page d'une catégorie. */
+.notion-carte {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-grand);
+  box-shadow: var(--ombre);
+}
+
+.notion-corps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 22px 20px 24px;
+}
+
+.notion-titres {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+/* Nom de la catégorie, en lien vers sa page. */
+.notion-categorie {
+  color: var(--texte-secondaire);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.notion-categorie:hover {
+  color: var(--texte);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.notion-titres h2 {
+  margin: 0;
+  font-size: 1.625rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.notion-titres p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* L'aperçu : un encadré gris avec un trait rouge à gauche, comme une
+   citation, pour le distinguer du reste de la carte. */
+.notion-apercu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--accent-fond);
+  border-radius: 0 var(--rayon) var(--rayon) 0;
+  background: var(--gris-50);
+}
+
+.notion-apercu-titre {
+  color: var(--texte-secondaire);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.notion-apercu-texte {
+  color: var(--gris-800);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.notion-apercu-texte p {
+  margin: 0;
+}
+
+.notion-apercu-texte p + p {
+  margin-top: 8px;
+}
+
+/* Lignes grises affichées pendant que l'aperçu arrive. */
+.notion-ligne {
+  display: block;
+  height: 14px;
+  border-radius: 4px;
+}
+
+.notion-ligne.courte {
+  width: 60%;
+}
+
+.notion-pourquoi {
+  margin: 0;
+  color: var(--texte-secondaire);
+  font-size: 0.875rem;
+}
+
+/* Les boutons, et le compteur poussé à droite sur grand écran. */
+.notion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.notion-compteur {
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Bloc gris pendant le chargement de la page. */
+.notion-squelette {
+  height: 460px;
+}
+
+/* Carte affichée quand toutes les leçons ont déjà été ouvertes. */
+.notion-fin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.notion-fin-icone {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--accent-doux);
+  color: var(--accent);
+}
+
+.notion-fin .bouton {
+  margin-top: 8px;
+}
+
+/* Sur téléphone, les boutons prennent toute la largeur : plus faciles à
+   toucher. Le compteur passe dessous, centré. */
+@media (max-width: 559px) {
+  .notion-actions .bouton {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .notion-compteur {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Sur grand écran, la page descend un peu pour ne pas coller au haut. */
+@media (min-width: 900px) {
+  .notion-page {
+    padding-top: 16px;
+  }
+}
+
+@media (min-width: 640px) {
+  .notion-corps {
+    padding: 28px 32px 32px;
+  }
+
+  .notion-titres h2 {
+    font-size: 2rem;
+  }
+
+  .notion-compteur {
+    margin-left: auto;
+  }
+}

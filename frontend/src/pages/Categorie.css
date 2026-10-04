@@ -1,0 +1,172 @@
+/*
+  Fichier : src/pages/Categorie.css
+
+  Styles de la page d'une catégorie : l'en-tête avec son icône et sa barre
+  de progression, puis la liste des chapitres avec leurs indicateurs d'état.
+  Écrit "mobile d'abord", avec les ajustements grand écran en bas.
+*/
+
+/* -------------------------------------------------------------------------
+   En-tête de la catégorie
+   ------------------------------------------------------------------------- */
+
+/* Carte qui contient la grande vignette en haut, puis le texte.
+   overflow: hidden coupe la vignette aux coins arrondis de la carte. */
+.categorie-entete {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-grand);
+  box-shadow: var(--ombre-legere);
+}
+
+/* Nom, chiffres et barre de progression, sous la vignette. */
+.categorie-titres {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 22px 22px;
+}
+
+.categorie-titres h1 {
+  font-size: 1.5rem;
+}
+
+.categorie-titres p {
+  font-size: 0.875rem;
+}
+
+/* Un peu d'espace entre les chiffres et la barre. */
+.categorie-barre {
+  margin-top: 8px;
+}
+
+/* -------------------------------------------------------------------------
+   Liste des chapitres
+   ------------------------------------------------------------------------- */
+
+.liste-chapitres {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Un chapitre : indicateur, texte, étiquette éventuelle, flèche. */
+.chapitre {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.chapitre:hover {
+  border-color: var(--rouge-200);
+  box-shadow: var(--ombre);
+}
+
+.chapitre-texte {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chapitre-numero {
+  color: var(--texte-secondaire);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chapitre-titre {
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.chapitre-etat {
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+}
+
+.chapitre-fleche {
+  flex-shrink: 0;
+  color: var(--gris-400);
+}
+
+.chapitre:hover .chapitre-fleche {
+  color: var(--accent);
+}
+
+/* Étiquette "À suivre". */
+.etiquette-prochaine {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: var(--rayon-plein);
+  background: var(--accent-fond);
+  color: var(--blanc);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+   Indicateur d'état (le cercle à gauche de chaque chapitre)
+   ------------------------------------------------------------------------- */
+
+.indicateur-etat {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+/* Contour gris pour une leçon jamais ouverte. */
+.indicateur-contour {
+  fill: none;
+  stroke: var(--gris-300);
+  stroke-width: 2;
+}
+
+/* Contour rouge dès que la leçon a été ouverte. */
+.indicateur-etat.lue .indicateur-contour,
+.indicateur-etat.reussie .indicateur-contour {
+  stroke: var(--accent);
+}
+
+.indicateur-remplissage {
+  fill: var(--accent-fond);
+}
+
+/* Coche blanche, aux extrémités arrondies. */
+.indicateur-coche {
+  fill: none;
+  stroke: var(--blanc);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* -------------------------------------------------------------------------
+   Grand écran
+   ------------------------------------------------------------------------- */
+
+@media (min-width: 640px) {
+  .categorie-titres {
+    padding: 24px 28px 26px;
+  }
+
+  .categorie-titres h1 {
+    font-size: 1.875rem;
+  }
+
+  .chapitre {
+    padding: 18px 22px;
+  }
+}

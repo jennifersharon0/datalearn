@@ -1,0 +1,31 @@
+# Fichier : requirements.txt
+#
+# Bibliothèques nécessaires au serveur (main.py), avec leurs versions
+# exactes. L'hébergeur lit ce fichier pour installer le backend :
+#     pip install -r requirements.txt
+#
+# Seul ce qui sert à l'application en ligne est listé ici. Les outils de
+# génération de contenu ont leur propre fichier, requirements-outils.txt.
+
+# Serveur web et validation des données reçues.
+fastapi==0.141.1
+uvicorn[standard]==0.53.0
+pydantic==2.13.5
+
+# Lecture du fichier .env.
+python-dotenv==1.2.3
+
+# Connexion à la base PostgreSQL de Supabase.
+psycopg2-binary==2.9.13
+
+# Vérification des jetons de connexion Supabase. [crypto] installe aussi
+# cryptography, nécessaire pour les signatures ES256 et RS256.
+PyJWT[crypto]==2.14.0
+cryptography==50.0.1
+
+# Appels au LLM.
+groq==1.7.0
+
+# Fuseaux horaires, pour compter les jours à l'heure de Paris. Linux les
+# fournit déjà, mais Windows non : sans ce paquet, zoneinfo y échoue.
+tzdata==2026.5

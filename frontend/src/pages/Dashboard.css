@@ -1,0 +1,768 @@
+/*
+  Fichier : src/pages/Dashboard.css
+
+  les blocs @media et @container en bas ajoutent
+  les mises en page plus larges.
+*/
+
+/* -------------------------------------------------------------------------
+   1. Couleurs des graphiques
+   ------------------------------------------------------------------------- */
+
+:root {
+  /* Une couleur par famille de catégories, proche de celle des vignettes,
+     mais un peu plus saturée pour rester bien visible sur une fine barre. */
+  --serie-fondations: #2f5fa8;
+  --serie-modeles: #c62828;
+  --serie-langage: #6b4fa3;
+  --serie-data: #008a7a;
+
+  /* Couleur de la courbe des scores, de l'anneau et de la jauge. */
+  --serie-ligne: #c62828;
+
+  /* Intensité de l'activité, du jour vide (0) au jour le plus chargé (4).
+     Un seul rouge, de plus en plus foncé : plus c'est foncé, plus il y a eu
+     d'activité, sans avoir besoin d'apprendre une légende compliquée. */
+  --chaleur-0: var(--gris-200);
+  --chaleur-1: #ee8f8a;
+  --chaleur-2: #d9534f;
+  --chaleur-3: #b3261e;
+  --chaleur-4: #7a1712;
+}
+
+/* En mode sombre, les couleurs s'éclaircissent pour ressortir sur le fond
+   foncé, et l'échelle d'intensité s'inverse : plus c'est clair, plus il y a
+   eu d'activité, puisque le fond est lui-même foncé. */
+:root[data-theme="sombre"] {
+  --serie-fondations: #5b8fe0;
+  --serie-modeles: #e5484d;
+  --serie-langage: #9874e0;
+  --serie-data: #1fa595;
+
+  --serie-ligne: #e5484d;
+
+  --chaleur-1: #8f3530;
+  --chaleur-2: #c2443d;
+  --chaleur-3: #e8675f;
+  --chaleur-4: #f5a39d;
+}
+
+/* Chaque élément d'une famille reçoit sa couleur dans --couleur-serie. */
+.serie-fondations {
+  --couleur-serie: var(--serie-fondations);
+}
+
+.serie-modeles {
+  --couleur-serie: var(--serie-modeles);
+}
+
+.serie-langage {
+  --couleur-serie: var(--serie-langage);
+}
+
+.serie-data {
+  --couleur-serie: var(--serie-data);
+}
+
+/* Les cinq niveaux d'intensité d'une case. */
+.niveau-0 {
+  background: var(--chaleur-0);
+}
+
+.niveau-1 {
+  background: var(--chaleur-1);
+}
+
+.niveau-2 {
+  background: var(--chaleur-2);
+}
+
+.niveau-3 {
+  background: var(--chaleur-3);
+}
+
+.niveau-4 {
+  background: var(--chaleur-4);
+}
+
+/* -------------------------------------------------------------------------
+   2. Bulle d'information (Infobulle.tsx)
+   ------------------------------------------------------------------------- */
+
+/* Elle prend les couleurs inverses de la page : foncée en mode clair,
+   claire en mode sombre, pour toujours se détacher de ce qu'elle survole.
+   pointer-events: none la rend "transparente" à la souris : elle ne vole
+   jamais le survol de l'élément qui est en dessous. */
+.infobulle {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 260px;
+  padding: 8px 11px;
+  border-radius: var(--rayon-petit);
+  background: var(--gris-900);
+  color: var(--gris-50);
+  box-shadow: var(--ombre);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.infobulle strong {
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+   3. Les quatre indicateurs
+   ------------------------------------------------------------------------- */
+
+/* Une colonne sur téléphone, deux sur tablette, quatre sur grand écran. */
+.tdb-indicateurs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.tdb-tuile {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 168px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-grand);
+  box-shadow: var(--ombre-legere);
+}
+
+/* Variante avec le visuel à droite du chiffre (l'anneau). */
+.tdb-tuile-cote {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tdb-tuile-texte {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Les titres h2 des tuiles gardent une petite taille : ce sont des
+   intitulés, pas des titres de section. */
+.tdb-tuile-libelle {
+  margin: 0;
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* Le chiffre est dans la couleur du texte : le rouge est réservé aux
+   formes, un chiffre coloré serait moins lisible. */
+.tdb-tuile-valeur {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums; /* chiffres de largeur égale */
+}
+
+.tdb-evolution svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+.tdb-tuile-complement {
+  margin: 0;
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+}
+
+/* Le visuel est poussé en bas de la tuile, pour que les quatre visuels
+   soient alignés même si les textes n'ont pas la même hauteur. */
+.tdb-tuile-visuel {
+  margin-top: auto;
+}
+
+.tdb-tuile-cote .tdb-tuile-visuel {
+  margin-top: 0;
+  flex: none;
+}
+
+/* Petit texte d'appoint sous ou à la place d'un visuel. */
+.tdb-mini-note {
+  margin: 0;
+  color: var(--texte-secondaire);
+  font-size: 0.75rem;
+}
+
+/* Évolution du score moyen : flèche et texte côte à côte. Si le texte
+   passe sur deux lignes, la flèche reste alignée sur la première. */
+.tdb-evolution {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  color: var(--gris-700);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+   4. Les mini visuels (MiniGraphiques.tsx)
+   ------------------------------------------------------------------------- */
+
+/* Rangée des 7 derniers jours. position: relative sert de repère à la bulle. */
+.tdb-semaine {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.tdb-semaine-jour {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Les cases de la rangée des 7 derniers jours. */
+.tdb-case {
+  display: block;
+  border-radius: 4px;
+  transition: outline-color var(--transition);
+}
+
+.tdb-semaine .tdb-case {
+  width: 100%;
+  max-width: 30px;
+  aspect-ratio: 1; /* toujours carrée, quelle que soit la largeur */
+}
+
+/* Aujourd'hui : un contour discret, détaché de la case. */
+.tdb-case.aujourdhui {
+  outline: 2px solid var(--gris-400);
+  outline-offset: 2px;
+}
+
+/* Case survolée : contour plus foncé pour montrer laquelle est décrite. */
+.tdb-case:not(.vide):hover {
+  outline: 2px solid var(--gris-700);
+  outline-offset: 1px;
+}
+
+.tdb-semaine-initiale {
+  color: var(--texte-secondaire);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* Anneau de progression. fill: none : seul le trait du cercle est dessiné. */
+.tdb-anneau-piste,
+.tdb-anneau-valeur {
+  fill: none;
+}
+
+.tdb-anneau-piste {
+  stroke: var(--gris-200);
+}
+
+.tdb-anneau-valeur {
+  stroke: var(--serie-ligne);
+  stroke-linecap: round; /* extrémités arrondies */
+}
+
+.tdb-anneau-texte {
+  fill: var(--texte);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Répartition des quiz : une barre en deux segments, séparés par un fin
+   espace de la couleur de la carte (le "gap"), puis les deux nombres. */
+.tdb-repartition {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tdb-repartition-barre {
+  display: flex;
+  gap: 2px;
+  height: 8px;
+}
+
+.tdb-repartition-barre span {
+  height: 100%;
+}
+
+/* Extrémités arrondies : à gauche pour le premier segment, à droite pour
+   le dernier, et les deux si un seul segment occupe toute la barre. */
+.tdb-repartition-barre span:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.tdb-repartition-barre span:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.tdb-repartition-barre span:only-child {
+  border-radius: 4px;
+}
+
+.segment-reussi {
+  background: var(--gris-500);
+}
+
+.segment-a-revoir {
+  background: var(--serie-ligne);
+}
+
+.tdb-repartition-legende {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--gris-700);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tdb-repartition-legende > * {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tdb-repartition-pastille {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+/* Le nombre de quiz à revoir est un lien : souligné au survol. */
+.tdb-repartition-lien {
+  color: var(--gris-700);
+  font-weight: 600;
+}
+
+.tdb-repartition-lien:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Courbe des scores. touch-action: pan-y laisse défiler la page
+   verticalement au doigt, tout en permettant de glisser horizontalement
+   sur la courbe. */
+.tdb-courbe {
+  position: relative;
+}
+
+.tdb-courbe svg {
+  display: block;
+  overflow: visible; /* les ronds au bord ne sont pas coupés */
+  touch-action: pan-y;
+  border-radius: var(--rayon-petit);
+}
+
+.tdb-courbe svg:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Jauge du score moyen. */
+.tdb-jauge {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tdb-jauge-piste {
+  position: relative;
+  height: 8px;
+  border-radius: var(--rayon-plein);
+  background: var(--gris-200);
+}
+
+.tdb-jauge-valeur {
+  position: absolute;
+  inset: 0 auto 0 0; /* collée à gauche, sur toute la hauteur */
+  border-radius: var(--rayon-plein);
+  background: var(--serie-ligne);
+}
+
+/* Repère du seuil : un petit trait vertical qui dépasse de la jauge.
+   translateX(-50%) le centre exactement sur la position du seuil. */
+.tdb-jauge-seuil {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--gris-700);
+  transform: translateX(-50%);
+}
+
+/* -------------------------------------------------------------------------
+   5. Les blocs de graphiques
+   ------------------------------------------------------------------------- */
+
+.tdb-grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); /* minmax(0, ...) évite tout débordement */
+  gap: 16px;
+}
+
+.tdb-bloc {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.tdb-bloc-entete {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tdb-bloc-entete h2 {
+  margin: 0;
+  font-size: 1.0625rem;
+}
+
+.tdb-bloc-entete p {
+  margin: 4px 0 0;
+  font-size: 0.8125rem;
+}
+
+/* Lien "Tout voir" en haut à droite d'un bloc. */
+.tdb-lien-tout {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 0;
+  color: var(--texte);
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Au survol, le lien se souligne : il reste dans la couleur du texte. */
+.tdb-lien-tout:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Texte d'appoint dans un bloc. */
+.tdb-note {
+  margin: 0;
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Message centré à la place d'un graphique vide. */
+.tdb-vide {
+  padding: 32px 0;
+  text-align: center;
+}
+
+/* Éléments des graphiques SVG. */
+.tdb-ligne {
+  fill: none;
+  stroke: var(--serie-ligne);
+  stroke-width: 2px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+/* Les ronds sont entourés d'un anneau de la couleur de la carte, qui les
+   détache de la ligne qui passe dessous. */
+.tdb-point {
+  fill: var(--serie-ligne);
+  stroke: var(--surface);
+  stroke-width: 2px;
+  transition: r 120ms ease;
+}
+
+.tdb-surface {
+  fill: color-mix(in srgb, var(--serie-ligne) 10%, transparent);
+}
+
+.tdb-quadrillage {
+  stroke: var(--gris-200);
+  stroke-width: 1px;
+}
+
+.tdb-seuil {
+  stroke: var(--gris-400);
+  stroke-width: 1px;
+  stroke-dasharray: 4 4; /* 4 pixels de trait, 4 pixels de vide */
+}
+
+.tdb-repere {
+  stroke: var(--gris-300);
+  stroke-width: 1px;
+}
+
+.tdb-axe-texte {
+  fill: var(--texte-secondaire);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+
+
+/* Activité semaine par semaine. */
+.tdb-activite {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Les barres, dans la couleur des graphiques. La semaine en cours, pas
+   encore finie, est un peu plus claire : elle peut encore grandir. */
+.tdb-barre-semaine {
+  fill: var(--serie-ligne);
+  transition: opacity var(--transition);
+}
+
+.tdb-barre-semaine.en-cours {
+  fill: color-mix(in srgb, var(--serie-ligne) 65%, var(--surface));
+}
+
+/* Fond de l'emplacement survolé. */
+.tdb-emplacement-actif {
+  fill: var(--gris-100);
+}
+
+/* Ligne de base, un peu plus marquée que le quadrillage. */
+.tdb-axe {
+  stroke: var(--gris-300);
+  stroke-width: 1px;
+}
+
+/* Barres par catégorie. */
+.tdb-barres-liste {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+  /* container-type permet d'adapter les lignes à la largeur de la liste
+     elle-même, et pas seulement à celle de l'écran (voir @container). */
+  container-type: inline-size;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Sur téléphone : nom et valeur sur une ligne, barre en dessous.
+   Les marges négatives élargissent la zone de survol sans décaler le texte. */
+.tdb-barre {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "nom valeur"
+    "piste piste"
+    "note note";
+  gap: 6px 12px;
+  align-items: center;
+  margin: 0 -10px;
+  padding: 8px 10px;
+  border-radius: var(--rayon-petit);
+  color: inherit;
+  transition: background-color var(--transition);
+}
+
+.tdb-barre:hover {
+  background: var(--gris-100);
+}
+
+.tdb-barre-nom {
+  grid-area: nom;
+  overflow: hidden;
+  color: var(--gris-700);
+  font-size: 0.875rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tdb-barre:hover .tdb-barre-nom {
+  color: var(--texte);
+}
+
+.tdb-barre-valeur {
+  grid-area: valeur;
+  color: var(--gris-700);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.tdb-barre-note {
+  grid-area: note;
+  color: var(--texte-secondaire);
+  font-size: 0.75rem;
+}
+
+.tdb-barre-piste {
+  grid-area: piste;
+  display: block;
+  height: 8px;
+  overflow: hidden;
+  border-radius: var(--rayon-plein);
+  background: var(--gris-200);
+}
+
+/* La barre colorée : départ droit, extrémité arrondie côté valeur. */
+.tdb-barre-piste span {
+  display: block;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  background: var(--couleur-serie);
+  transition: width 400ms ease;
+}
+
+/* Liste des derniers quiz. */
+.tdb-historique {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tdb-historique li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "sujet score"
+    "date score";
+  gap: 2px 12px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.tdb-historique li:last-child {
+  border-bottom: none;
+}
+
+.tdb-historique-sujet {
+  grid-area: sujet;
+  font-weight: 550;
+  transition: color var(--transition);
+}
+
+.tdb-historique-sujet:hover {
+  color: var(--accent);
+}
+
+.tdb-historique-date {
+  grid-area: date;
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+}
+
+/* Pastille du score : le chiffre, puis le mot "réussi" ou "à revoir". */
+.tdb-score {
+  grid-area: score;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 5px 11px;
+  border-radius: var(--rayon-petit);
+  font-size: 0.875rem;
+  font-weight: 650;
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+}
+
+.tdb-score-etat {
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+
+.tdb-score.reussi {
+  background: var(--gris-100);
+  color: var(--gris-800);
+}
+
+.tdb-score.a-revoir {
+  background: var(--rouge-50);
+  color: var(--rouge-700);
+}
+
+/* Carte affichée quand il n'y a encore aucune activité. */
+.tdb-bienvenue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.tdb-bienvenue-icone {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--accent-doux);
+  color: var(--accent);
+}
+
+.tdb-bienvenue .bouton {
+  margin-top: 8px;
+}
+
+/* Blocs gris du chargement. */
+.tdb-squelette-bloc {
+  height: 300px;
+}
+
+/* -------------------------------------------------------------------------
+   6. Écrans plus larges
+   ------------------------------------------------------------------------- */
+
+/* Tablette : deux indicateurs par ligne. */
+@media (min-width: 560px) {
+  .tdb-indicateurs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Grand écran : quatre indicateurs, et les graphiques sur deux colonnes. */
+@media (min-width: 1200px) {
+  .tdb-indicateurs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .tdb-grille {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Bloc des catégories assez large : nom, barre et valeur sur une seule ligne. */
+@container (min-width: 520px) {
+  .tdb-barre {
+    grid-template-columns: minmax(0, 200px) minmax(0, 1fr) 48px;
+    grid-template-areas:
+      "nom piste valeur"
+      "note . .";
+    gap: 2px 14px;
+  }
+
+  .tdb-barre-valeur {
+    text-align: right;
+  }
+}

@@ -1,0 +1,206 @@
+/*
+  Fichier : src/pages/Profil.css
+
+*/
+
+/* Une colonne centrée, comme la page "Notion du jour" : des formulaires
+   trop larges se lisent mal, et la page n'a pas besoin de toute la largeur. */
+.profil-page {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* -------------------------------------------------------------------------
+   Carte d'identité
+   ------------------------------------------------------------------------- */
+
+/* La grande pastille à gauche, le texte à droite. */
+.profil-identite {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Grande pastille ronde avec l'initiale, en rouge plein. */
+.profil-avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--accent-fond);
+  color: #ffffff;
+  font-size: 1.625rem;
+  font-weight: 700;
+}
+
+/* min-width: 0 permet de couper un email trop long au lieu de déborder. */
+.profil-identite-texte {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.profil-identite-texte p {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profil-nom {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.profil-depuis {
+  margin-top: 4px !important;
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+}
+
+/* -------------------------------------------------------------------------
+   Liste des réglages
+   ------------------------------------------------------------------------- */
+
+/* La carte n'a pas de marge intérieure en haut et en bas : ce sont les
+   lignes qui portent leur propre espace, séparées par un filet. */
+.profil-reglages {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.profil-liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profil-ligne {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.profil-ligne:last-child {
+  border-bottom: none;
+}
+
+/* Sur téléphone : l'intitulé et le bouton sur la première ligne, la valeur
+   en dessous. Sur grand écran, les trois sur une seule ligne (voir plus bas). */
+.profil-ligne-resume {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "titre bouton"
+    "valeur valeur";
+  align-items: center;
+  gap: 2px 12px;
+}
+
+.profil-ligne-titre {
+  grid-area: titre;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+/* La valeur actuelle, en gris. Une adresse très longue passe à la ligne
+   au lieu de déborder de la carte. */
+.profil-ligne-valeur {
+  grid-area: valeur;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  color: var(--texte-secondaire);
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;
+}
+
+/* "Non renseigné" en italique, pour le distinguer d'un vrai prénom. */
+.profil-ligne-valeur em {
+  font-style: italic;
+}
+
+/* Le bouton "Modifier" : un simple texte souligné au survol, dans la
+   couleur du texte, pour ne pas faire concurrence aux boutons rouges. */
+.profil-modifier {
+  grid-area: bouton;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 10px;
+  margin-right: -10px; /* aligne le texte sur le bord droit de la carte */
+  border: none;
+  border-radius: var(--rayon-petit);
+  background: transparent;
+  color: var(--texte);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color var(--transition);
+}
+
+.profil-modifier:hover {
+  background: var(--gris-100);
+}
+
+/* La déconnexion en rouge : c'est la seule action qui fait quitter la page. */
+.profil-deconnexion {
+  color: var(--accent);
+}
+
+/* Changement d'email en attente, sous l'adresse actuelle. */
+.profil-attente {
+  color: var(--gris-700);
+  font-size: 0.8125rem;
+}
+
+/* Le formulaire ouvert, légèrement en retrait sur un fond gris, pour
+   montrer qu'il appartient à la ligne du dessus. */
+.profil-ligne-formulaire {
+  padding: 16px;
+  border-radius: var(--rayon);
+  background: var(--gris-50);
+}
+
+.profil-aide {
+  margin: -6px 0 0;
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+}
+
+/* "Annuler" et le bouton d'envoi, à droite. */
+.profil-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Sur téléphone, les deux boutons prennent toute la largeur, l'un sous
+   l'autre. column-reverse place le bouton d'envoi en premier (en haut),
+   sans changer l'ordre du HTML. */
+@media (max-width: 559px) {
+  .profil-actions {
+    flex-direction: column-reverse;
+  }
+
+  .profil-actions .bouton {
+    width: 100%;
+  }
+}
+
+/* Sur grand écran, chaque ligne tient sur une seule rangée : l'intitulé
+   dans une colonne fixe, la valeur au milieu, le bouton à droite. */
+@media (min-width: 560px) {
+  .profil-ligne-resume {
+    grid-template-columns: 150px minmax(0, 1fr) auto;
+    grid-template-areas: "titre valeur bouton";
+    gap: 16px;
+  }
+}

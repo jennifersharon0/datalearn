@@ -1,0 +1,110 @@
+/*
+  Fichier : src/pages/HistoriqueQuiz.css
+
+  Styles propres à la page "Historique des quiz" : les boutons de filtre et
+  les titres de mois. Les lignes de quiz elles-mêmes reprennent les styles
+  de Dashboard.css, pour avoir le même aspect que sur "Ma progression".
+*/
+
+/* Les deux indicateurs du haut : l'un sous l'autre sur téléphone, côte à
+   côte dès que la place le permet. */
+.hq-indicateurs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+@media (min-width: 560px) {
+  .hq-indicateurs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Les filtres : trois boutons côte à côte dans une pilule grise, le filtre
+   actif ressortant comme un onglet blanc (même principe que le choix du
+   thème dans le menu). */
+.hq-filtres {
+  display: inline-flex;
+  align-self: flex-start;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--rayon);
+  background: var(--gris-200);
+}
+
+.hq-filtre {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 7px 14px;
+  border: none;
+  border-radius: var(--rayon-petit);
+  background: transparent;
+  color: var(--gris-600);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.hq-filtre:hover {
+  color: var(--gris-900);
+}
+
+.hq-filtre.actif {
+  background: var(--surface);
+  color: var(--texte);
+  font-weight: 600;
+  box-shadow: var(--ombre-legere);
+}
+
+/* Petit compteur à côté du nom du filtre. */
+.hq-filtre-nombre {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: var(--rayon-plein);
+  background: var(--gris-100);
+  color: var(--gris-600);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.hq-filtre.actif .hq-filtre-nombre {
+  background: var(--accent-doux);
+  color: var(--accent);
+}
+
+/* La carte de la liste : les mois se suivent, séparés par un espace. */
+.hq-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Titre d'un mois : nom à gauche, nombre de quiz à droite, en petit. */
+.hq-mois-titre {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 0 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--bordure);
+  font-size: 0.9375rem;
+  font-weight: 650;
+}
+
+.hq-mois-titre span {
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+/* Sur grand écran, la liste ne prend pas toute la largeur : des lignes
+   trop longues éloignent le titre de son score et se lisent mal. */
+@media (min-width: 900px) {
+  .hq-liste,
+  .hq-indicateurs {
+    max-width: 760px;
+  }
+}

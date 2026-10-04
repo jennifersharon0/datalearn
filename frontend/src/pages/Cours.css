@@ -1,0 +1,148 @@
+/*
+  Fichier : src/pages/Cours.css
+
+
+/* -------------------------------------------------------------------------
+   Grille des catégories
+   ------------------------------------------------------------------------- */
+
+/* Une carte par ligne sur téléphone. */
+.grille-categories {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+/* Une carte de catégorie. C'est un lien : toute la carte est cliquable.
+   overflow: hidden coupe la vignette aux coins arrondis de la carte. */
+.carte-categorie {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-grand);
+  box-shadow: var(--ombre-legere);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+/* Au survol, la carte se soulève légèrement et son ombre se renforce. */
+.carte-categorie:hover {
+  border-color: var(--gris-300);
+  box-shadow: var(--ombre);
+  transform: translateY(-2px);
+}
+
+/* Pendant le chargement, la carte grise a la hauteur d'une vraie carte. */
+.carte-categorie.squelette {
+  min-height: 236px;
+}
+
+/* Partie texte, sous la vignette. flex: 1 lui fait occuper toute la hauteur
+   restante, ce qui permet de pousser la barre de progression en bas. */
+.carte-categorie-corps {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 20px 18px;
+}
+
+.carte-categorie-nom {
+  font-size: 1.0625rem;
+  line-height: 1.3;
+}
+
+.carte-categorie-detail {
+  color: var(--texte-secondaire);
+  font-size: 0.875rem;
+}
+
+/* Barre de progression et compteur, poussés en bas de la carte pour que
+   toutes les barres soient alignées d'une carte à l'autre. */
+.carte-categorie-progression {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.carte-categorie-progression .barre-progression {
+  flex: 1;
+}
+
+.carte-categorie-progression span {
+  color: var(--gris-700);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums; /* chiffres de largeur égale */
+}
+
+/* -------------------------------------------------------------------------
+   Résultats de recherche
+   ------------------------------------------------------------------------- */
+
+/* La liste forme un seul bloc blanc, avec des séparations fines entre lignes. */
+.liste-resultats {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-grand);
+  overflow: hidden; /* garde les fonds de survol dans les coins arrondis */
+}
+
+.liste-resultats li + li {
+  border-top: 1px solid var(--gris-100);
+}
+
+.resultat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  color: var(--gris-400);
+  transition: background-color var(--transition);
+}
+
+.resultat:hover {
+  background: var(--gris-50);
+}
+
+/* Le titre et la catégorie, l'un sous l'autre. */
+.resultat > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.resultat-titre {
+  color: var(--texte);
+  font-weight: 550;
+}
+
+.resultat-categorie {
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+}
+
+/* -------------------------------------------------------------------------
+   Écrans plus larges
+   ------------------------------------------------------------------------- */
+
+/* Deux cartes par ligne sur tablette. */
+@media (min-width: 640px) {
+  .grille-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Trois cartes par ligne sur grand écran. */
+@media (min-width: 1100px) {
+  .grille-categories {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

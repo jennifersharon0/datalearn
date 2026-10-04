@@ -1,0 +1,168 @@
+/*
+  Fichier : src/components/VignetteCategorie.css
+
+  Couleurs et mise en forme des vignettes de catégorie.
+
+  Le fichier fonctionne en deux niveaux de variables :
+    1. chaque famille définit ses trois teintes : principale, claire et vive ;
+    2. chaque variante (sombre, clair, couleur) choisit parmi ces teintes la
+       couleur de chaque rôle du dessin (fond, traits, points, éléments forts).
+  Les dessins de VignetteCategorie.tsx n'utilisent que les rôles. Changer une
+  couleur de famille ici met donc à jour toutes ses vignettes d'un coup.
+*/
+
+/* -------------------------------------------------------------------------
+   1. Les familles
+   --f-principale : couleur de la famille, assez foncée pour un texte blanc
+   --f-claire     : teinte très claire, pour les fonds de la variante "clair"
+   --f-vive       : version plus lumineuse, lisible sur fond sombre
+   ------------------------------------------------------------------------- */
+
+.famille-fondations {
+  --f-principale: #3b5b8c; /* bleu ardoise */
+  --f-claire: #e9eef6;
+  --f-vive: #86a7da;
+}
+
+.famille-modeles {
+  --f-principale: #c62828; /* le rouge de la marque */
+  --f-claire: #fbeaea;
+  --f-vive: #ef6b6b;
+}
+
+.famille-langage {
+  --f-principale: #6b4fa3; /* violet */
+  --f-claire: #f0ebf8;
+  --f-vive: #ac94e0;
+}
+
+.famille-data {
+  --f-principale: #1f7a72; /* vert sarcelle */
+  --f-claire: #e4f2f0;
+  --f-vive: #62c0b5;
+}
+
+/* -------------------------------------------------------------------------
+   2. Les variantes
+   --v-fond   : fond de la vignette
+   --v-halo   : lumière diffuse dans le coin en bas à droite
+   --v-trait  : lignes discrètes
+   --v-neutre : points et blocs ordinaires
+   --v-fort   : éléments mis en avant
+   color-mix mélange deux couleurs : "60 % de la couleur de famille, le reste
+   transparent" donne un halo coloré qui s'estompe.
+   ------------------------------------------------------------------------- */
+
+/* Fond gris très foncé, éclairé par un halo de la couleur de famille. */
+.variante-sombre {
+  --v-fond: var(--encre);
+  --v-halo: color-mix(in srgb, var(--f-principale) 60%, transparent);
+  --v-trait: var(--encre-600);
+  --v-neutre: var(--encre-500);
+  --v-fort: var(--f-vive);
+}
+
+/* Fond très clair teinté par la famille, motif dans la couleur principale. */
+.variante-clair {
+  --v-fond: var(--f-claire);
+  --v-halo: color-mix(in srgb, var(--f-principale) 16%, transparent);
+  --v-trait: color-mix(in srgb, var(--f-principale) 30%, var(--gris-300));
+  --v-neutre: var(--gris-400);
+  --v-fort: var(--f-principale);
+}
+
+/* Fond dans la couleur de famille, motif en blanc. */
+.variante-couleur {
+  --v-fond: var(--f-principale);
+  --v-halo: rgba(255, 255, 255, 0.2);
+  --v-trait: rgba(255, 255, 255, 0.35);
+  --v-neutre: rgba(255, 255, 255, 0.5);
+  --v-fort: #ffffff;
+}
+
+/* -------------------------------------------------------------------------
+   2 bis. Mode sombre
+   La variante claire est la seule à changer : un fond très clair ferait une
+   tache lumineuse au milieu d'une page sombre. Elle prend donc un fond
+   sombre légèrement teinté par la famille, et un motif dans la teinte vive.
+   Les variantes sombre et couleur restent identiques dans les deux modes.
+   ------------------------------------------------------------------------- */
+
+:root[data-theme="sombre"] .variante-clair {
+  --v-fond: color-mix(in srgb, var(--f-principale) 22%, var(--surface));
+  --v-halo: color-mix(in srgb, var(--f-vive) 18%, transparent);
+  --v-trait: color-mix(in srgb, var(--f-vive) 35%, var(--gris-300));
+  --v-neutre: var(--gris-400);
+  --v-fort: var(--f-vive);
+}
+
+/* -------------------------------------------------------------------------
+   3. La vignette
+   ------------------------------------------------------------------------- */
+
+/* Deux couches de fond : le halo (dégradé circulaire) par-dessus la couleur
+   de fond. Le halo joue le rôle de l'éclairage. */
+.vignette {
+  height: 120px;
+  background:
+    radial-gradient(circle at 88% 115%, var(--v-halo), transparent 60%),
+    var(--v-fond);
+}
+
+/* Version agrandie, pour l'en-tête de la page d'une catégorie. */
+.vignette-grande {
+  height: 160px;
+}
+
+.vignette svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Rôles des éléments du dessin. Les points et blocs ont un contour de la
+   couleur du fond : ils restent ainsi bien détachés des lignes qui les croisent. */
+.vignette .v-trait {
+  fill: none;
+  stroke: var(--v-trait);
+  stroke-width: 1.5;
+}
+
+.vignette .v-trait-fort {
+  fill: none;
+  stroke: var(--v-fort);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.vignette .v-neutre {
+  fill: var(--v-neutre);
+  stroke: var(--v-fond);
+  stroke-width: 2;
+}
+
+.vignette .v-fort {
+  fill: var(--v-fort);
+  stroke: var(--v-fond);
+  stroke-width: 2;
+}
+
+/* Cases de la grille (apprentissage par renforcement) : contour seul. */
+.vignette .v-trait-case {
+  fill: none;
+  stroke: var(--v-trait);
+  stroke-width: 1.5;
+}
+
+/* Petites lignes de texte dans les bulles de conversation : couleur du fond,
+   pour qu'elles se lisent comme des "trous" dans la bulle. */
+.vignette .v-fond-motif {
+  fill: var(--v-fond);
+}
+
+/* Dessus des cylindres (bases de données) : contour plus marqué, pour
+   distinguer le couvercle du corps. */
+.vignette .v-dessus {
+  stroke-width: 2.5;
+}

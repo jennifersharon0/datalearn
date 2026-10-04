@@ -1,0 +1,155 @@
+/*
+  Fichier : src/pages/Lesson.css
+
+  Styles propres à la page de leçon :
+    la mise en forme du texte produit par ReactMarkdown (titres, gras,
+    listes, code) à l'intérieur de .texte-lecon ;
+    le lien "Leçon suivante" en bas de page.
+
+*/
+
+/* -------------------------------------------------------------------------
+   Texte de la leçon (contenu Markdown)
+   ------------------------------------------------------------------------- */
+
+/* ReactMarkdown produit de vrais paragraphes : on retire la règle
+   "pre-line" de index.css, devenue inutile, et on espace les paragraphes. */
+.texte-lecon p {
+  white-space: normal;
+}
+
+/* Tous les blocs (paragraphes, titres, listes) sont limités à environ
+   70 caractères par ligne, la longueur la plus confortable à lire. */
+.texte-lecon > * {
+  max-width: 70ch;
+  margin: 0;
+}
+
+/* Titres de section dans la leçon. Le LLM peut en produire de plusieurs
+   niveaux : on leur donne une taille modérée, la page a déjà son grand titre. */
+.texte-lecon h1,
+.texte-lecon h2,
+.texte-lecon h3,
+.texte-lecon h4 {
+  margin-top: 12px;
+  color: var(--texte);
+  font-size: 1.1875rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.texte-lecon h3,
+.texte-lecon h4 {
+  font-size: 1.0625rem;
+}
+
+/* Le gras ressort un peu plus que le texte courant. */
+.texte-lecon strong {
+  color: var(--texte);
+  font-weight: 650;
+}
+
+/* Listes : un retrait modéré et un espace entre les éléments. */
+.texte-lecon ul,
+.texte-lecon ol {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 1.4em;
+}
+
+/* Puces et numéros de liste en rouge, discret rappel de la couleur de la marque. */
+.texte-lecon li::marker {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Code dans le texte (noms de fonctions, de librairies...). */
+.texte-lecon code {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--gris-100);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.9em;
+}
+
+/* Bloc de code sur plusieurs lignes : il défile horizontalement au lieu de
+   déborder de la carte sur un petit écran. */
+.texte-lecon pre {
+  overflow-x: auto;
+  padding: 14px 16px;
+  border-radius: var(--rayon);
+  background: var(--encre); /* reste sombre dans les deux modes */
+  color: var(--encre-200);
+}
+
+.texte-lecon pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+}
+
+/* Citation éventuelle : filet rouge à gauche, comme l'encadré "En bref". */
+.texte-lecon blockquote {
+  padding-left: 14px;
+  border-left: 3px solid var(--accent);
+  color: var(--gris-600);
+}
+
+/* -------------------------------------------------------------------------
+   Lien vers la leçon suivante
+   ------------------------------------------------------------------------- */
+
+.navigation-lecon {
+  margin-top: 8px;
+}
+
+/* Grande carte cliquable, avec le titre de la leçon suivante et une flèche. */
+.lecon-suivante {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-grand);
+  color: var(--accent);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.lecon-suivante:hover {
+  border-color: var(--rouge-200);
+  box-shadow: var(--ombre);
+}
+
+/* L'étiquette et le titre, l'un sous l'autre. */
+.lecon-suivante > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lecon-suivante-etiquette {
+  color: var(--texte-secondaire);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lecon-suivante-titre {
+  color: var(--texte);
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+/* La flèche avance légèrement au survol. */
+.lecon-suivante svg {
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.lecon-suivante:hover svg {
+  transform: translateX(3px);
+}

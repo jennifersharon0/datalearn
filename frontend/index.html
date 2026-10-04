@@ -1,0 +1,45 @@
+<!doctype html>
+<!-- lang="fr" indique la langue de la page : le navigateur et les lecteurs
+     d'écran prononcent et coupent les mots correctement. -->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Icône de l'onglet (fichier public/favicon.svg). -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Adapte la page à la largeur de l'écran, indispensable sur téléphone.
+         viewport-fit=cover permet d'utiliser tout l'écran des téléphones à encoche. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!-- Couleur de la barre du navigateur sur téléphone. -->
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Description affichée par les moteurs de recherche et les aperçus de liens. -->
+    <meta name="description" content="Apprends la data science et l'IA avec des leçons, un assistant et des quiz." />
+    <title>DataLearn</title>
+
+    <!-- Thème clair ou sombre, appliqué avant tout affichage.
+         React met quelques instants à démarrer. Sans ce script, une personne
+         en mode sombre verrait la page s'afficher en clair puis basculer en
+         sombre : un "flash" blanc désagréable. Ce script, très court, lit le
+         choix enregistré (même clé que ThemeContext.tsx) et pose tout de suite
+         data-theme sur la balise <html>. -->
+    <script>
+      (function () {
+        var theme = "clair";
+        try {
+          var choix = localStorage.getItem("datalearn-theme");
+          var appareilSombre = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (choix === "sombre" || (choix !== "clair" && appareilSombre)) {
+            theme = "sombre";
+          }
+        } catch (e) {
+          // localStorage inaccessible : on garde le thème clair.
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- React affiche toute l'application dans cette balise. -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

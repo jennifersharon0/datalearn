@@ -1,0 +1,5 @@
+﻿methode;n_catalogue;n_hors_sujet;auc;auc_loin;auc_proche;seuil_similarite;detection_pourcent;detection_loin_pourcent;detection_proche_pourcent;faux_refus_pourcent
+tfidf;66;20;0.658;0.652;0.664;0.1;10.0;;;4.5
+embeddings_minilm;66;20;0.892;0.944;0.839;0.386;70.0;;;4.5
+embeddings_multilingue;66;20;0.886;0.997;0.774;0.363;65.0;;;4.5
+llm:openai/gpt-oss-120b;66;20;;;;;100.0;100.0;100.0;0.0

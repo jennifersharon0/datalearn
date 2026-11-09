@@ -1,0 +1,1020 @@
+{
+ "_modele": "openai/gpt-oss-120b",
+ "_version_prompt": "47881e42ceea",
+ "1": {
+  "question": "Qu'est ce que la science des données ?",
+  "sujets": [
+   "data_science_definition",
+   "machine_learning_definition",
+   "big_data_definition"
+  ],
+  "duree_s": 0.874,
+  "tokens_entree": 2662,
+  "tokens_sortie": 128
+ },
+ "2": {
+  "question": "Comment remplit-on les cases vides dans un tableau de données ?",
+  "sujets": [
+   "donnees_manquantes",
+   "data_wrangling",
+   "exploration_de_donnees_eda"
+  ],
+  "duree_s": 0.599,
+  "tokens_entree": 2667,
+  "tokens_sortie": 210
+ },
+ "3": {
+  "question": "Pourquoi mettons une partie des données de côté avant d'entraîner le modèle ?",
+  "sujets": [
+   "train_test_split",
+   "validation_croisee",
+   "overfitting_underfitting"
+  ],
+  "duree_s": 0.76,
+  "tokens_entree": 2670,
+  "tokens_sortie": 189
+ },
+ "4": {
+  "question": "Mon modèle est soit trop simple, soit trop collé aux données : il y a un équilibre à trouver ?",
+  "sujets": [
+   "biais_variance",
+   "overfitting_underfitting",
+   "regularisation_l1_l2"
+  ],
+  "duree_s": 0.977,
+  "tokens_entree": 2675,
+  "tokens_sortie": 224
+ },
+ "5": {
+  "question": "Comment créer de nouvelles colonnes plus utiles à partir de celles que j'ai déjà ?",
+  "sujets": [
+   "feature_engineering",
+   "data_wrangling",
+   "exploration_de_donnees_eda"
+  ],
+  "duree_s": 1.163,
+  "tokens_entree": 2670,
+  "tokens_sortie": 202
+ },
+ "6": {
+  "question": "j'aimerais een connaitre plus sur la loi normale",
+  "sujets": [
+   "loi_normale",
+   "distributions_de_probabilite",
+   "probabilites_de_base"
+  ],
+  "duree_s": 2.298,
+  "tokens_entree": 2662,
+  "tokens_sortie": 110
+ },
+ "7": {
+  "question": "Pourquoi la moyenne de plein d'échantillons finit toujours par dessiner une courbe en cloche ?",
+  "sujets": [
+   "theoreme_central_limite",
+   "loi_normale",
+   "distributions_de_probabilite"
+  ],
+  "duree_s": 0.649,
+  "tokens_entree": 2674,
+  "tokens_sortie": 213
+ },
+ "8": {
+  "question": "Si deux choses évoluent ensemble, est-ce que l'une provoque forcément l'autre ?",
+  "sujets": [
+   "correlation_vs_causalite",
+   "tests_d_hypothese",
+   "p_value"
+  ],
+  "duree_s": 1.119,
+  "tokens_entree": 2671,
+  "tokens_sortie": 296
+ },
+ "9": {
+  "question": "Comment mettre à jour une probabilité quand j'apprends une nouvelle information ?",
+  "sujets": [
+   "bayes_theoreme",
+   "probabilites_de_base",
+   "tests_d_hypothese"
+  ],
+  "duree_s": 0.81,
+  "tokens_entree": 2668,
+  "tokens_sortie": 262
+ },
+ "10": {
+  "question": "Que veut dire le chiffre qui doit être sous 0,05 dans un test statistique ?",
+  "sujets": [
+   "p_value",
+   "tests_d_hypothese",
+   "probabilites_de_base"
+  ],
+  "duree_s": 0.95,
+  "tokens_entree": 2672,
+  "tokens_sortie": 359
+ },
+ "11": {
+  "question": "Comment utiliser pandas pour lire un fichier CSV ?",
+  "sujets": [
+   "pandas",
+   "data_wrangling",
+   "python_pour_la_data"
+  ],
+  "duree_s": 1.049,
+  "tokens_entree": 2662,
+  "tokens_sortie": 155
+ },
+ "12": {
+  "question": "Comment récupérer automatiquement les informations d'un site internet ?",
+  "sujets": [
+   "web_scraping",
+   "apis_rest",
+   "python_pour_la_data"
+  ],
+  "duree_s": 1.458,
+  "tokens_entree": 2663,
+  "tokens_sortie": 179
+ },
+ "13": {
+  "question": "Comment éviter que mes projets Python mélangent leurs versions de bibliothèques ?",
+  "sujets": [
+   "environnements_virtuels",
+   "git_versioning",
+   "python_pour_la_data"
+  ],
+  "duree_s": 0.622,
+  "tokens_entree": 2668,
+  "tokens_sortie": 227
+ },
+ "14": {
+  "question": "Comment revenir à une ancienne version de mon code si j'ai tout cassé ?",
+  "sujets": [
+   "git_versioning",
+   "ci_cd_pour_ml",
+   "versioning_de_modeles"
+  ],
+  "duree_s": 0.849,
+  "tokens_entree": 2669,
+  "tokens_sortie": 305
+ },
+ "15": {
+  "question": "Random forest, c'est quoi ?",
+  "sujets": [
+   "random_forest",
+   "apprentissage_supervise",
+   "machine_learning_definition"
+  ],
+  "duree_s": 0.5,
+  "tokens_entree": 2660,
+  "tokens_sortie": 109
+ },
+ "16": {
+  "question": "Quel modèle donne une probabilité entre 0 et 1 pour une réponse oui ou non ?",
+  "sujets": [
+   "regression_logistique",
+   "naive_bayes",
+   "bayes_theoreme"
+  ],
+  "duree_s": 1.164,
+  "tokens_entree": 2672,
+  "tokens_sortie": 380
+ },
+ "17": {
+  "question": "Comment classer un point en regardant ses voisins les plus proches ?",
+  "sujets": [
+   "knn",
+   "apprentissage_supervise",
+   "machine_learning_definition"
+  ],
+  "duree_s": 1.104,
+  "tokens_entree": 2667,
+  "tokens_sortie": 290
+ },
+ "18": {
+  "question": "Comment regrouper mes clients en groupes alors que je n'ai aucune étiquette ?",
+  "sujets": [
+   "clustering_kmeans",
+   "clustering_hierarchique",
+   "dbscan"
+  ],
+  "duree_s": 1.497,
+  "tokens_entree": 2670,
+  "tokens_sortie": 237
+ },
+ "19": {
+  "question": "Pourquoi mon modèle a 99 % sur l'entraînement mais rate tout sur les nouvelles données?",
+  "sujets": [
+   "overfitting_underfitting",
+   "regularisation_l1_l2",
+   "validation_croisee"
+  ],
+  "duree_s": 0.915,
+  "tokens_entree": 2671,
+  "tokens_sortie": 212
+ },
+ "20": {
+  "question": "Comment différencier précision et rappel ?",
+  "sujets": [
+   "metriques_de_classification",
+   "apprentissage_supervise",
+   "machine_learning_definition"
+  ],
+  "duree_s": 0.95,
+  "tokens_entree": 2661,
+  "tokens_sortie": 318
+ },
+ "21": {
+  "question": "C'est quoi le dropout ?",
+  "sujets": [
+   "dropout",
+   "overfitting_underfitting",
+   "regularisation_l1_l2"
+  ],
+  "duree_s": 0.606,
+  "tokens_entree": 2659,
+  "tokens_sortie": 220
+ },
+ "22": {
+  "question": "Comment le réseau corrige ses poids à partir de son erreur ?",
+  "sujets": [
+   "backpropagation",
+   "descente_de_gradient",
+   "optimiseurs_adam_sgd"
+  ],
+  "duree_s": 0.491,
+  "tokens_entree": 2666,
+  "tokens_sortie": 173
+ },
+ "23": {
+  "question": "Quel type de réseau utiliser pour reconnaître des images ?",
+  "sujets": [
+   "cnn_reseaux_convolutifs",
+   "transfer_learning",
+   "reseau_de_neurones_perceptron"
+  ],
+  "duree_s": 1.414,
+  "tokens_entree": 2663,
+  "tokens_sortie": 243
+ },
+ "24": {
+  "question": "Pourquoi mon réseau très profond n'apprend plus rien dans ses premières couches ?",
+  "sujets": [
+   "vanishing_gradient",
+   "backpropagation",
+   "descente_de_gradient"
+  ],
+  "duree_s": 1.024,
+  "tokens_entree": 2668,
+  "tokens_sortie": 215
+ },
+ "25": {
+  "question": "Je peux réutiliser un modèle déjà entraîné par quelqu'un d'autre pour ma propre tâche ?",
+  "sujets": [
+   "transfer_learning",
+   "fine_tuning",
+   "huggingface_hub"
+  ],
+  "duree_s": 0.994,
+  "tokens_entree": 2673,
+  "tokens_sortie": 379
+ },
+ "26": {
+  "question": "Explique-moi TF-IDF",
+  "sujets": [
+   "tf_idf",
+   "tokenisation",
+   "nlp_definition"
+  ],
+  "duree_s": 0.636,
+  "tokens_entree": 2659,
+  "tokens_sortie": 150
+ },
+ "27": {
+  "question": "Comment savoir si un avis client est positif ou négatif ?",
+  "sujets": [
+   "analyse_de_sentiment",
+   "metriques_de_classification",
+   "nlp_definition"
+  ],
+  "duree_s": 1.157,
+  "tokens_entree": 2665,
+  "tokens_sortie": 199
+ },
+ "28": {
+  "question": "Comment ramener « mangeaient » et « mangé » à la même forme ?",
+  "sujets": [
+   "stemming_lemmatisation",
+   "tokenisation",
+   "nlp_definition"
+  ],
+  "duree_s": 0.858,
+  "tokens_entree": 2670,
+  "tokens_sortie": 294
+ },
+ "29": {
+  "question": "Comment repérer automatiquement les noms de personnes et de villes dans un texte ?",
+  "sujets": [
+   "reconnaissance_d_entites_nommees_ner",
+   "tokenisation",
+   "pos_tagging"
+  ],
+  "duree_s": 0.644,
+  "tokens_entree": 2668,
+  "tokens_sortie": 234
+ },
+ "30": {
+  "question": "Comment un modèle sait sur quels mots de la phrase se concentrer ?",
+  "sujets": [
+   "mecanisme_d_attention",
+   "architecture_transformer",
+   "grands_modeles_de_langage_llm"
+  ],
+  "duree_s": 1.62,
+  "tokens_entree": 2667,
+  "tokens_sortie": 337
+ },
+ "31": {
+  "question": "C'est quoi le prompt engineering ?",
+  "sujets": [
+   "prompt_engineering",
+   "grands_modeles_de_langage_llm",
+   "few_shot_learning"
+  ],
+  "duree_s": 0.616,
+  "tokens_entree": 2660,
+  "tokens_sortie": 221
+ },
+ "32": {
+  "question": "Pourquoi ChatGPT invente parfois des choses fausses avec beaucoup d'assurance ?",
+  "sujets": [
+   "hallucinations_llm",
+   "explicabilite_ia_xai",
+   "biais_algorithmique"
+  ],
+  "duree_s": 0.931,
+  "tokens_entree": 2668,
+  "tokens_sortie": 223
+ },
+ "33": {
+  "question": "Combien de texte un modèle peut-il lire d'un seul coup ?",
+  "sujets": [
+   "context_window",
+   "grands_modeles_de_langage_llm",
+   "tokenizer_llm"
+  ],
+  "duree_s": 1.595,
+  "tokens_entree": 2667,
+  "tokens_sortie": 227
+ },
+ "34": {
+  "question": "Comment adapter un gros modèle à mon domaine sans réentraîner tous ses paramètres ?",
+  "sujets": [
+   "lora_qlora",
+   "fine_tuning",
+   "prompt_engineering"
+  ],
+  "duree_s": 0.7,
+  "tokens_entree": 2669,
+  "tokens_sortie": 267
+ },
+ "35": {
+  "question": "Comment un LLM peut-il appeler un outil ou une fonction externe ?",
+  "sujets": [
+   "function_calling",
+   "agents_llm",
+   "langchain"
+  ],
+  "duree_s": 0.505,
+  "tokens_entree": 2667,
+  "tokens_sortie": 170
+ },
+ "36": {
+  "question": "C'est quoi un embedding ?",
+  "sujets": [
+   "embeddings_definition",
+   "similarite_cosinus",
+   "sentence_transformers"
+  ],
+  "duree_s": 0.605,
+  "tokens_entree": 2659,
+  "tokens_sortie": 128
+ },
+ "37": {
+  "question": "Comment mesurer si deux phrases veulent dire la même chose ?",
+  "sujets": [
+   "similarite_cosinus",
+   "sentence_transformers",
+   "embeddings_definition"
+  ],
+  "duree_s": 0.513,
+  "tokens_entree": 2664,
+  "tokens_sortie": 146
+ },
+ "38": {
+  "question": "Où stocker des millions de vecteurs pour les retrouver très vite ?",
+  "sujets": [
+   "bases_de_donnees_vectorielles",
+   "bases_vectorielles_pinecone_weaviate_qdrant",
+   "recherche_approximative_ann"
+  ],
+  "duree_s": 1.098,
+  "tokens_entree": 2668,
+  "tokens_sortie": 398
+ },
+ "39": {
+  "question": "Comment afficher en 2D des données à centaines de dimensions en gardant les groupes visibles ?",
+  "sujets": [
+   "reduction_de_dimension_tsne",
+   "reduction_de_dimension_umap",
+   "reduction_de_dimension_pca"
+  ],
+  "duree_s": 0.792,
+  "tokens_entree": 2672,
+  "tokens_sortie": 292
+ },
+ "40": {
+  "question": "C'est quoi le RAG ?",
+  "sujets": [
+   "rag_definition",
+   "pipeline_de_retrieval",
+   "evaluation_d_un_systeme_rag"
+  ],
+  "duree_s": 0.726,
+  "tokens_entree": 2660,
+  "tokens_sortie": 241
+ },
+ "41": {
+  "question": "Comment couper un long PDF en morceaux avant de le donner à un modèle ?",
+  "sujets": [
+   "chunking_de_documents",
+   "pipeline_de_retrieval",
+   "rag_definition"
+  ],
+  "duree_s": 1.323,
+  "tokens_entree": 2668,
+  "tokens_sortie": 250
+ },
+ "42": {
+  "question": "Comment savoir si mon chatbot qui cherche dans mes documents répond correctement ?",
+  "sujets": [
+   "evaluation_d_un_systeme_rag",
+   "rag_definition",
+   "pipeline_de_retrieval"
+  ],
+  "duree_s": 0.58,
+  "tokens_entree": 2666,
+  "tokens_sortie": 209
+ },
+ "43": {
+  "question": "Le problème du voyageur de commerce",
+  "sujets": [
+   "probleme_du_voyageur_de_commerce",
+   "theorie_des_graphes",
+   "optimisation_combinatoire"
+  ],
+  "duree_s": 1.116,
+  "tokens_entree": 2660,
+  "tokens_sortie": 185
+ },
+ "44": {
+  "question": "Comment trouver le plus court chemin entre deux villes sur une carte ?",
+  "sujets": [
+   "theorie_des_graphes",
+   "programmation_dynamique",
+   "optimisation_combinatoire"
+  ],
+  "duree_s": 1.038,
+  "tokens_entree": 2666,
+  "tokens_sortie": 253
+ },
+ "45": {
+  "question": "Comment répartir 5 tâches entre 5 employés pour que ça coûte le moins cher possible ?",
+  "sujets": [
+   "probleme_d_affectation",
+   "optimisation_combinatoire",
+   "programmation_lineaire"
+  ],
+  "duree_s": 1.172,
+  "tokens_entree": 2672,
+  "tokens_sortie": 334
+ },
+ "46": {
+  "question": "Une méthode d'optimisation inspirée de l'évolution et de la sélection naturelle",
+  "sujets": [
+   "algorithmes_genetiques",
+   "optimisation_combinatoire",
+   "recuit_simule"
+  ],
+  "duree_s": 1.196,
+  "tokens_entree": 2669,
+  "tokens_sortie": 308
+ },
+ "47": {
+  "question": "C'est quoi le MLOps ?",
+  "sujets": [
+   "mlops_definition",
+   "versioning_de_modeles",
+   "ci_cd_pour_ml"
+  ],
+  "duree_s": 1.498,
+  "tokens_entree": 2661,
+  "tokens_sortie": 139
+ },
+ "48": {
+  "question": "Comment mettre mon modèle dans une boîte qui marche sur n'importe quel ordinateur ?",
+  "sujets": [
+   "conteneurisation_docker",
+   "api_de_modele_fastapi",
+   "ci_cd_pour_ml"
+  ],
+  "duree_s": 0.837,
+  "tokens_entree": 2668,
+  "tokens_sortie": 243
+ },
+ "49": {
+  "question": "Mes prédictions se dégradent avec le temps parce que les données ont changé",
+  "sujets": [
+   "data_drift_model_drift",
+   "monitoring_de_modeles_en_production",
+   "mlops_definition"
+  ],
+  "duree_s": 1.181,
+  "tokens_entree": 2669,
+  "tokens_sortie": 306
+ },
+ "50": {
+  "question": "Comment comparer deux versions d'un modèle sur de vrais utilisateurs ?",
+  "sujets": [
+   "ab_testing",
+   "monitoring_de_modeles_en_production",
+   "versioning_de_modeles"
+  ],
+  "duree_s": 0.607,
+  "tokens_entree": 2665,
+  "tokens_sortie": 221
+ },
+ "51": {
+  "question": "qu'est-ce qu'un ETL ?",
+  "sujets": [
+   "etl_definition",
+   "pipelines_de_donnees",
+   "data_warehousing"
+  ],
+  "duree_s": 0.53,
+  "tokens_entree": 2661,
+  "tokens_sortie": 157
+ },
+ "52": {
+  "question": "Quelle différence entre une base relationnelle et MongoDB ?",
+  "sujets": [
+   "bases_de_donnees_sql_vs_nosql",
+   "sql_bases",
+   "big_data_definition"
+  ],
+  "duree_s": 1.172,
+  "tokens_entree": 2664,
+  "tokens_sortie": 340
+ },
+ "53": {
+  "question": "Comment faire tourner mes traitements de données chaque nuit, dans le bon ordre ?",
+  "sujets": [
+   "orchestration_airflow",
+   "pipelines_de_donnees",
+   "etl_definition"
+  ],
+  "duree_s": 0.576,
+  "tokens_entree": 2668,
+  "tokens_sortie": 179
+ },
+ "54": {
+  "question": "Traiter les données au fil de l'eau, dès qu'elles arrivent",
+  "sujets": [
+   "streaming_de_donnees",
+   "pipelines_de_donnees",
+   "etl_definition"
+  ],
+  "duree_s": 0.986,
+  "tokens_entree": 2667,
+  "tokens_sortie": 211
+ },
+ "55": {
+  "question": "Comment faire des graphiques avec matplotlib ?",
+  "sujets": [
+   "matplotlib",
+   "principes_de_dataviz",
+   "choix_du_bon_graphique"
+  ],
+  "duree_s": 0.356,
+  "tokens_entree": 2661,
+  "tokens_sortie": 116
+ },
+ "56": {
+  "question": "Barres, courbe ou camembert : lequel choisir pour mes données ?",
+  "sujets": [
+   "choix_du_bon_graphique",
+   "principes_de_dataviz",
+   "storytelling_avec_la_donnee"
+  ],
+  "duree_s": 0.776,
+  "tokens_entree": 2669,
+  "tokens_sortie": 236
+ },
+ "57": {
+  "question": "Comment raconter une histoire avec mes chiffres pour convaincre ma direction ?",
+  "sujets": [
+   "storytelling_avec_la_donnee",
+   "principes_de_dataviz",
+   "dashboards_interactifs"
+  ],
+  "duree_s": 0.661,
+  "tokens_entree": 2665,
+  "tokens_sortie": 234
+ },
+ "58": {
+  "question": "C'est quoi le RGPD ?",
+  "sujets": [
+   "reglementation_rgpd",
+   "vie_privee_et_donnees",
+   "ai_act_europeen"
+  ],
+  "duree_s": 0.656,
+  "tokens_entree": 2660,
+  "tokens_sortie": 179
+ },
+ "59": {
+  "question": "Comment expliquer pourquoi le modèle a refusé ce crédit ?",
+  "sujets": [
+   "explicabilite_ia_xai",
+   "shap_lime",
+   "biais_algorithmique"
+  ],
+  "duree_s": 1.514,
+  "tokens_entree": 2664,
+  "tokens_sortie": 202
+ },
+ "60": {
+  "question": "Mon modèle de recrutement favorise les hommes : d'où ça vient ?",
+  "sujets": [
+   "biais_algorithmique",
+   "explicabilite_ia_xai",
+   "shap_lime"
+  ],
+  "duree_s": 0.723,
+  "tokens_entree": 2667,
+  "tokens_sortie": 208
+ },
+ "61": {
+  "question": "C'est quoi l'apprentissage par renforcement ?",
+  "sujets": [
+   "reinforcement_learning_definition",
+   "processus_de_decision_markovien",
+   "deep_reinforcement_learning"
+  ],
+  "duree_s": 1.297,
+  "tokens_entree": 2663,
+  "tokens_sortie": 232
+ },
+ "62": {
+  "question": "Faut-il essayer de nouvelles actions ou rester sur celle qui marche déjà ?",
+  "sujets": [
+   "exploration_vs_exploitation",
+   "reinforcement_learning_definition",
+   "politique_et_recompense"
+  ],
+  "duree_s": 1.107,
+  "tokens_entree": 2668,
+  "tokens_sortie": 378
+ },
+ "63": {
+  "question": "Un agent remplit une table de valeurs pour chaque état et chaque action",
+  "sujets": [
+   "q_learning",
+   "reinforcement_learning_definition",
+   "processus_de_decision_markovien"
+  ],
+  "duree_s": 1.3,
+  "tokens_entree": 2667,
+  "tokens_sortie": 268
+ },
+ "64": {
+  "question": "À quoi sert LangChain ?",
+  "sujets": [
+   "langchain",
+   "agents_llm",
+   "prompt_engineering"
+  ],
+  "duree_s": 0.651,
+  "tokens_entree": 2659,
+  "tokens_sortie": 203
+ },
+ "65": {
+  "question": "Comment faire tourner un LLM directement sur mon ordinateur ?",
+  "sujets": [
+   "ollama_plateforme",
+   "grands_modeles_de_langage_llm",
+   "huggingface_hub"
+  ],
+  "duree_s": 1.258,
+  "tokens_entree": 2664,
+  "tokens_sortie": 361
+ },
+ "66": {
+  "question": "Je veux créer une petite interface web pour mon modèle en quelques lignes de Python",
+  "sujets": [
+   "streamlit",
+   "gradio",
+   "api_de_modele_fastapi"
+  ],
+  "duree_s": 0.495,
+  "tokens_entree": 2668,
+  "tokens_sortie": 150
+ },
+ "67": {
+  "question": "J'ai des œufs, de la farine et du lait, je fais comment pour des crêpes ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.31,
+  "tokens_entree": 2675,
+  "tokens_sortie": 78
+ },
+ "68": {
+  "question": "vainqueur coupe du monde 2018",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.849,
+  "tokens_entree": 2662,
+  "tokens_sortie": 80
+ },
+ "69": {
+  "question": "Tu sais s'il va pleuvoir demain à Lyon ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.288,
+  "tokens_entree": 2665,
+  "tokens_sortie": 65
+ },
+ "70": {
+  "question": "J'ai crevé sur l'autoroute, comment je change la roue ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.522,
+  "tokens_entree": 2668,
+  "tokens_sortie": 65
+ },
+ "71": {
+  "question": "Quels furent les principaux facteurs ayant conduit à la Révolution française ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.427,
+  "tokens_entree": 2666,
+  "tokens_sortie": 71
+ },
+ "72": {
+  "question": "Quelles plantes résistent bien sur un balcon orienté nord ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.481,
+  "tokens_entree": 2666,
+  "tokens_sortie": 70
+ },
+ "73": {
+  "question": "Par où commencer pour apprendre la guitare toute seule ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.822,
+  "tokens_entree": 2664,
+  "tokens_sortie": 73
+ },
+ "74": {
+  "question": "Pourquoi la capitale de l'Australie est Canberra et pas Sydney ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.503,
+  "tokens_entree": 2667,
+  "tokens_sortie": 85
+ },
+ "75": {
+  "question": "Une astuce de grand-mère pour enlever une tache de vin rouge sur un tapis ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.532,
+  "tokens_entree": 2672,
+  "tokens_sortie": 103
+ },
+ "76": {
+  "question": "Salut ! Ça va aujourd'hui ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.853,
+  "tokens_entree": 2660,
+  "tokens_sortie": 66
+ },
+ "77": {
+  "question": "Comment centrer horizontalement une div en CSS ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.327,
+  "tokens_entree": 2663,
+  "tokens_sortie": 106
+ },
+ "78": {
+  "question": "Quel langage faut-il apprendre pour développer une application iPhone ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.432,
+  "tokens_entree": 2665,
+  "tokens_sortie": 79
+ },
+ "79": {
+  "question": "Est-il possible d'installer Ubuntu en dual boot avec Windows 11 ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.466,
+  "tokens_entree": 2668,
+  "tokens_sortie": 151
+ },
+ "80": {
+  "question": "Sur quel mécanisme de consensus repose la blockchain du Bitcoin ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.534,
+  "tokens_entree": 2665,
+  "tokens_sortie": 107
+ },
+ "81": {
+  "question": "En quoi un qubit diffère-t-il d'un bit classique ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.609,
+  "tokens_entree": 2667,
+  "tokens_sortie": 81
+ },
+ "82": {
+  "question": "Comment intégrer une fonction par parties, par exemple x fois exponentielle de x ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 1.077,
+  "tokens_entree": 2669,
+  "tokens_sortie": 373
+ },
+ "83": {
+  "question": "Quel est le rôle du Scrum Master dans une équipe agile ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.332,
+  "tokens_entree": 2665,
+  "tokens_sortie": 81
+ },
+ "84": {
+  "question": "Comment rédiger une lettre de motivation pour un stage de data scientist ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.402,
+  "tokens_entree": 2667,
+  "tokens_sortie": 125
+ },
+ "85": {
+  "question": "Ma box internet ne capte plus, comment je réinitialise le Wi-Fi ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.304,
+  "tokens_entree": 2670,
+  "tokens_sortie": 86
+ },
+ "86": {
+  "question": "Quelles techniques permettent d'améliorer le référencement naturel d'un site web ?",
+  "sujets": [
+   "hors_sujet"
+  ],
+  "duree_s": 0.327,
+  "tokens_entree": 2668,
+  "tokens_sortie": 82
+ },
+ "87": {
+  "question": "quest ce que la sciense des donées",
+  "sujets": [
+   "data_science_definition",
+   "big_data_definition",
+   "cycle_de_vie_projet_data"
+  ],
+  "duree_s": 0.751,
+  "tokens_entree": 2662,
+  "tokens_sortie": 286
+ },
+ "88": {
+  "question": "randon forest cest quoi",
+  "sujets": [
+   "random_forest",
+   "arbres_de_decision",
+   "apprentissage_supervise"
+  ],
+  "duree_s": 0.93,
+  "tokens_entree": 2658,
+  "tokens_sortie": 265
+ },
+ "89": {
+  "question": "quel modele donne une proba entre 0 et 1 pour une reponse oui ou non",
+  "sujets": [
+   "regression_logistique",
+   "naive_bayes",
+   "svm_machines_a_vecteurs_de_support"
+  ],
+  "duree_s": 1.196,
+  "tokens_entree": 2672,
+  "tokens_sortie": 303
+ },
+ "90": {
+  "question": "pk mon modele a 99% sur lentrainement mais rate tout sur les nouvelle donnees",
+  "sujets": [
+   "overfitting_underfitting",
+   "biais_variance",
+   "validation_croisee"
+  ],
+  "duree_s": 0.749,
+  "tokens_entree": 2673,
+  "tokens_sortie": 280
+ },
+ "91": {
+  "question": "comment diferencier presicion et rapel",
+  "sujets": [
+   "metriques_de_classification",
+   "apprentissage_supervise",
+   "machine_learning_definition"
+  ],
+  "duree_s": 1.553,
+  "tokens_entree": 2662,
+  "tokens_sortie": 291
+ },
+ "92": {
+  "question": "coment le reseau corige ses poid a partir de son ereur",
+  "sujets": [
+   "backpropagation",
+   "descente_de_gradient",
+   "optimiseurs_adam_sgd"
+  ],
+  "duree_s": 0.566,
+  "tokens_entree": 2668,
+  "tokens_sortie": 212
+ },
+ "93": {
+  "question": "explik moi le tfidf",
+  "sujets": [
+   "tf_idf",
+   "tokenisation",
+   "word2vec"
+  ],
+  "duree_s": 0.483,
+  "tokens_entree": 2659,
+  "tokens_sortie": 179
+ },
+ "94": {
+  "question": "comment savoir si un avi client est positf ou negatif",
+  "sujets": [
+   "analyse_de_sentiment",
+   "nlp_definition",
+   "tokenisation"
+  ],
+  "duree_s": 0.839,
+  "tokens_entree": 2664,
+  "tokens_sortie": 216
+ },
+ "95": {
+  "question": "comment coupé un lon pdf en morso avan de le doné a un modèl",
+  "sujets": [
+   "chunking_de_documents",
+   "pipeline_de_retrieval",
+   "rag_definition"
+  ],
+  "duree_s": 0.821,
+  "tokens_entree": 2671,
+  "tokens_sortie": 322
+ },
+ "96": {
+  "question": "cé quoi le ml ops",
+  "sujets": [
+   "mlops_definition",
+   "ci_cd_pour_ml",
+   "monitoring_de_modeles_en_production"
+  ],
+  "duree_s": 0.641,
+  "tokens_entree": 2658,
+  "tokens_sortie": 230
+ }
+}

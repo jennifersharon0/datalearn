@@ -1,0 +1,385 @@
+﻿id;difficulte;question;sujet_attendu;methode;proposition_1;proposition_2;proposition_3;correct_top1;correct_top3;score_similarite;duree_ms;tokens_entree;tokens_sortie
+1;facile;Qu'est ce que la science des données ?;data_science_definition;tfidf;data_science_definition;machine_learning_definition;big_data_definition;1;1;0.262;2.2;;
+2;moyen;Comment remplit-on les cases vides dans un tableau de données ?;donnees_manquantes;tfidf;numpy;exploration_de_donnees_eda;principes_de_dataviz;0;0;0.2798;1.92;;
+3;moyen;Pourquoi mettons une partie des données de côté avant d'entraîner le modèle ?;train_test_split;tfidf;fine_tuning;data_wrangling;biais_algorithmique;0;0;0.1502;1.56;;
+4;difficile;Mon modèle est soit trop simple, soit trop collé aux données : il y a un équilibre à trouver ?;biais_variance;tfidf;overfitting_underfitting;train_test_split;streaming_de_donnees;0;0;0.1353;1.39;;
+5;difficile;Comment créer de nouvelles colonnes plus utiles à partir de celles que j'ai déjà ?;feature_engineering;tfidf;fine_tuning;mecanisme_d_attention;types_de_donnees;0;0;0.1186;1.37;;
+6;facile;j'aimerais een connaitre plus sur la loi normale;loi_normale;tfidf;loi_normale;theoreme_central_limite;reduction_de_dimension_pca;1;1;0.5629;1.34;;
+7;moyen;Pourquoi la moyenne de plein d'échantillons finit toujours par dessiner une courbe en cloche ?;theoreme_central_limite;tfidf;loi_normale;theoreme_central_limite;gans_reseaux_antagonistes;0;1;0.1971;1.4;;
+8;moyen;Si deux choses évoluent ensemble, est-ce que l'une provoque forcément l'autre ?;correlation_vs_causalite;tfidf;correlation_vs_causalite;stemming_lemmatisation;probleme_d_affectation;1;1;0.181;4.43;;
+9;difficile;Comment mettre à jour une probabilité quand j'apprends une nouvelle information ?;bayes_theoreme;tfidf;bayes_theoreme;distributions_de_probabilite;recuit_simule;1;1;0.2231;1.51;;
+10;difficile;Que veut dire le chiffre qui doit être sous 0,05 dans un test statistique ?;p_value;tfidf;train_test_split;p_value;choix_du_bon_graphique;0;1;0.2372;1.38;;
+11;facile;Comment utiliser pandas pour lire un fichier CSV ?;pandas;tfidf;pandas;apis_rest;data_wrangling;1;1;0.263;1.37;;
+12;moyen;Comment récupérer automatiquement les informations d'un site internet ?;web_scraping;tfidf;web_scraping;pipeline_de_retrieval;faiss;1;1;0.2626;1.36;;
+13;moyen;Comment éviter que mes projets Python mélangent leurs versions de bibliothèques ?;environnements_virtuels;tfidf;environnements_virtuels;python_pour_la_data;conteneurisation_docker;1;1;0.159;1.37;;
+14;difficile;Comment revenir à une ancienne version de mon code si j'ai tout cassé ?;git_versioning;tfidf;versioning_de_modeles;git_versioning;ai_act_europeen;0;1;0.2033;1.36;;
+15;facile;Random forest, c'est quoi ?;random_forest;tfidf;random_forest;donnees_manquantes;probleme_du_voyageur_de_commerce;1;1;0.2155;1.38;;
+16;moyen;Quel modèle donne une probabilité entre 0 et 1 pour une réponse oui ou non ?;regression_logistique;tfidf;bayes_theoreme;distributions_de_probabilite;regression_logistique;0;1;0.1769;1.39;;
+17;moyen;Comment classer un point en regardant ses voisins les plus proches ?;knn;tfidf;knn;recherche_approximative_ann;faiss;1;1;0.2833;1.36;;
+18;difficile;Comment regrouper mes clients en groupes alors que je n'ai aucune étiquette ?;clustering_kmeans;tfidf;ai_act_europeen;clustering_kmeans;apprentissage_non_supervise;0;1;0.0939;2.56;;
+19;difficile;Pourquoi mon modèle a 99 % sur l'entraînement mais rate tout sur les nouvelles données?;overfitting_underfitting;tfidf;train_test_split;hallucinations_llm;shap_lime;0;0;0.1664;1.47;;
+20;difficile;Comment différencier précision et rappel ?;metriques_de_classification;tfidf;prompt_engineering;recherche_hybride;xgboost;0;0;0.1063;1.37;;
+21;facile;C'est quoi le dropout ?;dropout;tfidf;dropout;probleme_du_voyageur_de_commerce;web_scraping;1;1;0.4505;1.33;;
+22;moyen;Comment le réseau corrige ses poids à partir de son erreur ?;backpropagation;tfidf;backpropagation;autoencodeurs;mecanisme_d_attention;1;1;0.1926;1.36;;
+23;moyen;Quel type de réseau utiliser pour reconnaître des images ?;cnn_reseaux_convolutifs;tfidf;similarite_cosinus;quantization_de_modeles;recherche_hybride;0;0;0.1148;1.36;;
+24;difficile;Pourquoi mon réseau très profond n'apprend plus rien dans ses premières couches ?;vanishing_gradient;tfidf;transfer_learning;vanishing_gradient;fonctions_d_activation;0;1;0.2392;1.35;;
+25;difficile;Je peux réutiliser un modèle déjà entraîné par quelqu'un d'autre pour ma propre tâche ?;transfer_learning;tfidf;fine_tuning;transfer_learning;gradient_boosting;0;1;0.2117;1.37;;
+26;facile;Explique-moi TF-IDF;tf_idf;tfidf;tf_idf;theoreme_central_limite;types_de_donnees;1;1;0.3547;1.41;;
+27;moyen;Comment savoir si un avis client est positif ou négatif ?;analyse_de_sentiment;tfidf;analyse_de_sentiment;algebre_lineaire_pour_ml;gestion_de_files_d_attente;1;1;0.0943;1.38;;
+28;moyen;Comment ramener « mangeaient » et « mangé » à la même forme ?;stemming_lemmatisation;tfidf;distributions_de_probabilite;multi_agent_rl;descente_de_gradient;0;0;0.1237;1.37;;
+29;difficile;Comment repérer automatiquement les noms de personnes et de villes dans un texte ?;reconnaissance_d_entites_nommees_ner;tfidf;probleme_du_voyageur_de_commerce;reconnaissance_d_entites_nommees_ner;exploration_de_donnees_eda;0;1;0.2066;3.3;;
+30;difficile;Comment un modèle sait sur quels mots de la phrase se concentrer ?;mecanisme_d_attention;tfidf;sentence_transformers;context_window;embeddings_definition;0;0;0.18;2.16;;
+31;facile;C'est quoi le prompt engineering ?;prompt_engineering;tfidf;prompt_engineering;chain_of_thought;feature_engineering;1;1;0.3686;1.73;;
+32;moyen;Pourquoi ChatGPT invente parfois des choses fausses avec beaucoup d'assurance ?;hallucinations_llm;tfidf;architecture_transformer;gans_reseaux_antagonistes;analyse_de_sentiment;0;0;0.1014;1.74;;
+33;moyen;Combien de texte un modèle peut-il lire d'un seul coup ?;context_window;tfidf;context_window;tokenizer_llm;bases_de_donnees_vectorielles;1;1;0.2384;1.84;;
+34;difficile;Comment adapter un gros modèle à mon domaine sans réentraîner tous ses paramètres ?;lora_qlora;tfidf;make_automatisation;machine_learning_definition;lora_qlora;0;1;0.1124;1.77;;
+35;difficile;Comment un LLM peut-il appeler un outil ou une fonction externe ?;function_calling;tfidf;function_calling;agents_llm;hallucinations_llm;1;1;0.1819;1.63;;
+36;facile;C'est quoi un embedding ?;embeddings_definition;tfidf;embeddings_definition;reduction_de_dimension_tsne;bases_de_donnees_vectorielles;1;1;0.3173;1.57;;
+37;moyen;Comment mesurer si deux phrases veulent dire la même chose ?;similarite_cosinus;tfidf;similarite_cosinus;embeddings_definition;ab_testing;1;1;0.1024;3.0;;
+38;moyen;Où stocker des millions de vecteurs pour les retrouver très vite ?;bases_de_donnees_vectorielles;tfidf;faiss;bases_vectorielles_pinecone_weaviate_qdrant;chroma_db;0;0;0.2811;2.14;;
+39;difficile;Comment afficher en 2D des données à centaines de dimensions en gardant les groupes visibles ?;reduction_de_dimension_tsne;tfidf;principes_de_dataviz;svm_machines_a_vecteurs_de_support;numpy;0;0;0.1709;1.92;;
+40;facile;C'est quoi le RAG ?;rag_definition;tfidf;rag_definition;evaluation_d_un_systeme_rag;pipeline_de_retrieval;1;1;0.3883;1.9;;
+41;moyen;Comment couper un long PDF en morceaux avant de le donner à un modèle ?;chunking_de_documents;tfidf;chain_of_thought;explicabilite_ia_xai;chunking_de_documents;0;1;0.1616;2.02;;
+42;difficile;Comment savoir si mon chatbot qui cherche dans mes documents répond correctement ?;evaluation_d_un_systeme_rag;tfidf;metriques_de_classification;ollama_plateforme;chunking_de_documents;0;0;0.1002;1.84;;
+43;facile;Le problème du voyageur de commerce;probleme_du_voyageur_de_commerce;tfidf;probleme_du_voyageur_de_commerce;optimisation_combinatoire;vanishing_gradient;1;1;0.4461;1.44;;
+44;moyen;Comment trouver le plus court chemin entre deux villes sur une carte ?;theorie_des_graphes;tfidf;probleme_du_voyageur_de_commerce;arbres_de_decision;optimisation_combinatoire;0;0;0.3035;1.35;;
+45;moyen;Comment répartir 5 tâches entre 5 employés pour que ça coûte le moins cher possible ?;probleme_d_affectation;tfidf;distributions_de_probabilite;probleme_d_affectation;orchestration_airflow;0;1;0.1601;1.35;;
+46;difficile;Une méthode d'optimisation inspirée de l'évolution et de la sélection naturelle;algorithmes_genetiques;tfidf;algorithmes_genetiques;optimiseurs_adam_sgd;random_forest;1;1;0.2818;3.39;;
+47;facile;C'est quoi le MLOps ?;mlops_definition;tfidf;mlops_definition;probleme_du_voyageur_de_commerce;web_scraping;1;1;0.4256;2.28;;
+48;moyen;Comment mettre mon modèle dans une boîte qui marche sur n'importe quel ordinateur ?;conteneurisation_docker;tfidf;explicabilite_ia_xai;ollama_plateforme;descente_de_gradient;0;0;0.1909;2.3;;
+49;moyen;Mes prédictions se dégradent avec le temps parce que les données ont changé;data_drift_model_drift;tfidf;biais_algorithmique;monitoring_de_modeles_en_production;overfitting_underfitting;0;0;0.1923;2.1;;
+50;difficile;Comment comparer deux versions d'un modèle sur de vrais utilisateurs ?;ab_testing;tfidf;metriques_de_classification;ab_testing;embeddings_definition;0;1;0.1877;1.64;;
+51;facile;qu'est-ce qu'un ETL ?;etl_definition;tfidf;etl_definition;machine_learning_definition;embeddings_definition;1;1;0.2902;1.65;;
+52;moyen;Quelle différence entre une base relationnelle et MongoDB ?;bases_de_donnees_sql_vs_nosql;tfidf;evaluation_d_un_systeme_rag;optimisation_combinatoire;p_value;0;0;0.1198;1.48;;
+53;moyen;Comment faire tourner mes traitements de données chaque nuit, dans le bon ordre ?;orchestration_airflow;tfidf;choix_du_bon_graphique;streaming_de_donnees;pipeline_de_retrieval;0;0;0.1517;1.45;;
+54;difficile;Traiter les données au fil de l'eau, dès qu'elles arrivent;streaming_de_donnees;tfidf;streaming_de_donnees;monitoring_de_modeles_en_production;mlops_definition;1;1;0.2029;3.94;;
+55;facile;Comment faire des graphiques avec matplotlib ?;matplotlib;tfidf;matplotlib;seaborn;plotly;1;1;0.272;1.63;;
+56;moyen;Barres, courbe ou camembert : lequel choisir pour mes données ?;choix_du_bon_graphique;tfidf;visualisation_de_donnees_multidimensionnelles;choix_du_bon_graphique;qualite_des_donnees;0;1;0.1414;1.45;;
+57;difficile;Comment raconter une histoire avec mes chiffres pour convaincre ma direction ?;storytelling_avec_la_donnee;tfidf;descente_de_gradient;storytelling_avec_la_donnee;principes_de_dataviz;0;1;0.0984;1.49;;
+58;facile;C'est quoi le RGPD ?;reglementation_rgpd;tfidf;reglementation_rgpd;probleme_du_voyageur_de_commerce;web_scraping;1;1;0.4403;1.49;;
+59;moyen;Comment expliquer pourquoi le modèle a refusé ce crédit ?;explicabilite_ia_xai;tfidf;explicabilite_ia_xai;data_drift_model_drift;notebooks_jupyter;1;1;0.1398;1.74;;
+60;difficile;Mon modèle de recrutement favorise les hommes : d'où ça vient ?;biais_algorithmique;tfidf;explicabilite_ia_xai;pipeline_de_retrieval;python_pour_la_data;0;0;0.14;1.51;;
+61;facile;C'est quoi l'apprentissage par renforcement ?;reinforcement_learning_definition;tfidf;reinforcement_learning_definition;rlhf;multi_agent_rl;1;1;0.3182;1.38;;
+62;moyen;Faut-il essayer de nouvelles actions ou rester sur celle qui marche déjà ?;exploration_vs_exploitation;tfidf;exploration_vs_exploitation;fine_tuning;politique_et_recompense;1;1;0.2697;1.36;;
+63;difficile;Un agent remplit une table de valeurs pour chaque état et chaque action;q_learning;tfidf;q_learning;processus_de_decision_markovien;politique_et_recompense;1;1;0.3995;1.37;;
+64;facile;À quoi sert LangChain ?;langchain;tfidf;langchain;data_warehousing;regression_lineaire;1;1;0.347;3.34;;
+65;moyen;Comment faire tourner un LLM directement sur mon ordinateur ?;ollama_plateforme;tfidf;ollama_plateforme;agents_llm;grands_modeles_de_langage_llm;1;1;0.1293;1.63;;
+66;difficile;Je veux créer une petite interface web pour mon modèle en quelques lignes de Python;streamlit;tfidf;gradio;few_shot_learning;matplotlib;0;0;0.1367;1.51;;
+67;hors_sujet_loin;J'ai des œufs, de la farine et du lait, je fais comment pour des crêpes ?;hors_sujet;tfidf;ai_act_europeen;faiss;dataiku;0;0;0.1938;1.48;;
+68;hors_sujet_loin;vainqueur coupe du monde 2018;hors_sujet;tfidf;agents_llm;mlops_definition;nlp_definition;0;0;0.1641;1.54;;
+69;hors_sujet_loin;Tu sais s'il va pleuvoir demain à Lyon ?;hors_sujet;tfidf;hallucinations_llm;architecture_data_lake;git_versioning;0;0;0.1899;1.64;;
+70;hors_sujet_loin;J'ai crevé sur l'autoroute, comment je change la roue ?;hors_sujet;tfidf;ai_act_europeen;descente_de_gradient;data_drift_model_drift;0;0;0.1541;1.49;;
+71;hors_sujet_loin;Quels furent les principaux facteurs ayant conduit à la Révolution française ?;hors_sujet;tfidf;biais_algorithmique;scalabilite_des_modeles;theoreme_central_limite;0;0;0.1066;1.47;;
+72;hors_sujet_loin;Quelles plantes résistent bien sur un balcon orienté nord ?;hors_sujet;tfidf;ci_cd_pour_ml;vecteurs_et_matrices;reconnaissance_d_entites_nommees_ner;0;0;0.1503;1.46;;
+73;hors_sujet_loin;Par où commencer pour apprendre la guitare toute seule ?;hors_sujet;tfidf;pandas;gradio;word2vec;0;0;0.0939;3.24;;
+74;hors_sujet_loin;Pourquoi la capitale de l'Australie est Canberra et pas Sydney ?;hors_sujet;tfidf;theoreme_central_limite;shap_lime;biais_algorithmique;0;0;0.2098;2.4;;
+75;hors_sujet_loin;Une astuce de grand-mère pour enlever une tache de vin rouge sur un tapis ?;hors_sujet;tfidf;transfer_learning;n8n_automatisation;theoreme_central_limite;0;0;0.2233;1.83;;
+76;hors_sujet_loin;Salut ! Ça va aujourd'hui ?;hors_sujet;tfidf;vie_privee_et_donnees;python_pour_la_data;big_data_definition;0;0;0.1523;1.98;;
+77;hors_sujet_proche;Comment centrer horizontalement une div en CSS ?;hors_sujet;tfidf;web_scraping;streamlit;politique_et_recompense;0;0;0.0917;2.02;;
+78;hors_sujet_proche;Quel langage faut-il apprendre pour développer une application iPhone ?;hors_sujet;tfidf;gradio;ab_testing;conteneurisation_docker;0;0;0.1409;1.74;;
+79;hors_sujet_proche;Est-il possible d'installer Ubuntu en dual boot avec Windows 11 ?;hors_sujet;tfidf;environnements_virtuels;api_de_modele_fastapi;streamlit;0;0;0.1464;1.64;;
+80;hors_sujet_proche;Sur quel mécanisme de consensus repose la blockchain du Bitcoin ?;hors_sujet;tfidf;mecanisme_d_attention;architecture_transformer;descente_de_gradient;0;0;0.2011;1.68;;
+81;hors_sujet_proche;En quoi un qubit diffère-t-il d'un bit classique ?;hors_sujet;tfidf;principes_de_dataviz;optimisation_combinatoire;rlhf;0;0;0.1655;3.41;;
+82;hors_sujet_proche;Comment intégrer une fonction par parties, par exemple x fois exponentielle de x ?;hors_sujet;tfidf;descente_de_gradient;backpropagation;biais_variance;0;0;0.1486;1.94;;
+83;hors_sujet_proche;Quel est le rôle du Scrum Master dans une équipe agile ?;hors_sujet;tfidf;fonctions_d_activation;prompt_engineering;conteneurisation_docker;0;0;0.2118;1.57;;
+84;hors_sujet_proche;Comment rédiger une lettre de motivation pour un stage de data scientist ?;hors_sujet;tfidf;sql_bases;bases_de_donnees_vectorielles;python_pour_la_data;0;0;0.1701;1.77;;
+85;hors_sujet_proche;Ma box internet ne capte plus, comment je réinitialise le Wi-Fi ?;hors_sujet;tfidf;web_scraping;seaborn;multi_agent_rl;0;0;0.1105;2.51;;
+86;hors_sujet_proche;Quelles techniques permettent d'améliorer le référencement naturel d'un site web ?;hors_sujet;tfidf;web_scraping;machine_learning_definition;stemming_lemmatisation;0;0;0.2445;1.96;;
+87;fautes;quest ce que la sciense des donées;data_science_definition;tfidf;nlp_definition;big_data_definition;programmation_dynamique;0;0;0.2026;1.82;;
+88;fautes;randon forest cest quoi;random_forest;tfidf;random_forest;data_science_definition;types_de_donnees;1;1;0.1525;2.08;;
+89;fautes;quel modele donne une proba entre 0 et 1 pour une reponse oui ou non;regression_logistique;tfidf;rnn_reseaux_recurrents;apprentissage_non_supervise;fonctions_d_activation;0;0;0.1562;2.86;;
+90;fautes;pk mon modele a 99% sur lentrainement mais rate tout sur les nouvelle donnees;overfitting_underfitting;tfidf;knn;hallucinations_llm;ai_act_europeen;0;0;0.1898;1.99;;
+91;fautes;comment diferencier presicion et rapel;metriques_de_classification;tfidf;distributions_de_probabilite;multi_agent_rl;explicabilite_ia_xai;0;0;0.1283;1.44;;
+92;fautes;coment le reseau corige ses poid a partir de son ereur;backpropagation;tfidf;autoencodeurs;probabilites_de_base;hallucinations_llm;0;0;0.1822;1.76;;
+93;fautes;explik moi le tfidf;tf_idf;tfidf;chain_of_thought;web_scraping;choix_du_bon_graphique;0;0;0.256;1.52;;
+94;fautes;comment savoir si un avi client est positf ou negatif;analyse_de_sentiment;tfidf;algebre_lineaire_pour_ml;gestion_de_files_d_attente;explicabilite_ia_xai;0;0;0.1284;1.35;;
+95;fautes;comment coupé un lon pdf en morso avan de le doné a un modèl;chunking_de_documents;tfidf;llamaindex;processus_de_decision_markovien;explicabilite_ia_xai;0;0;0.1582;1.36;;
+96;fautes;cé quoi le ml ops;mlops_definition;tfidf;mlops_definition;feature_store;chain_of_thought;1;1;0.1442;1.33;;
+1;facile;Qu'est ce que la science des données ?;data_science_definition;embeddings_minilm;qualite_des_donnees;vie_privee_et_donnees;data_science_definition;0;1;0.5973;24.11;;
+2;moyen;Comment remplit-on les cases vides dans un tableau de données ?;donnees_manquantes;embeddings_minilm;qualite_des_donnees;exploration_de_donnees_eda;vecteurs_et_matrices;0;0;0.44;33.83;;
+3;moyen;Pourquoi mettons une partie des données de côté avant d'entraîner le modèle ?;train_test_split;embeddings_minilm;train_test_split;overfitting_underfitting;biais_algorithmique;1;1;0.5883;32.66;;
+4;difficile;Mon modèle est soit trop simple, soit trop collé aux données : il y a un équilibre à trouver ?;biais_variance;embeddings_minilm;overfitting_underfitting;biais_variance;regularisation_l1_l2;0;1;0.5098;36.85;;
+5;difficile;Comment créer de nouvelles colonnes plus utiles à partir de celles que j'ai déjà ?;feature_engineering;embeddings_minilm;mecanisme_d_attention;llamaindex;architecture_data_lake;0;0;0.4559;27.77;;
+6;facile;j'aimerais een connaitre plus sur la loi normale;loi_normale;embeddings_minilm;loi_normale;ai_act_europeen;vie_privee_et_donnees;1;1;0.4848;29.89;;
+7;moyen;Pourquoi la moyenne de plein d'échantillons finit toujours par dessiner une courbe en cloche ?;theoreme_central_limite;embeddings_minilm;loi_normale;echantillonnage;biais_variance;0;0;0.399;43.6;;
+8;moyen;Si deux choses évoluent ensemble, est-ce que l'une provoque forcément l'autre ?;correlation_vs_causalite;embeddings_minilm;multi_agent_rl;distributions_de_probabilite;mixture_of_experts;0;0;0.5088;30.69;;
+9;difficile;Comment mettre à jour une probabilité quand j'apprends une nouvelle information ?;bayes_theoreme;embeddings_minilm;distributions_de_probabilite;probabilites_de_base;bayes_theoreme;0;1;0.5445;26.83;;
+10;difficile;Que veut dire le chiffre qui doit être sous 0,05 dans un test statistique ?;p_value;embeddings_minilm;p_value;tests_d_hypothese;loi_normale;1;1;0.4886;28.6;;
+11;facile;Comment utiliser pandas pour lire un fichier CSV ?;pandas;embeddings_minilm;pandas;data_wrangling;python_pour_la_data;1;1;0.6209;25.04;;
+12;moyen;Comment récupérer automatiquement les informations d'un site internet ?;web_scraping;embeddings_minilm;web_scraping;pipeline_de_retrieval;apis_rest;1;1;0.5526;32.2;;
+13;moyen;Comment éviter que mes projets Python mélangent leurs versions de bibliothèques ?;environnements_virtuels;embeddings_minilm;python_pour_la_data;streamlit;notebooks_jupyter;0;0;0.6158;28.61;;
+14;difficile;Comment revenir à une ancienne version de mon code si j'ai tout cassé ?;git_versioning;embeddings_minilm;git_versioning;versioning_de_modeles;ia_generative_et_droits_d_auteur;1;1;0.4957;30.65;;
+15;facile;Random forest, c'est quoi ?;random_forest;embeddings_minilm;random_forest;arbres_de_decision;ci_cd_pour_ml;1;1;0.5176;24.1;;
+16;moyen;Quel modèle donne une probabilité entre 0 et 1 pour une réponse oui ou non ?;regression_logistique;embeddings_minilm;distributions_de_probabilite;regression_logistique;probabilites_de_base;0;1;0.6352;50.74;;
+17;moyen;Comment classer un point en regardant ses voisins les plus proches ?;knn;embeddings_minilm;knn;regression_logistique;weights_and_biases;1;1;0.5552;32.08;;
+18;difficile;Comment regrouper mes clients en groupes alors que je n'ai aucune étiquette ?;clustering_kmeans;embeddings_minilm;clustering_kmeans;clustering_hierarchique;apprentissage_non_supervise;1;1;0.3484;26.89;;
+19;difficile;Pourquoi mon modèle a 99 % sur l'entraînement mais rate tout sur les nouvelles données?;overfitting_underfitting;embeddings_minilm;train_test_split;biais_algorithmique;rag_definition;0;0;0.5485;35.29;;
+20;difficile;Comment différencier précision et rappel ?;metriques_de_classification;embeddings_minilm;types_de_donnees;reward_shaping;recherche_hybride;0;0;0.4168;24.0;;
+21;facile;C'est quoi le dropout ?;dropout;embeddings_minilm;dropout;explicabilite_ia_xai;orchestration_airflow;1;1;0.5175;21.1;;
+22;moyen;Comment le réseau corrige ses poids à partir de son erreur ?;backpropagation;embeddings_minilm;ai_act_europeen;probleme_d_affectation;gestion_de_files_d_attente;0;0;0.4152;31.68;;
+23;moyen;Quel type de réseau utiliser pour reconnaître des images ?;cnn_reseaux_convolutifs;embeddings_minilm;cnn_reseaux_convolutifs;embeddings_definition;huggingface_hub;1;1;0.5349;25.8;;
+24;difficile;Pourquoi mon réseau très profond n'apprend plus rien dans ses premières couches ?;vanishing_gradient;embeddings_minilm;apprentissage_supervise;transfer_learning;cnn_reseaux_convolutifs;0;0;0.3887;30.29;;
+25;difficile;Je peux réutiliser un modèle déjà entraîné par quelqu'un d'autre pour ma propre tâche ?;transfer_learning;embeddings_minilm;machine_learning_definition;transfer_learning;overfitting_underfitting;0;1;0.5381;34.46;;
+26;facile;Explique-moi TF-IDF;tf_idf;embeddings_minilm;tf_idf;faiss;pipeline_de_retrieval;1;1;0.6042;28.68;;
+27;moyen;Comment savoir si un avis client est positif ou négatif ?;analyse_de_sentiment;embeddings_minilm;gestion_de_files_d_attente;streaming_de_donnees;vie_privee_et_donnees;0;0;0.4175;23.32;;
+28;moyen;Comment ramener « mangeaient » et « mangé » à la même forme ?;stemming_lemmatisation;embeddings_minilm;donnees_manquantes;rlhf;ia_generative_et_droits_d_auteur;0;0;0.4235;51.57;;
+29;difficile;Comment repérer automatiquement les noms de personnes et de villes dans un texte ?;reconnaissance_d_entites_nommees_ner;embeddings_minilm;ia_generative_et_droits_d_auteur;reconnaissance_d_entites_nommees_ner;rag_definition;0;1;0.4567;27.93;;
+30;difficile;Comment un modèle sait sur quels mots de la phrase se concentrer ?;mecanisme_d_attention;embeddings_minilm;overfitting_underfitting;chain_of_thought;metriques_de_regression;0;0;0.5208;33.8;;
+31;facile;C'est quoi le prompt engineering ?;prompt_engineering;embeddings_minilm;prompt_engineering;ia_generative_et_droits_d_auteur;ci_cd_pour_ml;1;1;0.5827;26.97;;
+32;moyen;Pourquoi ChatGPT invente parfois des choses fausses avec beaucoup d'assurance ?;hallucinations_llm;embeddings_minilm;explicabilite_ia_xai;ai_act_europeen;reward_shaping;0;0;0.4664;34.6;;
+33;moyen;Combien de texte un modèle peut-il lire d'un seul coup ?;context_window;embeddings_minilm;regression_logistique;agents_llm;overfitting_underfitting;0;0;0.501;36.35;;
+34;difficile;Comment adapter un gros modèle à mon domaine sans réentraîner tous ses paramètres ?;lora_qlora;embeddings_minilm;groq_plateforme;llamaindex;architecture_transformer;0;0;0.4507;30.35;;
+35;difficile;Comment un LLM peut-il appeler un outil ou une fonction externe ?;function_calling;embeddings_minilm;reinforcement_learning_definition;transfer_learning;conteneurisation_docker;0;0;0.4311;30.2;;
+36;facile;C'est quoi un embedding ?;embeddings_definition;embeddings_minilm;embeddings_definition;clustering_d_embeddings;autoencodeurs;1;1;0.5413;26.33;;
+37;moyen;Comment mesurer si deux phrases veulent dire la même chose ?;similarite_cosinus;embeddings_minilm;sentence_transformers;evaluation_d_un_systeme_rag;grands_modeles_de_langage_llm;0;0;0.386;27.31;;
+38;moyen;Où stocker des millions de vecteurs pour les retrouver très vite ?;bases_de_donnees_vectorielles;embeddings_minilm;bases_vectorielles_pinecone_weaviate_qdrant;vecteurs_et_matrices;architecture_data_lake;0;0;0.4594;25.22;;
+39;difficile;Comment afficher en 2D des données à centaines de dimensions en gardant les groupes visibles ?;reduction_de_dimension_tsne;embeddings_minilm;vecteurs_et_matrices;reduction_de_dimension_umap;visualisation_de_donnees_multidimensionnelles;0;0;0.521;36.35;;
+40;facile;C'est quoi le RAG ?;rag_definition;embeddings_minilm;rag_definition;ai_act_europeen;chunking_de_documents;1;1;0.412;25.52;;
+41;moyen;Comment couper un long PDF en morceaux avant de le donner à un modèle ?;chunking_de_documents;embeddings_minilm;overfitting_underfitting;versioning_de_modeles;rag_definition;0;0;0.4407;27.2;;
+42;difficile;Comment savoir si mon chatbot qui cherche dans mes documents répond correctement ?;evaluation_d_un_systeme_rag;embeddings_minilm;function_calling;pipeline_de_retrieval;chunking_de_documents;0;0;0.4763;26.62;;
+43;facile;Le problème du voyageur de commerce;probleme_du_voyageur_de_commerce;embeddings_minilm;probleme_du_voyageur_de_commerce;optimisation_combinatoire;exploration_vs_exploitation;1;1;0.6686;24.82;;
+44;moyen;Comment trouver le plus court chemin entre deux villes sur une carte ?;theorie_des_graphes;embeddings_minilm;probleme_du_voyageur_de_commerce;optimisation_combinatoire;ai_act_europeen;0;0;0.4656;31.7;;
+45;moyen;Comment répartir 5 tâches entre 5 employés pour que ça coûte le moins cher possible ?;probleme_d_affectation;embeddings_minilm;reward_shaping;transfer_learning;metriques_de_regression;0;0;0.3658;27.5;;
+46;difficile;Une méthode d'optimisation inspirée de l'évolution et de la sélection naturelle;algorithmes_genetiques;embeddings_minilm;algorithmes_genetiques;optimisation_combinatoire;programmation_lineaire;1;1;0.7023;39.16;;
+47;facile;C'est quoi le MLOps ?;mlops_definition;embeddings_minilm;mlops_definition;ci_cd_pour_ml;metriques_de_regression;1;1;0.5218;23.81;;
+48;moyen;Comment mettre mon modèle dans une boîte qui marche sur n'importe quel ordinateur ?;conteneurisation_docker;embeddings_minilm;overfitting_underfitting;explicabilite_ia_xai;metriques_de_regression;0;0;0.4686;30.34;;
+49;moyen;Mes prédictions se dégradent avec le temps parce que les données ont changé;data_drift_model_drift;embeddings_minilm;versioning_de_modeles;metriques_de_regression;monitoring_de_modeles_en_production;0;0;0.4791;34.23;;
+50;difficile;Comment comparer deux versions d'un modèle sur de vrais utilisateurs ?;ab_testing;embeddings_minilm;versioning_de_modeles;ab_testing;overfitting_underfitting;0;1;0.678;28.66;;
+51;facile;qu'est-ce qu'un ETL ?;etl_definition;embeddings_minilm;etl_definition;ai_act_europeen;explicabilite_ia_xai;1;1;0.4224;25.08;;
+52;moyen;Quelle différence entre une base relationnelle et MongoDB ?;bases_de_donnees_sql_vs_nosql;embeddings_minilm;bases_de_donnees_sql_vs_nosql;sql_bases;theorie_des_graphes;1;1;0.5154;31.65;;
+53;moyen;Comment faire tourner mes traitements de données chaque nuit, dans le bon ordre ?;orchestration_airflow;embeddings_minilm;vie_privee_et_donnees;qualite_des_donnees;streaming_de_donnees;0;0;0.4804;26.76;;
+54;difficile;Traiter les données au fil de l'eau, dès qu'elles arrivent;streaming_de_donnees;embeddings_minilm;etl_definition;streaming_de_donnees;qualite_des_donnees;0;1;0.4968;32.76;;
+55;facile;Comment faire des graphiques avec matplotlib ?;matplotlib;embeddings_minilm;matplotlib;seaborn;choix_du_bon_graphique;1;1;0.6934;26.05;;
+56;moyen;Barres, courbe ou camembert : lequel choisir pour mes données ?;choix_du_bon_graphique;embeddings_minilm;qualite_des_donnees;vie_privee_et_donnees;streaming_de_donnees;0;0;0.4532;26.12;;
+57;difficile;Comment raconter une histoire avec mes chiffres pour convaincre ma direction ?;storytelling_avec_la_donnee;embeddings_minilm;rnn_reseaux_recurrents;ai_act_europeen;ia_generative_et_droits_d_auteur;0;0;0.3955;31.25;;
+58;facile;C'est quoi le RGPD ?;reglementation_rgpd;embeddings_minilm;reglementation_rgpd;optimisation_combinatoire;ai_act_europeen;1;1;0.386;26.86;;
+59;moyen;Comment expliquer pourquoi le modèle a refusé ce crédit ?;explicabilite_ia_xai;embeddings_minilm;explicabilite_ia_xai;metriques_de_regression;arbres_de_decision;1;1;0.411;23.31;;
+60;difficile;Mon modèle de recrutement favorise les hommes : d'où ça vient ?;biais_algorithmique;embeddings_minilm;ia_frugale;reward_shaping;rag_definition;0;0;0.4256;25.48;;
+61;facile;C'est quoi l'apprentissage par renforcement ?;reinforcement_learning_definition;embeddings_minilm;reinforcement_learning_definition;politique_et_recompense;rlhf;1;1;0.6086;29.42;;
+62;moyen;Faut-il essayer de nouvelles actions ou rester sur celle qui marche déjà ?;exploration_vs_exploitation;embeddings_minilm;exploration_vs_exploitation;rag_definition;multi_agent_rl;1;1;0.4669;32.61;;
+63;difficile;Un agent remplit une table de valeurs pour chaque état et chaque action;q_learning;embeddings_minilm;multi_agent_rl;agents_llm;politique_et_recompense;0;0;0.5978;29.18;;
+64;facile;À quoi sert LangChain ?;langchain;embeddings_minilm;langchain;chunking_de_documents;context_window;1;1;0.5349;21.43;;
+65;moyen;Comment faire tourner un LLM directement sur mon ordinateur ?;ollama_plateforme;embeddings_minilm;apprentissage_supervise;streaming_de_donnees;reward_shaping;0;0;0.4021;29.36;;
+66;difficile;Je veux créer une petite interface web pour mon modèle en quelques lignes de Python;streamlit;embeddings_minilm;gradio;api_de_modele_fastapi;streamlit;0;1;0.5838;28.32;;
+67;hors_sujet_loin;J'ai des œufs, de la farine et du lait, je fais comment pour des crêpes ?;hors_sujet;embeddings_minilm;ia_generative_et_droits_d_auteur;big_data_definition;metriques_de_regression;0;0;0.3841;38.21;;
+68;hors_sujet_loin;vainqueur coupe du monde 2018;hors_sujet;embeddings_minilm;ai_act_europeen;rag_definition;versioning_de_modeles;0;0;0.3662;22.96;;
+69;hors_sujet_loin;Tu sais s'il va pleuvoir demain à Lyon ?;hors_sujet;embeddings_minilm;groq_plateforme;processus_de_decision_markovien;arbres_de_decision;0;0;0.341;28.36;;
+70;hors_sujet_loin;J'ai crevé sur l'autoroute, comment je change la roue ?;hors_sujet;embeddings_minilm;ai_act_europeen;rnn_reseaux_recurrents;ia_generative_et_droits_d_auteur;0;0;0.3535;31.89;;
+71;hors_sujet_loin;Quels furent les principaux facteurs ayant conduit à la Révolution française ?;hors_sujet;embeddings_minilm;vie_privee_et_donnees;ai_act_europeen;distributions_de_probabilite;0;0;0.4347;34.2;;
+72;hors_sujet_loin;Quelles plantes résistent bien sur un balcon orienté nord ?;hors_sujet;embeddings_minilm;architecture_data_lake;vie_privee_et_donnees;optimisation_combinatoire;0;0;0.295;26.6;;
+73;hors_sujet_loin;Par où commencer pour apprendre la guitare toute seule ?;hors_sujet;embeddings_minilm;gestion_de_files_d_attente;orchestration_airflow;metriques_de_regression;0;0;0.4236;27.85;;
+74;hors_sujet_loin;Pourquoi la capitale de l'Australie est Canberra et pas Sydney ?;hors_sujet;embeddings_minilm;metriques_de_regression;processus_de_decision_markovien;exploration_vs_exploitation;0;0;0.298;25.6;;
+75;hors_sujet_loin;Une astuce de grand-mère pour enlever une tache de vin rouge sur un tapis ?;hors_sujet;embeddings_minilm;explicabilite_ia_xai;exploration_vs_exploitation;groq_plateforme;0;0;0.3402;29.73;;
+76;hors_sujet_loin;Salut ! Ça va aujourd'hui ?;hors_sujet;embeddings_minilm;ai_act_europeen;ia_generative_et_droits_d_auteur;gestion_de_files_d_attente;0;0;0.3254;27.64;;
+77;hors_sujet_proche;Comment centrer horizontalement une div en CSS ?;hors_sujet;embeddings_minilm;vecteurs_et_matrices;probleme_d_affectation;clustering_kmeans;0;0;0.3359;29.25;;
+78;hors_sujet_proche;Quel langage faut-il apprendre pour développer une application iPhone ?;hors_sujet;embeddings_minilm;reinforcement_learning_definition;rag_definition;prompt_engineering;0;0;0.3844;38.6;;
+79;hors_sujet_proche;Est-il possible d'installer Ubuntu en dual boot avec Windows 11 ?;hors_sujet;embeddings_minilm;groq_plateforme;ci_cd_pour_ml;recherche_operationnelle_definition;0;0;0.2773;33.37;;
+80;hors_sujet_proche;Sur quel mécanisme de consensus repose la blockchain du Bitcoin ?;hors_sujet;embeddings_minilm;cycle_de_vie_projet_data;bases_vectorielles_pinecone_weaviate_qdrant;reward_shaping;0;0;0.3121;33.16;;
+81;hors_sujet_proche;En quoi un qubit diffère-t-il d'un bit classique ?;hors_sujet;embeddings_minilm;quantization_de_modeles;bpe_byte_pair_encoding;streaming_de_donnees;0;0;0.4148;27.52;;
+82;hors_sujet_proche;Comment intégrer une fonction par parties, par exemple x fois exponentielle de x ?;hors_sujet;embeddings_minilm;multi_agent_rl;politique_et_recompense;distributions_de_probabilite;0;0;0.4104;27.72;;
+83;hors_sujet_proche;Quel est le rôle du Scrum Master dans une équipe agile ?;hors_sujet;embeddings_minilm;storytelling_avec_la_donnee;reinforcement_learning_definition;multi_agent_rl;0;0;0.3023;29.02;;
+84;hors_sujet_proche;Comment rédiger une lettre de motivation pour un stage de data scientist ?;hors_sujet;embeddings_minilm;dataiku;cycle_de_vie_projet_data;data_science_definition;0;0;0.489;28.12;;
+85;hors_sujet_proche;Ma box internet ne capte plus, comment je réinitialise le Wi-Fi ?;hors_sujet;embeddings_minilm;ai_act_europeen;streaming_de_donnees;function_calling;0;0;0.3582;30.81;;
+86;hors_sujet_proche;Quelles techniques permettent d'améliorer le référencement naturel d'un site web ?;hors_sujet;embeddings_minilm;web_scraping;data_science_definition;faiss;0;0;0.5585;31.18;;
+87;fautes;quest ce que la sciense des donées;data_science_definition;embeddings_minilm;exploration_vs_exploitation;ai_act_europeen;explicabilite_ia_xai;0;0;0.3859;21.95;;
+88;fautes;randon forest cest quoi;random_forest;embeddings_minilm;random_forest;arbres_de_decision;bases_vectorielles_pinecone_weaviate_qdrant;1;1;0.3705;23.59;;
+89;fautes;quel modele donne une proba entre 0 et 1 pour une reponse oui ou non;regression_logistique;embeddings_minilm;distributions_de_probabilite;regression_logistique;probabilites_de_base;0;1;0.5808;36.86;;
+90;fautes;pk mon modele a 99% sur lentrainement mais rate tout sur les nouvelle donnees;overfitting_underfitting;embeddings_minilm;regression_logistique;metriques_de_regression;regularisation_l1_l2;0;0;0.5062;27.5;;
+91;fautes;comment diferencier presicion et rapel;metriques_de_classification;embeddings_minilm;ai_act_europeen;vie_privee_et_donnees;apprentissage_supervise;0;0;0.3816;24.62;;
+92;fautes;coment le reseau corige ses poid a partir de son ereur;backpropagation;embeddings_minilm;ai_act_europeen;ia_generative_et_droits_d_auteur;reward_shaping;0;0;0.4175;31.84;;
+93;fautes;explik moi le tfidf;tf_idf;embeddings_minilm;tf_idf;streaming_de_donnees;explicabilite_ia_xai;1;1;0.4104;25.92;;
+94;fautes;comment savoir si un avi client est positf ou negatif;analyse_de_sentiment;embeddings_minilm;streaming_de_donnees;gestion_de_files_d_attente;ai_act_europeen;0;0;0.4568;29.8;;
+95;fautes;comment coupé un lon pdf en morso avan de le doné a un modèl;chunking_de_documents;embeddings_minilm;overfitting_underfitting;versioning_de_modeles;regression_logistique;0;0;0.5053;29.06;;
+96;fautes;cé quoi le ml ops;mlops_definition;embeddings_minilm;mlops_definition;explicabilite_ia_xai;ci_cd_pour_ml;1;1;0.4196;24.31;;
+1;facile;Qu'est ce que la science des données ?;data_science_definition;embeddings_multilingue;data_science_definition;types_de_donnees;principes_de_dataviz;1;1;0.8478;55.15;;
+2;moyen;Comment remplit-on les cases vides dans un tableau de données ?;donnees_manquantes;embeddings_multilingue;data_warehousing;types_de_donnees;data_wrangling;0;0;0.5513;57.58;;
+3;moyen;Pourquoi mettons une partie des données de côté avant d'entraîner le modèle ?;train_test_split;embeddings_multilingue;overfitting_underfitting;biais_variance;types_de_donnees;0;0;0.6738;50.96;;
+4;difficile;Mon modèle est soit trop simple, soit trop collé aux données : il y a un équilibre à trouver ?;biais_variance;embeddings_multilingue;biais_variance;overfitting_underfitting;echantillonnage;1;1;0.6425;52.85;;
+5;difficile;Comment créer de nouvelles colonnes plus utiles à partir de celles que j'ai déjà ?;feature_engineering;embeddings_multilingue;optimiseurs_adam_sgd;reduction_de_dimension_umap;transfer_learning;0;0;0.3761;48.48;;
+6;facile;j'aimerais een connaitre plus sur la loi normale;loi_normale;embeddings_multilingue;loi_normale;reglementation_rgpd;theoreme_central_limite;1;1;0.4846;43.08;;
+7;moyen;Pourquoi la moyenne de plein d'échantillons finit toujours par dessiner une courbe en cloche ?;theoreme_central_limite;embeddings_multilingue;theoreme_central_limite;optimisation_convexe;outliers_valeurs_aberrantes;1;1;0.549;56.76;;
+8;moyen;Si deux choses évoluent ensemble, est-ce que l'une provoque forcément l'autre ?;correlation_vs_causalite;embeddings_multilingue;correlation_vs_causalite;data_drift_model_drift;modeles_seq2seq;1;1;0.6481;52.18;;
+9;difficile;Comment mettre à jour une probabilité quand j'apprends une nouvelle information ?;bayes_theoreme;embeddings_multilingue;probabilites_de_base;distributions_de_probabilite;bayes_theoreme;0;1;0.5849;58.31;;
+10;difficile;Que veut dire le chiffre qui doit être sous 0,05 dans un test statistique ?;p_value;embeddings_multilingue;p_value;outliers_valeurs_aberrantes;tests_d_hypothese;1;1;0.5945;61.71;;
+11;facile;Comment utiliser pandas pour lire un fichier CSV ?;pandas;embeddings_multilingue;pandas;bases_vectorielles_pinecone_weaviate_qdrant;streamlit;1;1;0.6401;43.17;;
+12;moyen;Comment récupérer automatiquement les informations d'un site internet ?;web_scraping;embeddings_multilingue;web_scraping;streaming_de_donnees;reranking;1;1;0.6208;45.23;;
+13;moyen;Comment éviter que mes projets Python mélangent leurs versions de bibliothèques ?;environnements_virtuels;embeddings_multilingue;python_pour_la_data;streamlit;conteneurisation_docker;0;0;0.5673;51.39;;
+14;difficile;Comment revenir à une ancienne version de mon code si j'ai tout cassé ?;git_versioning;embeddings_multilingue;versioning_de_modeles;git_versioning;chunking_de_documents;0;1;0.2449;66.46;;
+15;facile;Random forest, c'est quoi ?;random_forest;embeddings_multilingue;random_forest;arbres_de_decision;recherche_approximative_ann;1;1;0.7063;43.3;;
+16;moyen;Quel modèle donne une probabilité entre 0 et 1 pour une réponse oui ou non ?;regression_logistique;embeddings_multilingue;p_value;tests_d_hypothese;probabilites_de_base;0;0;0.6001;48.92;;
+17;moyen;Comment classer un point en regardant ses voisins les plus proches ?;knn;embeddings_multilingue;recherche_approximative_ann;clustering_kmeans;reduction_de_dimension_tsne;0;0;0.4319;46.31;;
+18;difficile;Comment regrouper mes clients en groupes alors que je n'ai aucune étiquette ?;clustering_kmeans;embeddings_multilingue;clustering_d_embeddings;clustering_hierarchique;apprentissage_non_supervise;0;0;0.3775;47.81;;
+19;difficile;Pourquoi mon modèle a 99 % sur l'entraînement mais rate tout sur les nouvelles données?;overfitting_underfitting;embeddings_multilingue;biais_variance;quantization_de_modeles;gradient_boosting;0;0;0.5935;56.31;;
+20;difficile;Comment différencier précision et rappel ?;metriques_de_classification;embeddings_multilingue;quantization_de_modeles;outliers_valeurs_aberrantes;tf_idf;0;0;0.5486;40.08;;
+21;facile;C'est quoi le dropout ?;dropout;embeddings_multilingue;dropout;reward_shaping;donnees_manquantes;1;1;0.4772;40.29;;
+22;moyen;Comment le réseau corrige ses poids à partir de son erreur ?;backpropagation;embeddings_multilingue;vanishing_gradient;probleme_du_voyageur_de_commerce;weights_and_biases;0;0;0.4917;42.61;;
+23;moyen;Quel type de réseau utiliser pour reconnaître des images ?;cnn_reseaux_convolutifs;embeddings_multilingue;dashboards_interactifs;cnn_reseaux_convolutifs;visualisation_de_donnees_multidimensionnelles;0;1;0.584;47.44;;
+24;difficile;Pourquoi mon réseau très profond n'apprend plus rien dans ses premières couches ?;vanishing_gradient;embeddings_multilingue;lstm_gru;rnn_reseaux_recurrents;cnn_reseaux_convolutifs;0;0;0.5494;62.55;;
+25;difficile;Je peux réutiliser un modèle déjà entraîné par quelqu'un d'autre pour ma propre tâche ?;transfer_learning;embeddings_multilingue;versioning_de_modeles;ci_cd_pour_ml;make_automatisation;0;0;0.5043;59.45;;
+26;facile;Explique-moi TF-IDF;tf_idf;embeddings_multilingue;tf_idf;reduction_de_dimension_tsne;knn;1;1;0.4599;41.74;;
+27;moyen;Comment savoir si un avis client est positif ou négatif ?;analyse_de_sentiment;embeddings_multilingue;analyse_de_sentiment;ab_testing;metriques_de_classification;1;1;0.4725;52.82;;
+28;moyen;Comment ramener « mangeaient » et « mangé » à la même forme ?;stemming_lemmatisation;embeddings_multilingue;transfer_learning;modeles_seq2seq;backpropagation;0;0;0.3543;54.54;;
+29;difficile;Comment repérer automatiquement les noms de personnes et de villes dans un texte ?;reconnaissance_d_entites_nommees_ner;embeddings_multilingue;glove;reconnaissance_d_entites_nommees_ner;nlp_definition;0;1;0.4369;56.13;;
+30;difficile;Comment un modèle sait sur quels mots de la phrase se concentrer ?;mecanisme_d_attention;embeddings_multilingue;prompt_engineering;context_window;shap_lime;0;0;0.6041;88.23;;
+31;facile;C'est quoi le prompt engineering ?;prompt_engineering;embeddings_multilingue;prompt_engineering;recuit_simule;feature_engineering;1;1;0.6036;57.6;;
+32;moyen;Pourquoi ChatGPT invente parfois des choses fausses avec beaucoup d'assurance ?;hallucinations_llm;embeddings_multilingue;hallucinations_llm;dbt_data_build_tool;donnees_manquantes;1;1;0.4563;69.19;;
+33;moyen;Combien de texte un modèle peut-il lire d'un seul coup ?;context_window;embeddings_multilingue;context_window;grands_modeles_de_langage_llm;glove;1;1;0.5678;72.2;;
+34;difficile;Comment adapter un gros modèle à mon domaine sans réentraîner tous ses paramètres ?;lora_qlora;embeddings_multilingue;versioning_de_modeles;scalabilite_des_modeles;reduction_de_dimension_umap;0;0;0.5679;57.82;;
+35;difficile;Comment un LLM peut-il appeler un outil ou une fonction externe ?;function_calling;embeddings_multilingue;function_calling;agents_llm;prompt_engineering;1;1;0.697;54.04;;
+36;facile;C'est quoi un embedding ?;embeddings_definition;embeddings_multilingue;chain_of_thought;rag_definition;embeddings_definition;0;1;0.381;44.36;;
+37;moyen;Comment mesurer si deux phrases veulent dire la même chose ?;similarite_cosinus;embeddings_multilingue;similarite_cosinus;correlation_vs_causalite;pos_tagging;1;1;0.4447;47.28;;
+38;moyen;Où stocker des millions de vecteurs pour les retrouver très vite ?;bases_de_donnees_vectorielles;embeddings_multilingue;bases_vectorielles_pinecone_weaviate_qdrant;clustering_d_embeddings;vecteurs_et_matrices;0;0;0.6401;51.98;;
+39;difficile;Comment afficher en 2D des données à centaines de dimensions en gardant les groupes visibles ?;reduction_de_dimension_tsne;embeddings_multilingue;visualisation_de_donnees_multidimensionnelles;clustering_d_embeddings;choix_du_bon_graphique;0;0;0.6231;68.51;;
+40;facile;C'est quoi le RAG ?;rag_definition;embeddings_multilingue;rag_definition;zapier;evaluation_d_un_systeme_rag;1;1;0.3857;46.87;;
+41;moyen;Comment couper un long PDF en morceaux avant de le donner à un modèle ?;chunking_de_documents;embeddings_multilingue;chunking_de_documents;overfitting_underfitting;choix_du_bon_graphique;1;1;0.5768;56.23;;
+42;difficile;Comment savoir si mon chatbot qui cherche dans mes documents répond correctement ?;evaluation_d_un_systeme_rag;embeddings_multilingue;notebooks_jupyter;dashboards_interactifs;function_calling;0;0;0.3167;58.67;;
+43;facile;Le problème du voyageur de commerce;probleme_du_voyageur_de_commerce;embeddings_multilingue;probleme_du_voyageur_de_commerce;exploration_vs_exploitation;probleme_d_affectation;1;1;0.6019;43.92;;
+44;moyen;Comment trouver le plus court chemin entre deux villes sur une carte ?;theorie_des_graphes;embeddings_multilingue;probleme_du_voyageur_de_commerce;recherche_approximative_ann;optimisation_convexe;0;0;0.5318;55.71;;
+45;moyen;Comment répartir 5 tâches entre 5 employés pour que ça coûte le moins cher possible ?;probleme_d_affectation;embeddings_multilingue;probleme_d_affectation;gestion_de_files_d_attente;echantillonnage;1;1;0.4544;55.99;;
+46;difficile;Une méthode d'optimisation inspirée de l'évolution et de la sélection naturelle;algorithmes_genetiques;embeddings_multilingue;algorithmes_genetiques;optimiseurs_adam_sgd;exploration_vs_exploitation;1;1;0.7082;64.42;;
+47;facile;C'est quoi le MLOps ?;mlops_definition;embeddings_multilingue;mlops_definition;zapier;stemming_lemmatisation;1;1;0.3829;40.07;;
+48;moyen;Comment mettre mon modèle dans une boîte qui marche sur n'importe quel ordinateur ?;conteneurisation_docker;embeddings_multilingue;conteneurisation_docker;ci_cd_pour_ml;versioning_de_modeles;1;1;0.4165;56.28;;
+49;moyen;Mes prédictions se dégradent avec le temps parce que les données ont changé;data_drift_model_drift;embeddings_multilingue;monitoring_de_modeles_en_production;outliers_valeurs_aberrantes;data_drift_model_drift;0;1;0.6264;54.88;;
+50;difficile;Comment comparer deux versions d'un modèle sur de vrais utilisateurs ?;ab_testing;embeddings_multilingue;versioning_de_modeles;metriques_de_classification;ab_testing;0;1;0.5667;46.55;;
+51;facile;qu'est-ce qu'un ETL ?;etl_definition;embeddings_multilingue;etl_definition;ai_act_europeen;exploration_de_donnees_eda;1;1;0.6943;56.35;;
+52;moyen;Quelle différence entre une base relationnelle et MongoDB ?;bases_de_donnees_sql_vs_nosql;embeddings_multilingue;chroma_db;bases_de_donnees_sql_vs_nosql;structures_de_donnees_algorithmes;0;1;0.4673;44.12;;
+53;moyen;Comment faire tourner mes traitements de données chaque nuit, dans le bon ordre ?;orchestration_airflow;embeddings_multilingue;gestion_de_files_d_attente;types_de_donnees;dataiku;0;0;0.508;54.27;;
+54;difficile;Traiter les données au fil de l'eau, dès qu'elles arrivent;streaming_de_donnees;embeddings_multilingue;architecture_data_lake;streaming_de_donnees;data_wrangling;0;1;0.538;60.4;;
+55;facile;Comment faire des graphiques avec matplotlib ?;matplotlib;embeddings_multilingue;plotly;theorie_des_graphes;choix_du_bon_graphique;0;0;0.6161;49.14;;
+56;moyen;Barres, courbe ou camembert : lequel choisir pour mes données ?;choix_du_bon_graphique;embeddings_multilingue;optimisation_convexe;choix_du_bon_graphique;derivees_et_gradients;0;1;0.5804;53.83;;
+57;difficile;Comment raconter une histoire avec mes chiffres pour convaincre ma direction ?;storytelling_avec_la_donnee;embeddings_multilingue;storytelling_avec_la_donnee;principes_de_dataviz;choix_du_bon_graphique;1;1;0.5306;53.74;;
+58;facile;C'est quoi le RGPD ?;reglementation_rgpd;embeddings_multilingue;rlhf;reglementation_rgpd;groq_plateforme;0;1;0.4999;44.46;;
+59;moyen;Comment expliquer pourquoi le modèle a refusé ce crédit ?;explicabilite_ia_xai;embeddings_multilingue;regularisation_l1_l2;p_value;donnees_manquantes;0;0;0.3632;46.85;;
+60;difficile;Mon modèle de recrutement favorise les hommes : d'où ça vient ?;biais_algorithmique;embeddings_multilingue;exploration_vs_exploitation;politique_et_recompense;reward_shaping;0;0;0.4218;52.03;;
+61;facile;C'est quoi l'apprentissage par renforcement ?;reinforcement_learning_definition;embeddings_multilingue;reinforcement_learning_definition;transfer_learning;gradient_boosting;1;1;0.7102;48.14;;
+62;moyen;Faut-il essayer de nouvelles actions ou rester sur celle qui marche déjà ?;exploration_vs_exploitation;embeddings_multilingue;exploration_vs_exploitation;monitoring_de_modeles_en_production;politique_et_recompense;1;1;0.5283;46.83;;
+63;difficile;Un agent remplit une table de valeurs pour chaque état et chaque action;q_learning;embeddings_multilingue;politique_et_recompense;types_de_donnees;structures_de_donnees_algorithmes;0;0;0.5092;53.93;;
+64;facile;À quoi sert LangChain ?;langchain;embeddings_multilingue;langchain;multi_agent_rl;rag_definition;1;1;0.5642;44.83;;
+65;moyen;Comment faire tourner un LLM directement sur mon ordinateur ?;ollama_plateforme;embeddings_multilingue;agents_llm;llamaindex;grands_modeles_de_langage_llm;0;0;0.3974;45.0;;
+66;difficile;Je veux créer une petite interface web pour mon modèle en quelques lignes de Python;streamlit;embeddings_multilingue;python_pour_la_data;streamlit;gradio;0;1;0.5149;52.33;;
+67;hors_sujet_loin;J'ai des œufs, de la farine et du lait, je fais comment pour des crêpes ?;hors_sujet;embeddings_multilingue;n8n_automatisation;make_automatisation;algorithme_du_simplexe;0;0;0.2041;57.43;;
+68;hors_sujet_loin;vainqueur coupe du monde 2018;hors_sujet;embeddings_multilingue;reward_shaping;rlhf;reranking;0;0;0.2271;48.43;;
+69;hors_sujet_loin;Tu sais s'il va pleuvoir demain à Lyon ?;hors_sujet;embeddings_multilingue;bayes_theoreme;random_forest;distributions_de_probabilite;0;0;0.1084;47.74;;
+70;hors_sujet_loin;J'ai crevé sur l'autoroute, comment je change la roue ?;hors_sujet;embeddings_multilingue;probleme_du_voyageur_de_commerce;descente_de_gradient;data_drift_model_drift;0;0;0.1991;54.92;;
+71;hors_sujet_loin;Quels furent les principaux facteurs ayant conduit à la Révolution française ?;hors_sujet;embeddings_multilingue;theoreme_central_limite;ai_act_europeen;regularisation_l1_l2;0;0;0.2573;48.26;;
+72;hors_sujet_loin;Quelles plantes résistent bien sur un balcon orienté nord ?;hors_sujet;embeddings_multilingue;clustering_kmeans;random_forest;knn;0;0;0.2174;43.98;;
+73;hors_sujet_loin;Par où commencer pour apprendre la guitare toute seule ?;hors_sujet;embeddings_multilingue;few_shot_learning;sql_bases;random_forest;0;0;0.2715;44.04;;
+74;hors_sujet_loin;Pourquoi la capitale de l'Australie est Canberra et pas Sydney ?;hors_sujet;embeddings_multilingue;exploration_vs_exploitation;vie_privee_et_donnees;bases_de_donnees_sql_vs_nosql;0;0;0.2262;59.28;;
+75;hors_sujet_loin;Une astuce de grand-mère pour enlever une tache de vin rouge sur un tapis ?;hors_sujet;embeddings_multilingue;chain_of_thought;pos_tagging;streamlit;0;0;0.1664;64.21;;
+76;hors_sujet_loin;Salut ! Ça va aujourd'hui ?;hors_sujet;embeddings_multilingue;huggingface_hub;cycle_de_vie_projet_data;n8n_automatisation;0;0;0.1023;39.22;;
+77;hors_sujet_proche;Comment centrer horizontalement une div en CSS ?;hors_sujet;embeddings_multilingue;plotly;choix_du_bon_graphique;optimisation_convexe;0;0;0.2981;51.12;;
+78;hors_sujet_proche;Quel langage faut-il apprendre pour développer une application iPhone ?;hors_sujet;embeddings_multilingue;nlp_definition;stemming_lemmatisation;make_automatisation;0;0;0.3974;50.25;;
+79;hors_sujet_proche;Est-il possible d'installer Ubuntu en dual boot avec Windows 11 ?;hors_sujet;embeddings_multilingue;bases_de_donnees_sql_vs_nosql;train_test_split;recuit_simule;0;0;0.0724;53.65;;
+80;hors_sujet_proche;Sur quel mécanisme de consensus repose la blockchain du Bitcoin ?;hors_sujet;embeddings_multilingue;automl_datarobot_h2o;structures_de_donnees_algorithmes;databricks;0;0;0.3817;47.19;;
+81;hors_sujet_proche;En quoi un qubit diffère-t-il d'un bit classique ?;hors_sujet;embeddings_multilingue;bpe_byte_pair_encoding;tokenisation;modeles_seq2seq;0;0;0.3937;57.94;;
+82;hors_sujet_proche;Comment intégrer une fonction par parties, par exemple x fois exponentielle de x ?;hors_sujet;embeddings_multilingue;derivees_et_gradients;optimisation_convexe;algorithme_du_simplexe;0;0;0.4993;54.43;;
+83;hors_sujet_proche;Quel est le rôle du Scrum Master dans une équipe agile ?;hors_sujet;embeddings_multilingue;mixture_of_experts;multi_agent_rl;mlops_definition;0;0;0.5099;50.62;;
+84;hors_sujet_proche;Comment rédiger une lettre de motivation pour un stage de data scientist ?;hors_sujet;embeddings_multilingue;cycle_de_vie_projet_data;echantillonnage;data_science_definition;0;0;0.5969;44.64;;
+85;hors_sujet_proche;Ma box internet ne capte plus, comment je réinitialise le Wi-Fi ?;hors_sujet;embeddings_multilingue;probleme_du_voyageur_de_commerce;rnn_reseaux_recurrents;apis_rest;0;0;0.2719;54.45;;
+86;hors_sujet_proche;Quelles techniques permettent d'améliorer le référencement naturel d'un site web ?;hors_sujet;embeddings_multilingue;web_scraping;reranking;nlp_definition;0;0;0.5063;51.91;;
+87;fautes;quest ce que la sciense des donées;data_science_definition;embeddings_multilingue;reward_shaping;echantillonnage;exploration_vs_exploitation;0;0;0.5398;43.59;;
+88;fautes;randon forest cest quoi;random_forest;embeddings_multilingue;random_forest;arbres_de_decision;bases_vectorielles_pinecone_weaviate_qdrant;1;1;0.4834;40.37;;
+89;fautes;quel modele donne une proba entre 0 et 1 pour une reponse oui ou non;regression_logistique;embeddings_multilingue;tests_d_hypothese;p_value;validation_croisee;0;0;0.6783;50.64;;
+90;fautes;pk mon modele a 99% sur lentrainement mais rate tout sur les nouvelle donnees;overfitting_underfitting;embeddings_multilingue;quantization_de_modeles;optimiseurs_adam_sgd;gradient_boosting;0;0;0.4964;59.06;;
+91;fautes;comment diferencier presicion et rapel;metriques_de_classification;embeddings_multilingue;tf_idf;recuit_simule;optimiseurs_adam_sgd;0;0;0.4005;43.41;;
+92;fautes;coment le reseau corige ses poid a partir de son ereur;backpropagation;embeddings_multilingue;recuit_simule;chunking_de_documents;conteneurisation_docker;0;0;0.3499;50.47;;
+93;fautes;explik moi le tfidf;tf_idf;embeddings_multilingue;tf_idf;reduction_de_dimension_tsne;theoreme_central_limite;1;1;0.4501;42.55;;
+94;fautes;comment savoir si un avi client est positf ou negatif;analyse_de_sentiment;embeddings_multilingue;tests_d_hypothese;p_value;metriques_de_classification;0;0;0.4122;56.58;;
+95;fautes;comment coupé un lon pdf en morso avan de le doné a un modèl;chunking_de_documents;embeddings_multilingue;chunking_de_documents;matplotlib;seaborn;1;1;0.4074;50.59;;
+96;fautes;cé quoi le ml ops;mlops_definition;embeddings_multilingue;pos_tagging;reward_shaping;mixture_of_experts;0;0;0.3658;39.04;;
+1;facile;Qu'est ce que la science des données ?;data_science_definition;llm:openai/gpt-oss-120b;data_science_definition;machine_learning_definition;big_data_definition;1;1;;874.0;2662;128
+2;moyen;Comment remplit-on les cases vides dans un tableau de données ?;donnees_manquantes;llm:openai/gpt-oss-120b;donnees_manquantes;data_wrangling;exploration_de_donnees_eda;1;1;;599.0;2667;210
+3;moyen;Pourquoi mettons une partie des données de côté avant d'entraîner le modèle ?;train_test_split;llm:openai/gpt-oss-120b;train_test_split;validation_croisee;overfitting_underfitting;1;1;;760.0;2670;189
+4;difficile;Mon modèle est soit trop simple, soit trop collé aux données : il y a un équilibre à trouver ?;biais_variance;llm:openai/gpt-oss-120b;biais_variance;overfitting_underfitting;regularisation_l1_l2;1;1;;977.0;2675;224
+5;difficile;Comment créer de nouvelles colonnes plus utiles à partir de celles que j'ai déjà ?;feature_engineering;llm:openai/gpt-oss-120b;feature_engineering;data_wrangling;exploration_de_donnees_eda;1;1;;1163.0;2670;202
+6;facile;j'aimerais een connaitre plus sur la loi normale;loi_normale;llm:openai/gpt-oss-120b;loi_normale;distributions_de_probabilite;probabilites_de_base;1;1;;2298.0;2662;110
+7;moyen;Pourquoi la moyenne de plein d'échantillons finit toujours par dessiner une courbe en cloche ?;theoreme_central_limite;llm:openai/gpt-oss-120b;theoreme_central_limite;loi_normale;distributions_de_probabilite;1;1;;649.0;2674;213
+8;moyen;Si deux choses évoluent ensemble, est-ce que l'une provoque forcément l'autre ?;correlation_vs_causalite;llm:openai/gpt-oss-120b;correlation_vs_causalite;tests_d_hypothese;p_value;1;1;;1119.0;2671;296
+9;difficile;Comment mettre à jour une probabilité quand j'apprends une nouvelle information ?;bayes_theoreme;llm:openai/gpt-oss-120b;bayes_theoreme;probabilites_de_base;tests_d_hypothese;1;1;;810.0;2668;262
+10;difficile;Que veut dire le chiffre qui doit être sous 0,05 dans un test statistique ?;p_value;llm:openai/gpt-oss-120b;p_value;tests_d_hypothese;probabilites_de_base;1;1;;950.0;2672;359
+11;facile;Comment utiliser pandas pour lire un fichier CSV ?;pandas;llm:openai/gpt-oss-120b;pandas;data_wrangling;python_pour_la_data;1;1;;1049.0;2662;155
+12;moyen;Comment récupérer automatiquement les informations d'un site internet ?;web_scraping;llm:openai/gpt-oss-120b;web_scraping;apis_rest;python_pour_la_data;1;1;;1458.0;2663;179
+13;moyen;Comment éviter que mes projets Python mélangent leurs versions de bibliothèques ?;environnements_virtuels;llm:openai/gpt-oss-120b;environnements_virtuels;git_versioning;python_pour_la_data;1;1;;622.0;2668;227
+14;difficile;Comment revenir à une ancienne version de mon code si j'ai tout cassé ?;git_versioning;llm:openai/gpt-oss-120b;git_versioning;ci_cd_pour_ml;versioning_de_modeles;1;1;;849.0;2669;305
+15;facile;Random forest, c'est quoi ?;random_forest;llm:openai/gpt-oss-120b;random_forest;apprentissage_supervise;machine_learning_definition;1;1;;500.0;2660;109
+16;moyen;Quel modèle donne une probabilité entre 0 et 1 pour une réponse oui ou non ?;regression_logistique;llm:openai/gpt-oss-120b;regression_logistique;naive_bayes;bayes_theoreme;1;1;;1164.0;2672;380
+17;moyen;Comment classer un point en regardant ses voisins les plus proches ?;knn;llm:openai/gpt-oss-120b;knn;apprentissage_supervise;machine_learning_definition;1;1;;1104.0;2667;290
+18;difficile;Comment regrouper mes clients en groupes alors que je n'ai aucune étiquette ?;clustering_kmeans;llm:openai/gpt-oss-120b;clustering_kmeans;clustering_hierarchique;dbscan;1;1;;1497.0;2670;237
+19;difficile;Pourquoi mon modèle a 99 % sur l'entraînement mais rate tout sur les nouvelles données?;overfitting_underfitting;llm:openai/gpt-oss-120b;overfitting_underfitting;regularisation_l1_l2;validation_croisee;1;1;;915.0;2671;212
+20;difficile;Comment différencier précision et rappel ?;metriques_de_classification;llm:openai/gpt-oss-120b;metriques_de_classification;apprentissage_supervise;machine_learning_definition;1;1;;950.0;2661;318
+21;facile;C'est quoi le dropout ?;dropout;llm:openai/gpt-oss-120b;dropout;overfitting_underfitting;regularisation_l1_l2;1;1;;606.0;2659;220
+22;moyen;Comment le réseau corrige ses poids à partir de son erreur ?;backpropagation;llm:openai/gpt-oss-120b;backpropagation;descente_de_gradient;optimiseurs_adam_sgd;1;1;;491.0;2666;173
+23;moyen;Quel type de réseau utiliser pour reconnaître des images ?;cnn_reseaux_convolutifs;llm:openai/gpt-oss-120b;cnn_reseaux_convolutifs;transfer_learning;reseau_de_neurones_perceptron;1;1;;1414.0;2663;243
+24;difficile;Pourquoi mon réseau très profond n'apprend plus rien dans ses premières couches ?;vanishing_gradient;llm:openai/gpt-oss-120b;vanishing_gradient;backpropagation;descente_de_gradient;1;1;;1024.0;2668;215
+25;difficile;Je peux réutiliser un modèle déjà entraîné par quelqu'un d'autre pour ma propre tâche ?;transfer_learning;llm:openai/gpt-oss-120b;transfer_learning;fine_tuning;huggingface_hub;1;1;;994.0;2673;379
+26;facile;Explique-moi TF-IDF;tf_idf;llm:openai/gpt-oss-120b;tf_idf;tokenisation;nlp_definition;1;1;;636.0;2659;150
+27;moyen;Comment savoir si un avis client est positif ou négatif ?;analyse_de_sentiment;llm:openai/gpt-oss-120b;analyse_de_sentiment;metriques_de_classification;nlp_definition;1;1;;1157.0;2665;199
+28;moyen;Comment ramener « mangeaient » et « mangé » à la même forme ?;stemming_lemmatisation;llm:openai/gpt-oss-120b;stemming_lemmatisation;tokenisation;nlp_definition;1;1;;858.0;2670;294
+29;difficile;Comment repérer automatiquement les noms de personnes et de villes dans un texte ?;reconnaissance_d_entites_nommees_ner;llm:openai/gpt-oss-120b;reconnaissance_d_entites_nommees_ner;tokenisation;pos_tagging;1;1;;644.0;2668;234
+30;difficile;Comment un modèle sait sur quels mots de la phrase se concentrer ?;mecanisme_d_attention;llm:openai/gpt-oss-120b;mecanisme_d_attention;architecture_transformer;grands_modeles_de_langage_llm;1;1;;1620.0;2667;337
+31;facile;C'est quoi le prompt engineering ?;prompt_engineering;llm:openai/gpt-oss-120b;prompt_engineering;grands_modeles_de_langage_llm;few_shot_learning;1;1;;616.0;2660;221
+32;moyen;Pourquoi ChatGPT invente parfois des choses fausses avec beaucoup d'assurance ?;hallucinations_llm;llm:openai/gpt-oss-120b;hallucinations_llm;explicabilite_ia_xai;biais_algorithmique;1;1;;931.0;2668;223
+33;moyen;Combien de texte un modèle peut-il lire d'un seul coup ?;context_window;llm:openai/gpt-oss-120b;context_window;grands_modeles_de_langage_llm;tokenizer_llm;1;1;;1595.0;2667;227
+34;difficile;Comment adapter un gros modèle à mon domaine sans réentraîner tous ses paramètres ?;lora_qlora;llm:openai/gpt-oss-120b;lora_qlora;fine_tuning;prompt_engineering;1;1;;700.0;2669;267
+35;difficile;Comment un LLM peut-il appeler un outil ou une fonction externe ?;function_calling;llm:openai/gpt-oss-120b;function_calling;agents_llm;langchain;1;1;;505.0;2667;170
+36;facile;C'est quoi un embedding ?;embeddings_definition;llm:openai/gpt-oss-120b;embeddings_definition;similarite_cosinus;sentence_transformers;1;1;;605.0;2659;128
+37;moyen;Comment mesurer si deux phrases veulent dire la même chose ?;similarite_cosinus;llm:openai/gpt-oss-120b;similarite_cosinus;sentence_transformers;embeddings_definition;1;1;;513.0;2664;146
+38;moyen;Où stocker des millions de vecteurs pour les retrouver très vite ?;bases_de_donnees_vectorielles;llm:openai/gpt-oss-120b;bases_de_donnees_vectorielles;bases_vectorielles_pinecone_weaviate_qdrant;recherche_approximative_ann;1;1;;1098.0;2668;398
+39;difficile;Comment afficher en 2D des données à centaines de dimensions en gardant les groupes visibles ?;reduction_de_dimension_tsne;llm:openai/gpt-oss-120b;reduction_de_dimension_tsne;reduction_de_dimension_umap;reduction_de_dimension_pca;1;1;;792.0;2672;292
+40;facile;C'est quoi le RAG ?;rag_definition;llm:openai/gpt-oss-120b;rag_definition;pipeline_de_retrieval;evaluation_d_un_systeme_rag;1;1;;726.0;2660;241
+41;moyen;Comment couper un long PDF en morceaux avant de le donner à un modèle ?;chunking_de_documents;llm:openai/gpt-oss-120b;chunking_de_documents;pipeline_de_retrieval;rag_definition;1;1;;1323.0;2668;250
+42;difficile;Comment savoir si mon chatbot qui cherche dans mes documents répond correctement ?;evaluation_d_un_systeme_rag;llm:openai/gpt-oss-120b;evaluation_d_un_systeme_rag;rag_definition;pipeline_de_retrieval;1;1;;580.0;2666;209
+43;facile;Le problème du voyageur de commerce;probleme_du_voyageur_de_commerce;llm:openai/gpt-oss-120b;probleme_du_voyageur_de_commerce;theorie_des_graphes;optimisation_combinatoire;1;1;;1116.0;2660;185
+44;moyen;Comment trouver le plus court chemin entre deux villes sur une carte ?;theorie_des_graphes;llm:openai/gpt-oss-120b;theorie_des_graphes;programmation_dynamique;optimisation_combinatoire;1;1;;1038.0;2666;253
+45;moyen;Comment répartir 5 tâches entre 5 employés pour que ça coûte le moins cher possible ?;probleme_d_affectation;llm:openai/gpt-oss-120b;probleme_d_affectation;optimisation_combinatoire;programmation_lineaire;1;1;;1172.0;2672;334
+46;difficile;Une méthode d'optimisation inspirée de l'évolution et de la sélection naturelle;algorithmes_genetiques;llm:openai/gpt-oss-120b;algorithmes_genetiques;optimisation_combinatoire;recuit_simule;1;1;;1196.0;2669;308
+47;facile;C'est quoi le MLOps ?;mlops_definition;llm:openai/gpt-oss-120b;mlops_definition;versioning_de_modeles;ci_cd_pour_ml;1;1;;1498.0;2661;139
+48;moyen;Comment mettre mon modèle dans une boîte qui marche sur n'importe quel ordinateur ?;conteneurisation_docker;llm:openai/gpt-oss-120b;conteneurisation_docker;api_de_modele_fastapi;ci_cd_pour_ml;1;1;;837.0;2668;243
+49;moyen;Mes prédictions se dégradent avec le temps parce que les données ont changé;data_drift_model_drift;llm:openai/gpt-oss-120b;data_drift_model_drift;monitoring_de_modeles_en_production;mlops_definition;1;1;;1181.0;2669;306
+50;difficile;Comment comparer deux versions d'un modèle sur de vrais utilisateurs ?;ab_testing;llm:openai/gpt-oss-120b;ab_testing;monitoring_de_modeles_en_production;versioning_de_modeles;1;1;;607.0;2665;221
+51;facile;qu'est-ce qu'un ETL ?;etl_definition;llm:openai/gpt-oss-120b;etl_definition;pipelines_de_donnees;data_warehousing;1;1;;530.0;2661;157
+52;moyen;Quelle différence entre une base relationnelle et MongoDB ?;bases_de_donnees_sql_vs_nosql;llm:openai/gpt-oss-120b;bases_de_donnees_sql_vs_nosql;sql_bases;big_data_definition;1;1;;1172.0;2664;340
+53;moyen;Comment faire tourner mes traitements de données chaque nuit, dans le bon ordre ?;orchestration_airflow;llm:openai/gpt-oss-120b;orchestration_airflow;pipelines_de_donnees;etl_definition;1;1;;576.0;2668;179
+54;difficile;Traiter les données au fil de l'eau, dès qu'elles arrivent;streaming_de_donnees;llm:openai/gpt-oss-120b;streaming_de_donnees;pipelines_de_donnees;etl_definition;1;1;;986.0;2667;211
+55;facile;Comment faire des graphiques avec matplotlib ?;matplotlib;llm:openai/gpt-oss-120b;matplotlib;principes_de_dataviz;choix_du_bon_graphique;1;1;;356.0;2661;116
+56;moyen;Barres, courbe ou camembert : lequel choisir pour mes données ?;choix_du_bon_graphique;llm:openai/gpt-oss-120b;choix_du_bon_graphique;principes_de_dataviz;storytelling_avec_la_donnee;1;1;;776.0;2669;236
+57;difficile;Comment raconter une histoire avec mes chiffres pour convaincre ma direction ?;storytelling_avec_la_donnee;llm:openai/gpt-oss-120b;storytelling_avec_la_donnee;principes_de_dataviz;dashboards_interactifs;1;1;;661.0;2665;234
+58;facile;C'est quoi le RGPD ?;reglementation_rgpd;llm:openai/gpt-oss-120b;reglementation_rgpd;vie_privee_et_donnees;ai_act_europeen;1;1;;656.0;2660;179
+59;moyen;Comment expliquer pourquoi le modèle a refusé ce crédit ?;explicabilite_ia_xai;llm:openai/gpt-oss-120b;explicabilite_ia_xai;shap_lime;biais_algorithmique;1;1;;1514.0;2664;202
+60;difficile;Mon modèle de recrutement favorise les hommes : d'où ça vient ?;biais_algorithmique;llm:openai/gpt-oss-120b;biais_algorithmique;explicabilite_ia_xai;shap_lime;1;1;;723.0;2667;208
+61;facile;C'est quoi l'apprentissage par renforcement ?;reinforcement_learning_definition;llm:openai/gpt-oss-120b;reinforcement_learning_definition;processus_de_decision_markovien;deep_reinforcement_learning;1;1;;1297.0;2663;232
+62;moyen;Faut-il essayer de nouvelles actions ou rester sur celle qui marche déjà ?;exploration_vs_exploitation;llm:openai/gpt-oss-120b;exploration_vs_exploitation;reinforcement_learning_definition;politique_et_recompense;1;1;;1107.0;2668;378
+63;difficile;Un agent remplit une table de valeurs pour chaque état et chaque action;q_learning;llm:openai/gpt-oss-120b;q_learning;reinforcement_learning_definition;processus_de_decision_markovien;1;1;;1300.0;2667;268
+64;facile;À quoi sert LangChain ?;langchain;llm:openai/gpt-oss-120b;langchain;agents_llm;prompt_engineering;1;1;;651.0;2659;203
+65;moyen;Comment faire tourner un LLM directement sur mon ordinateur ?;ollama_plateforme;llm:openai/gpt-oss-120b;ollama_plateforme;grands_modeles_de_langage_llm;huggingface_hub;1;1;;1258.0;2664;361
+66;difficile;Je veux créer une petite interface web pour mon modèle en quelques lignes de Python;streamlit;llm:openai/gpt-oss-120b;streamlit;gradio;api_de_modele_fastapi;1;1;;495.0;2668;150
+67;hors_sujet_loin;J'ai des œufs, de la farine et du lait, je fais comment pour des crêpes ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;310.0;2675;78
+68;hors_sujet_loin;vainqueur coupe du monde 2018;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;849.0;2662;80
+69;hors_sujet_loin;Tu sais s'il va pleuvoir demain à Lyon ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;288.0;2665;65
+70;hors_sujet_loin;J'ai crevé sur l'autoroute, comment je change la roue ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;522.0;2668;65
+71;hors_sujet_loin;Quels furent les principaux facteurs ayant conduit à la Révolution française ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;427.0;2666;71
+72;hors_sujet_loin;Quelles plantes résistent bien sur un balcon orienté nord ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;481.0;2666;70
+73;hors_sujet_loin;Par où commencer pour apprendre la guitare toute seule ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;822.0;2664;73
+74;hors_sujet_loin;Pourquoi la capitale de l'Australie est Canberra et pas Sydney ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;503.0;2667;85
+75;hors_sujet_loin;Une astuce de grand-mère pour enlever une tache de vin rouge sur un tapis ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;532.0;2672;103
+76;hors_sujet_loin;Salut ! Ça va aujourd'hui ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;853.0;2660;66
+77;hors_sujet_proche;Comment centrer horizontalement une div en CSS ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;327.0;2663;106
+78;hors_sujet_proche;Quel langage faut-il apprendre pour développer une application iPhone ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;432.0;2665;79
+79;hors_sujet_proche;Est-il possible d'installer Ubuntu en dual boot avec Windows 11 ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;466.0;2668;151
+80;hors_sujet_proche;Sur quel mécanisme de consensus repose la blockchain du Bitcoin ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;534.0;2665;107
+81;hors_sujet_proche;En quoi un qubit diffère-t-il d'un bit classique ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;609.0;2667;81
+82;hors_sujet_proche;Comment intégrer une fonction par parties, par exemple x fois exponentielle de x ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;1077.0;2669;373
+83;hors_sujet_proche;Quel est le rôle du Scrum Master dans une équipe agile ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;332.0;2665;81
+84;hors_sujet_proche;Comment rédiger une lettre de motivation pour un stage de data scientist ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;402.0;2667;125
+85;hors_sujet_proche;Ma box internet ne capte plus, comment je réinitialise le Wi-Fi ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;304.0;2670;86
+86;hors_sujet_proche;Quelles techniques permettent d'améliorer le référencement naturel d'un site web ?;hors_sujet;llm:openai/gpt-oss-120b;hors_sujet;;;1;1;;327.0;2668;82
+87;fautes;quest ce que la sciense des donées;data_science_definition;llm:openai/gpt-oss-120b;data_science_definition;big_data_definition;cycle_de_vie_projet_data;1;1;;751.0;2662;286
+88;fautes;randon forest cest quoi;random_forest;llm:openai/gpt-oss-120b;random_forest;arbres_de_decision;apprentissage_supervise;1;1;;930.0;2658;265
+89;fautes;quel modele donne une proba entre 0 et 1 pour une reponse oui ou non;regression_logistique;llm:openai/gpt-oss-120b;regression_logistique;naive_bayes;svm_machines_a_vecteurs_de_support;1;1;;1196.0;2672;303
+90;fautes;pk mon modele a 99% sur lentrainement mais rate tout sur les nouvelle donnees;overfitting_underfitting;llm:openai/gpt-oss-120b;overfitting_underfitting;biais_variance;validation_croisee;1;1;;749.0;2673;280
+91;fautes;comment diferencier presicion et rapel;metriques_de_classification;llm:openai/gpt-oss-120b;metriques_de_classification;apprentissage_supervise;machine_learning_definition;1;1;;1553.0;2662;291
+92;fautes;coment le reseau corige ses poid a partir de son ereur;backpropagation;llm:openai/gpt-oss-120b;backpropagation;descente_de_gradient;optimiseurs_adam_sgd;1;1;;566.0;2668;212
+93;fautes;explik moi le tfidf;tf_idf;llm:openai/gpt-oss-120b;tf_idf;tokenisation;word2vec;1;1;;483.0;2659;179
+94;fautes;comment savoir si un avi client est positf ou negatif;analyse_de_sentiment;llm:openai/gpt-oss-120b;analyse_de_sentiment;nlp_definition;tokenisation;1;1;;839.0;2664;216
+95;fautes;comment coupé un lon pdf en morso avan de le doné a un modèl;chunking_de_documents;llm:openai/gpt-oss-120b;chunking_de_documents;pipeline_de_retrieval;rag_definition;1;1;;821.0;2671;322
+96;fautes;cé quoi le ml ops;mlops_definition;llm:openai/gpt-oss-120b;mlops_definition;ci_cd_pour_ml;monitoring_de_modeles_en_production;1;1;;641.0;2658;230

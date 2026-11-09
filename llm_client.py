@@ -24,6 +24,14 @@ _client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 _modele_selectionne = None
 
+# Consommation cumulée depuis le lancement du programme. Chaque appel
+# réussi à Groq ajoute ici le nombre de tokens envoyés (entrée : le prompt)
+# et reçus (sortie : la réponse). Groq facture ces deux quantités à des prix
+# différents, d'où deux compteurs. Un appel raté puis réessayé n'est compté
+# que s'il aboutit ; une réponse JSON invalide redemandée est comptée deux
+# fois, car elle a bien été payée deux fois.
+consommation = {"appels": 0, "tokens_entree": 0, "tokens_sortie": 0}
+
 
 PREFERENCES_MODELES = [
     "llama-3.3-70b-versatile",
@@ -90,9 +98,12 @@ class QuotaJournalierDepasse(Exception):
     pass
 
 
-def generer(prompt, system=None, temperature=0.4, max_tentatives=3):
+def generer(prompt, system=None, temperature=0.4, max_tentatives=3, modele=None):
     """
     Envoie un prompt au LLM et renvoie sa réponse en texte.
+
+    modele : laisser vide pour utiliser le modèle habituel (obtenir_modele).
+    Le script d'évaluation s'en sert pour comparer plusieurs modèles.
 
     Réessaie automatiquement en cas d'erreur temporaire
     (ex: limite de requêtes PAR MINUTE atteinte), avec
@@ -118,10 +129,17 @@ def generer(prompt, system=None, temperature=0.4, max_tentatives=3):
         try:
 
             reponse = _client.chat.completions.create(
-                model=obtenir_modele(),
+                model=modele or obtenir_modele(),
                 messages=messages,
                 temperature=temperature,
             )
+
+            # Groq renvoie le décompte exact des tokens dans reponse.usage.
+            usage = getattr(reponse, "usage", None)
+            if usage is not None:
+                consommation["appels"] += 1
+                consommation["tokens_entree"] += usage.prompt_tokens or 0
+                consommation["tokens_sortie"] += usage.completion_tokens or 0
 
             return reponse.choices[0].message.content
 
@@ -160,7 +178,7 @@ def _reparer_backslashes_perdus(texte):
     return re.sub(r'\\(?!["\\/bfnrtu])', r"\\\\", texte)
 
 
-def generer_json(prompt, system=None, temperature=0.3, max_tentatives=3):
+def generer_json(prompt, system=None, temperature=0.3, max_tentatives=3, modele=None):
     """
     Comme generer(), mais s'attend à ce que le LLM renvoie
     du JSON, et le parse pour toi. Utile pour les quiz
@@ -173,7 +191,7 @@ def generer_json(prompt, system=None, temperature=0.3, max_tentatives=3):
 
     for tentative in range(1, max_tentatives + 1):
 
-        texte = generer(prompt, system=system, temperature=temperature)
+        texte = generer(prompt, system=system, temperature=temperature, modele=modele)
 
         texte_nettoye = (
             texte.strip()

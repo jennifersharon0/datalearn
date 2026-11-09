@@ -1,0 +1,5 @@
+﻿methode;nombre_questions;preparation_s;latence_mediane_ms;latence_p90_ms;tokens_entree_moyens;tokens_sortie_moyens;cout_par_question_usd;cout_1000_questions_usd
+tfidf;96;0.06;1.57;2.54;;;;
+embeddings_minilm;96;22.5;28.67;35.82;;;;
+embeddings_multilingue;96;27.52;51.65;59.93;;;;
+llm:openai/gpt-oss-120b;96;0.0;801.0;1311.5;2666.0;209.0;0.000525;0.525

@@ -1,0 +1,14 @@
+# Fichier : requirements-tests.txt
+
+# Ce qu'il faut pour lancer les tests automatiques, en plus du serveur :   pip install -r requirements-tests.txt
+
+# GitHub Actions installe ce fichier avant chaque lancement de pytest.
+
+-r requirements.txt
+
+# L'outil qui trouve et lance les tests.
+pytest==9.1.1
+
+# Utilisé par le TestClient de FastAPI pour envoyer des requêtes au serveur
+# sans le démarrer vraiment.
+httpx==0.28.1

@@ -40,6 +40,12 @@
 #     python evaluation/evaluer_comprehension.py --methodes tfidf embeddings_minilm
 #     python evaluation/evaluer_comprehension.py --llm openai/gpt-oss-120b openai/gpt-oss-20b
 #
+# Test de non-régression (utilisé par GitHub Actions) : on interroge le LLM
+# à nouveau sans réutiliser le cache, et le programme se termine en erreur
+# si la qualité passe sous les seuils donnés :
+#     python evaluation/evaluer_comprehension.py --methodes llm --sans-cache \
+#         --seuil-top1 95 --seuil-hors-sujet 90
+#
 # Les réponses de chaque LLM sont enregistrées au fur et à mesure dans
 # evaluation/resultats/cache_llm_<modele>.json. Si le quota Groq est
 # atteint, il suffit de relancer la même commande plus tard : les questions
@@ -390,7 +396,7 @@ def fichier_cache(modele):
     return DOSSIER_RESULTATS / f"cache_llm_{re.sub(r'[^A-Za-z0-9.-]', '_', modele)}.json"
 
 
-def methode_llm(questions, db, modele):
+def methode_llm(questions, db, modele, sans_cache=False):
     """
     Le LLM reçoit le catalogue complet et renvoie les 3 sujets les plus
     probables, ou "hors_sujet". Chaque réponse est enregistrée dans le cache
@@ -405,8 +411,10 @@ def methode_llm(questions, db, modele):
     # Catalogue compact (slug et titre), pour économiser des tokens.
     catalogue = "\n".join(f"- {slug} : {db[slug]['title']}" for slug in db)
 
+    # Avec sans_cache, on ignore les anciennes réponses : le but est alors de
+    # vérifier ce que le modèle répond aujourd'hui, pas ce qu'il répondait hier.
     cache = {}
-    if chemin_cache.exists():
+    if chemin_cache.exists() and not sans_cache:
         cache = json.loads(chemin_cache.read_text(encoding="utf-8"))
 
     # Les réponses en cache n'ont de valeur que si elles ont été obtenues avec
@@ -946,6 +954,63 @@ def graphique_hors_sujet(questions, resultats, tous_hors):
 
 
 # ---------------------------------------------------------------------------
+# Contrôle qualité (test de non-régression)
+# ---------------------------------------------------------------------------
+
+def verifier_seuils(args, resultats, tous_scores, tous_hors):
+    """
+    Renvoie la liste des seuils non respectés (vide si tout va bien).
+
+    Une évaluation incomplète (quota atteint, panne) est elle aussi un échec :
+    on ne peut pas affirmer que la qualité est bonne sans avoir tout mesuré.
+    """
+    echecs = []
+    for m, r in resultats.items():
+        manquantes = sum(reponse is None for reponse in r["reponses"])
+        if manquantes:
+            echecs.append(f"{m} : {manquantes} questions sans réponse, évaluation incomplète")
+            continue
+
+        if args.seuil_top1 is not None:
+            top1 = tous_scores[m]["principal"]["top1"]
+            if top1 < args.seuil_top1:
+                echecs.append(f"{m} : top 1 de {top1:.1f} %, sous le seuil de {args.seuil_top1:g} %")
+
+        if args.seuil_hors_sujet is not None and m in tous_hors:
+            detection = tous_hors[m]["detection"]
+            if detection < args.seuil_hors_sujet:
+                echecs.append(f"{m} : {detection:.0f} % du hors-sujet détecté, "
+                              f"sous le seuil de {args.seuil_hors_sujet:g} %")
+    return echecs
+
+
+def enregistrer_resume(tous_scores, tous_hors, tous_couts):
+    """
+    Un court tableau au format Markdown. GitHub Actions l'affiche directement
+    sur la page du lancement, sans avoir à télécharger les fichiers.
+    """
+    lignes = ["| Méthode | Top 1 | Top 3 | Hors-sujet détecté | Faux refus | "
+              "Temps médian | Coût / 1 000 questions |",
+              "|---|---|---|---|---|---|---|"]
+    for m in tous_scores:
+        s = tous_scores[m].get("principal", {})
+        h = tous_hors.get(m, {})
+        c = tous_couts.get(m, {})
+        cout = c.get("cout_par_question_usd")
+        cellules = [
+            m,
+            f"{s['top1']:.1f} %" if s else "",
+            f"{s['top3']:.1f} %" if s else "",
+            f"{h['detection']:.0f} %" if h else "",
+            f"{h['faux_refus']:.1f} %" if h else "",
+            f"{c['latence_mediane_ms']:.0f} ms" if c else "",
+            f"{1000 * cout:.2f} $" if cout is not None else "",
+        ]
+        lignes.append("| " + " | ".join(cellules) + " |")
+    (DOSSIER_RESULTATS / "resume.md").write_text("\n".join(lignes) + "\n", encoding="utf-8")
+
+
+# ---------------------------------------------------------------------------
 # Programme principal
 # ---------------------------------------------------------------------------
 
@@ -955,6 +1020,12 @@ def main():
                         default=TOUTES_LES_METHODES, help="Méthodes à évaluer (toutes par défaut)")
     parser.add_argument("--llm", nargs="+", metavar="MODELE",
                         help="Modèle(s) Groq à évaluer (par défaut : celui de l'application)")
+    parser.add_argument("--sans-cache", action="store_true",
+                        help="Redemande toutes les réponses au LLM, sans réutiliser le cache")
+    parser.add_argument("--seuil-top1", type=float, metavar="POURCENT",
+                        help="Top 1 minimal sur le jeu principal, pour chaque méthode évaluée")
+    parser.add_argument("--seuil-hors-sujet", type=float, metavar="POURCENT",
+                        help="Part minimale du hors-sujet détecté, pour chaque méthode évaluée")
     args = parser.parse_args()
 
     DOSSIER_RESULTATS.mkdir(exist_ok=True)
@@ -986,7 +1057,7 @@ def main():
         elif methode in MODELES_EMBEDDINGS:
             resultats[methode] = methode_embeddings(questions, slugs, textes, MODELES_EMBEDDINGS[methode])
         else:
-            resultats[methode] = methode_llm(questions, db, modeles_llm[methode])
+            resultats[methode] = methode_llm(questions, db, modeles_llm[methode], args.sans_cache)
 
     tous_scores, tous_hors, tous_couts = {}, {}, {}
     for m, r in resultats.items():
@@ -1035,7 +1106,20 @@ def main():
             ligne += f", {1000 * c['cout_par_question_usd']:.2f} $ / 1 000 questions"
         print(ligne)
 
+    enregistrer_resume(tous_scores, tous_hors, tous_couts)
     print(f"\nFichiers enregistrés dans {DOSSIER_RESULTATS}")
+
+    # Le contrôle qualité : uniquement si au moins un seuil a été donné.
+    if args.seuil_top1 is not None or args.seuil_hors_sujet is not None:
+        echecs = verifier_seuils(args, resultats, tous_scores, tous_hors)
+        if echecs:
+            print("\nÉCHEC du contrôle qualité :")
+            for echec in echecs:
+                print(f"   - {echec}")
+            # Un code de sortie différent de 0 signale l'échec au programme qui
+            # a lancé le script : GitHub Actions marque alors le test en rouge.
+            sys.exit(1)
+        print("\nContrôle qualité réussi : tous les seuils sont respectés.")
 
 
 if __name__ == "__main__":

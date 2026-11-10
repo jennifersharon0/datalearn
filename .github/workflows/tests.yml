@@ -1,0 +1,99 @@
+# Fichier : .github/workflows/tests.yml
+#
+# Tests de non-régression du code, lancés automatiquement par GitHub à chaque push et à chaque pull request.
+
+# Deux vérifications tournent en parallèle, chacune sur une machine Linux
+# neuve prêtée par GitHub :
+#   - backend  : les 49 tests pytest, y compris ceux de la base de données,
+#                sur une base PostgreSQL jetable créée pour l'occasion ;
+#   - frontend : la compilation du site (TypeScript + Vite), comme Vercel
+#                le fera au déploiement.
+#
+# Si une vérification échoue, le commit est marqué d'une croix rouge sur
+# GitHub, et GitHub envoie un e-mail.
+
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+# Les tests n'ont besoin que de lire le code : on ne leur donne aucun autre droit.
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: Backend (pytest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    # Une base PostgreSQL jetable, qui n'existe que le temps du test. Elle n'a rien à voir avec la base Supabase de l'application : les tests peuvent y écrire et y effacer sans aucun risque.
+    
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        # On attend que la base soit prête avant de lancer les tests.
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v5
+
+      - name: Installer Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+          # Garde les paquets téléchargés d'un lancement à l'autre : plus rapide.
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-tests.txt
+
+      - name: Installer les dépendances
+        run: pip install -r requirements-tests.txt
+
+      # Supabase fournit une table auth.users ; la base jetable doit l'imiter.
+      - name: Préparer la base de test
+        run: psql "$TEST_DATABASE_URL" -c "CREATE SCHEMA auth; CREATE TABLE auth.users (id UUID PRIMARY KEY);"
+
+      - name: Lancer les tests
+        run: pytest
+
+  frontend:
+    name: Frontend (compilation)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v5
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      # npm ci installe exactement les versions de package-lock.json.
+      - name: Installer les dépendances
+        run: npm ci
+
+      # tsc vérifie les types, puis Vite construit le site.
+      - name: Compiler le site
+        run: npm run build

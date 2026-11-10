@@ -1,0 +1,95 @@
+# Fichier : .github/workflows/evaluation.yml
+#
+# Test de non-régression de la QUALITÉ : on repose les 96 questions du jeu
+# de test au LLM, sans réutiliser les anciennes réponses, et le lancement
+# échoue si la qualité passe sous les seuils.
+#
+# Pourquoi ce test en plus de pytest ? Le code peut rester identique alors
+# que les réponses changent : Groq peut retirer ou modifier un modèle (c'est
+# arrivé avec llama-3.3-70b-versatile), ou un prompt peut être réécrit.
+# pytest ne voit rien de tout ça ; ce test, si.
+#
+# Il n'est PAS lancé à chaque push : il dure environ une heure et consomme
+# environ 280 000 tokens du quota Groq, partagé avec l'application. On le
+# lance à la main (onglet Actions > Évaluation qualité > Run workflow), et
+# automatiquement une fois par semaine, la nuit.
+#
+# Prérequis : la clé Groq enregistrée comme secret du dépôt, sous le nom
+# GROQ_API_KEY (Settings > Secrets and variables > Actions).
+
+name: Évaluation qualité
+
+on:
+  workflow_dispatch:
+    inputs:
+      modele:
+        description: "Modèle Groq à évaluer (vide = celui de l'application)"
+        required: false
+        default: ""
+      seuil_top1:
+        description: "Top 1 minimal sur le jeu principal (%)"
+        required: false
+        default: "95"
+      seuil_hors_sujet:
+        description: "Part minimale du hors-sujet détecté (%)"
+        required: false
+        default: "90"
+  schedule:
+    # Chaque lundi à 3 h 17 UTC (4 h 17 ou 5 h 17 à Paris).
+    - cron: "17 3 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  evaluation:
+    name: Évaluation du LLM
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v5
+
+      - name: Installer Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      # Seulement ce dont le LLM a besoin : pas de PyTorch ni de modèle d'embeddings à télécharger, ce qui rend l'installation bien plus rapide.
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt numpy==2.5.3 matplotlib==3.11.2 openpyxl==3.1.5
+
+      - name: Lancer l'évaluation
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # Les valeurs saisies passent par des variables d'environnement, et
+          # non directement dans la commande : un texte saisi ne peut ainsi
+          # jamais être exécuté comme une commande. Le lancement automatique
+          # du lundi n'a pas de saisie : on prend alors les valeurs par défaut.
+          MODELE: ${{ inputs.modele }}
+          SEUIL_TOP1: ${{ inputs.seuil_top1 || '95' }}
+          SEUIL_HORS_SUJET: ${{ inputs.seuil_hors_sujet || '90' }}
+        run: |
+          options=(--methodes llm --sans-cache --seuil-top1 "$SEUIL_TOP1" --seuil-hors-sujet "$SEUIL_HORS_SUJET")
+          if [ -n "$MODELE" ]; then options+=(--llm "$MODELE"); fi
+          python evaluation/evaluer_comprehension.py "${options[@]}"
+
+      # Le tableau récapitulatif s'affiche sur la page du lancement, même en cas d'échec.
+      - name: Afficher le résumé
+        if: always()
+        run: |
+          if [ -f evaluation/resultats/resume.md ]; then
+            cat evaluation/resultats/resume.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # Les graphiques et les CSV, téléchargeables depuis la page du lancement.
+      - name: Garder les résultats
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultats-evaluation
+          path: evaluation/resultats/
+          retention-days: 30

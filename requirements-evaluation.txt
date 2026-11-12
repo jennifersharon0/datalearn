@@ -1,0 +1,22 @@
+# Fichier : requirements-evaluation.txt
+#
+# Bibliothèques du script evaluation/evaluer_comprehension.py, qui compare
+# les méthodes de compréhension (TF-IDF, embeddings, LLM). Elles ne sont pas
+# nécessaires au serveur en ligne.
+#     pip install -r requirements-evaluation.txt
+
+# Ce qu'il faut pour appeler le LLM (le script réutilise llm_client.py).
+-r requirements.txt
+
+# TF-IDF et similarité cosinus.
+scikit-learn==1.9.1
+
+# Modèles d'embeddings préentraînés. Installe aussi PyTorch, la bibliothèque
+# de calcul sur laquelle tournent les modèles (téléchargement assez lourd).
+sentence-transformers==6.2.0
+
+# Graphiques.
+matplotlib==3.11.2
+
+# Lecture du fichier de questions enregistré depuis Excel (.xlsx).
+openpyxl==3.1.5

@@ -22,6 +22,9 @@ import { initialeUtilisateur, prenomUtilisateur } from "../lib/utilisateur";
 // Sélecteur du thème clair, sombre ou automatique.
 import { SelecteurTheme } from "./SelecteurTheme";
 
+// L'assistant global, accessible depuis toutes les pages.
+import { AssistantGlobal } from "./assistant/AssistantGlobal";
+
 // Styles propres à ce composant.
 import "./Layout.css";
 
@@ -217,6 +220,10 @@ export function Layout() {
       <main className="zone-page">
         <Outlet />
       </main>
+
+      {/* Placé ici, hors de <Outlet />, l'assistant reste ouvert et garde
+          la conversation quand on change de page. */}
+      <AssistantGlobal />
     </div>
   );
 }

@@ -113,6 +113,25 @@ export interface ProgressionSujet {
   derniere_activite: string; // date ISO de la dernière activité sur ce sujet
 }
 
+// Une leçon citée ou proposée par l'assistant global.
+export interface LeconCitee {
+  slug: string;
+  titre: string;
+}
+
+// La réponse de l'assistant global, renvoyée par la route POST /assistant.
+// Le type dit ce qui s'est passé :
+//   reponse      l'assistant a répondu à partir des leçons de "sources" ;
+//   non_couvert  la question parle de data science, mais aucune leçon n'y répond ;
+//   hors_sujet   la question n'a rien à voir avec la data science ou l'IA ;
+//   salutation   un bonjour ou un merci.
+export interface ReponseAssistant {
+  type: "reponse" | "non_couvert" | "hors_sujet" | "salutation";
+  paragraphes: string[]; // le texte, un paragraphe par élément
+  sources: LeconCitee[]; // les leçons qui ont servi à répondre
+  suggestions: LeconCitee[]; // des leçons à ouvrir après un refus
+}
+
 // ---------------------------------------------------------------------------
 // Gestion des erreurs
 // ---------------------------------------------------------------------------
@@ -260,6 +279,14 @@ export const api = {
       body: JSON.stringify({ sujet_slug: slug, question }),
     });
     return corps.reponse;
+  },
+
+  // Question à l'assistant global, sans leçon choisie (route POST /assistant).
+  poserQuestionAssistant(question: string): Promise<ReponseAssistant> {
+    return requeteAuthentifiee<ReponseAssistant>("/assistant", {
+      method: "POST",
+      body: JSON.stringify({ question }),
+    });
   },
 
   // Définition courte d'un sujet (route GET /lessons/{slug}/definition).

@@ -28,6 +28,8 @@ from llm_client import QuotaJournalierDepasse
 from base_connaissances import charger_connaissances
 from moteur_lecons import obtenir_lecon, obtenir_quiz_sans_reponses, corriger_quiz
 from moteur_questions import repondre_question_libre, obtenir_definition_courte
+from recherche_lecons import IndexLecons
+from assistant_global import repondre as repondre_assistant
 from stockage_progression import (
     enregistrer_lecon_vue,
     enregistrer_quiz,
@@ -58,6 +60,11 @@ app = FastAPI(title="API DataLearn")
 # que par generer_base_connaissances.py, lancé à part.
 
 db = charger_connaissances()
+
+# L'index de recherche de l'assistant global : les leçons découpées en
+# passages et indexées (voir recherche_lecons.py). Construit une fois, en
+# une fraction de seconde, et gardé en mémoire comme la base.
+index_lecons = IndexLecons(db)
 
 
 # ---------------------------------------------------------------------------
@@ -101,6 +108,7 @@ NOMBRE_MAX_REPONSES = 50       # bien au-dessus des 8 questions d'un quiz
 # mémoire (moteur_questions.py) : la plupart ne coûtent rien.
 LIMITE_QUESTIONS = LimiteurDebit(nombre_max=30, fenetre_secondes=3600)
 LIMITE_DEFINITIONS = LimiteurDebit(nombre_max=60, fenetre_secondes=3600)
+LIMITE_ASSISTANT = LimiteurDebit(nombre_max=30, fenetre_secondes=3600)
 
 
 def appeler_llm(fonction, *arguments):
@@ -131,6 +139,12 @@ class QuestionPayload(BaseModel):
     """Question libre posée sur un sujet."""
 
     sujet_slug: str = Field(min_length=1, max_length=LONGUEUR_MAX_SLUG)
+    question: str = Field(min_length=1, max_length=LONGUEUR_MAX_QUESTION)
+
+
+class QuestionAssistant(BaseModel):
+    """Question posée à l'assistant global, sans leçon choisie."""
+
     question: str = Field(min_length=1, max_length=LONGUEUR_MAX_QUESTION)
 
 
@@ -264,6 +278,24 @@ def obtenir_une_definition(slug: str, user_id: str = Depends(limite(LIMITE_DEFIN
     definition = appeler_llm(obtenir_definition_courte, db, slug)
 
     return {"definition": definition}
+
+
+@app.post("/assistant")
+def poser_question_assistant(
+    corps: QuestionAssistant,
+    user_id: str = Depends(limite(LIMITE_ASSISTANT)),
+):
+    """
+    L'assistant global : cherche les passages utiles dans toutes les leçons,
+    puis fait répondre le LLM à partir d'eux (voir assistant_global.py).
+    Renvoie le type de réponse, les paragraphes, les leçons citées et,
+    après un refus, des leçons à ouvrir.
+    """
+
+    if not corps.question.strip():
+        raise HTTPException(status_code=422, detail="La question est vide.")
+
+    return appeler_llm(repondre_assistant, db, index_lecons, corps.question)
 
 
 # ---------------------------------------------------------------------------

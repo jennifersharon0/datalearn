@@ -88,7 +88,7 @@ jobs:
       # Les graphiques et les CSV, téléchargeables depuis la page du lancement.
       - name: Garder les résultats
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: resultats-evaluation
           path: evaluation/resultats/

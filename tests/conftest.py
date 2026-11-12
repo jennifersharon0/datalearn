@@ -28,6 +28,7 @@ from fastapi.testclient import TestClient
 
 import main
 from auth_jwt import obtenir_utilisateur_courant
+from recherche_lecons import IndexLecons
 
 
 # ---------------------------------------------------------------------------
@@ -66,6 +67,7 @@ FAUSSE_BASE = {
 def fausse_base(monkeypatch):
     """Remplace la base du serveur par FAUSSE_BASE, le temps d'un test."""
     monkeypatch.setattr(main, "db", FAUSSE_BASE)
+    monkeypatch.setattr(main, "index_lecons", IndexLecons(FAUSSE_BASE))
     return FAUSSE_BASE
 
 
@@ -163,6 +165,7 @@ def limites_remises_a_zero():
     """Vide les compteurs du limiteur avant chaque test, pour qu'ils ne se gênent pas."""
     main.LIMITE_QUESTIONS._appels.clear()
     main.LIMITE_DEFINITIONS._appels.clear()
+    main.LIMITE_ASSISTANT._appels.clear()
 
 
 # ---------------------------------------------------------------------------

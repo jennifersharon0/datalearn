@@ -1,0 +1,492 @@
+/*
+  Fichier : src/components/assistant/AssistantGlobal.css
+
+  Styles de l'assistant global : la mascotte au repos, la bulle
+  d'invitation et la fenêtre de discussion. Toutes les classes commencent
+  par "ag-" pour ne jamais se mélanger avec celles de la discussion d'une
+  leçon (chat-, bulle-) définies dans index.css.
+
+  Comme le reste de l'application, le fichier est écrit "mobile d'abord" :
+  sur téléphone la fenêtre prend tout l'écran, et à partir de 640 px elle
+  devient une petite fenêtre en bas à droite.
+
+  Les couleurs passent par les variables de index.css : le mode sombre
+  fonctionne donc tout seul. Le bandeau rouge, les bulles de l'étudiant et
+  le cercle de la mascotte utilisent --accent-fond, qui ne change pas d'un
+  mode à l'autre pour garder un bon contraste avec le texte blanc.
+*/
+
+/* -------------------------------------------------------------------------
+   La mascotte au repos
+   ------------------------------------------------------------------------- */
+
+.ag-repos {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  /* Au-dessus des pages, mais sous le menu tiroir (z-index 40) quand il est ouvert. */
+  z-index: 35;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.ag-lanceur {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 40px;
+  filter: drop-shadow(0 10px 18px rgba(28, 25, 23, 0.22));
+  transition: transform var(--transition);
+}
+
+.ag-lanceur:hover {
+  transform: translateY(-3px);
+}
+
+.ag-lanceur:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+.mascotte-lanceur {
+  position: relative;
+  display: block;
+}
+
+.mascotte-lanceur-cercle {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: var(--accent-fond);
+  box-shadow: inset 0 0 0 3px var(--accent-survol);
+}
+
+/* La petite bulle "Une question sur un cours ?". */
+.ag-invitation {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: 210px;
+  margin-bottom: 14px;
+  padding: 10px 6px 10px 13px;
+  border: 1px solid var(--bordure);
+  border-radius: 16px 16px 4px 16px;
+  background: var(--surface);
+  box-shadow: var(--ombre-forte);
+  animation: ag-apparition 300ms ease both;
+}
+
+.ag-invitation p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--texte);
+}
+
+.ag-invitation-fermer {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--texte-secondaire);
+  cursor: pointer;
+}
+
+.ag-invitation-fermer:hover {
+  background: var(--gris-100);
+}
+
+/* -------------------------------------------------------------------------
+   La fenêtre de discussion (téléphone : plein écran)
+   ------------------------------------------------------------------------- */
+
+.ag-fenetre {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  display: flex;
+  flex-direction: column;
+  background: var(--fond);
+  animation: ag-apparition 200ms ease both;
+}
+
+.ag-entete {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 12px 12px 6px;
+  background: var(--accent-fond);
+  color: #ffffff;
+}
+
+.ag-titre {
+  flex: 1;
+  margin: 0;
+  font-size: 1.03rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.ag-entete-bouton {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: var(--rayon);
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.ag-entete-bouton:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.ag-entete-bouton:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: -2px;
+}
+
+/* Sur téléphone, la flèche retour ; la croix est réservée à l'ordinateur. */
+.ag-croix {
+  display: none;
+}
+
+.ag-avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 50%;
+  /* Rose pâle fixe : la mascotte est blanche et doit rester lisible
+     dans les deux modes. */
+  background: #fdf2f2;
+}
+
+.ag-avatar-grand {
+  width: 46px;
+  height: 46px;
+}
+
+.ag-messages {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 14px;
+}
+
+.ag-ligne-assistant {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 92%;
+}
+
+.ag-bulle {
+  margin: 0;
+  padding: 11px 14px;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.ag-bulle-assistant {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  border: 1px solid var(--bordure);
+  border-radius: 18px 18px 18px 6px;
+  background: var(--surface);
+  color: var(--texte);
+}
+
+.ag-bulle-assistant p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.ag-bulle-utilisateur {
+  align-self: flex-end;
+  max-width: 82%;
+  border-radius: 18px 18px 6px 18px;
+  background: var(--accent-fond);
+  color: #ffffff;
+  white-space: pre-wrap;
+}
+
+.ag-bulle-erreur {
+  border-color: var(--rouge-200);
+  background: var(--accent-doux);
+}
+
+/* La leçon citée, sous la réponse. */
+.ag-source {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: var(--rayon);
+  background: var(--accent-doux);
+  color: var(--accent);
+  text-decoration: none;
+  transition: background-color var(--transition);
+}
+
+.ag-source:hover {
+  background: var(--rouge-100);
+}
+
+.ag-source:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+.ag-source svg {
+  flex-shrink: 0;
+}
+
+.ag-source-titre {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.ag-source-etiquette {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--texte-secondaire);
+}
+
+/* Questions proposées et leçons suggérées. */
+.ag-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-left: 38px;
+}
+
+.ag-puce {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 7px 14px;
+  border: 1px solid var(--rouge-200);
+  border-radius: var(--rayon-plein);
+  background: var(--surface);
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+.ag-puce:hover {
+  border-color: var(--accent);
+  background: var(--accent-doux);
+}
+
+.ag-puce:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+/* Les trois points pendant que l'assistant écrit. */
+.ag-points {
+  display: flex;
+  gap: 5px;
+  padding: 5px 2px;
+}
+
+.ag-points span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gris-400);
+  animation: ag-point 1.2s infinite ease-in-out;
+}
+
+.ag-points span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.ag-points span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Zone de saisie. */
+.ag-saisie {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin: 0 12px;
+  padding: 5px 5px 5px 16px;
+  border: 1px solid var(--gris-300);
+  border-radius: 24px;
+  background: var(--surface);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.ag-saisie:focus-within {
+  border-color: var(--accent);
+  box-shadow: var(--focus);
+}
+
+.ag-saisie textarea {
+  flex: 1;
+  min-width: 0;
+  max-height: 120px;
+  padding: 9px 0;
+  border: none;
+  background: transparent;
+  color: var(--texte);
+  font: inherit;
+  /* 16 px minimum : en dessous, l'iPhone zoome sur le champ. */
+  font-size: 1rem;
+  line-height: 1.4;
+  resize: none;
+}
+
+/* Le contour de focus est porté par toute la zone (.ag-saisie:focus-within),
+   pas par le champ seul : on retire celui que index.css met partout. */
+.ag-saisie textarea:focus,
+.ag-saisie textarea:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.ag-saisie textarea::placeholder {
+  color: var(--texte-secondaire);
+}
+
+.ag-envoyer {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent-fond);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color var(--transition), opacity var(--transition);
+}
+
+.ag-envoyer:hover:not(:disabled) {
+  background: var(--accent-survol);
+}
+
+.ag-envoyer:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.ag-avertissement {
+  margin: 0;
+  /* La marge du bas tient compte de la barre des iPhone récents. */
+  padding: 8px 12px calc(10px + env(safe-area-inset-bottom));
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--texte-secondaire);
+}
+
+/* -------------------------------------------------------------------------
+   Ordinateur et tablette : une petite fenêtre en bas à droite
+   ------------------------------------------------------------------------- */
+
+@media (min-width: 640px) {
+  .ag-repos {
+    right: 24px;
+    bottom: 24px;
+  }
+
+  .ag-fenetre {
+    inset: auto 24px 24px auto;
+    width: 384px;
+    height: min(600px, calc(100dvh - 48px));
+    overflow: hidden;
+    border: 1px solid var(--bordure);
+    border-radius: 20px;
+    background: var(--fond);
+    box-shadow: var(--ombre-forte);
+  }
+
+  .ag-entete {
+    padding: 14px 10px 14px 16px;
+  }
+
+  .ag-retour {
+    display: none;
+  }
+
+  .ag-croix {
+    display: grid;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Animations
+   ------------------------------------------------------------------------- */
+
+@keyframes ag-apparition {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ag-point {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+/* Pour les personnes qui ont demandé moins d'animations dans leur système. */
+@media (prefers-reduced-motion: reduce) {
+  .ag-invitation,
+  .ag-fenetre,
+  .ag-points span {
+    animation: none;
+  }
+
+  .ag-lanceur {
+    transition: none;
+  }
+}

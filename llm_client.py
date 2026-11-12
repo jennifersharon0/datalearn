@@ -98,12 +98,18 @@ class QuotaJournalierDepasse(Exception):
     pass
 
 
-def generer(prompt, system=None, temperature=0.4, max_tentatives=3, modele=None):
+def generer(prompt, system=None, temperature=0.4, max_tentatives=3, modele=None, effort=None):
     """
     Envoie un prompt au LLM et renvoie sa réponse en texte.
 
     modele : laisser vide pour utiliser le modèle habituel (obtenir_modele).
     Le script d'évaluation s'en sert pour comparer plusieurs modèles.
+
+    effort : "low", "medium" ou "high", seulement pour les modèles qui
+    "réfléchissent" avant de répondre (gpt-oss). Ils écrivent d'abord un
+    raisonnement caché, facturé comme du texte normal. Avec "low", ce
+    raisonnement est court : la réponse arrive plus vite et coûte moins.
+    Ignoré pour les autres modèles.
 
     Réessaie automatiquement en cas d'erreur temporaire
     (ex: limite de requêtes PAR MINUTE atteinte), avec
@@ -128,10 +134,16 @@ def generer(prompt, system=None, temperature=0.4, max_tentatives=3, modele=None)
 
         try:
 
+            nom_modele = modele or obtenir_modele()
+            options = {}
+            if effort and "gpt-oss" in nom_modele:
+                options["reasoning_effort"] = effort
+
             reponse = _client.chat.completions.create(
-                model=modele or obtenir_modele(),
+                model=nom_modele,
                 messages=messages,
                 temperature=temperature,
+                **options,
             )
 
             # Groq renvoie le décompte exact des tokens dans reponse.usage.
@@ -178,7 +190,7 @@ def _reparer_backslashes_perdus(texte):
     return re.sub(r'\\(?!["\\/bfnrtu])', r"\\\\", texte)
 
 
-def generer_json(prompt, system=None, temperature=0.3, max_tentatives=3, modele=None):
+def generer_json(prompt, system=None, temperature=0.3, max_tentatives=3, modele=None, effort=None):
     """
     Comme generer(), mais s'attend à ce que le LLM renvoie
     du JSON, et le parse pour toi. Utile pour les quiz
@@ -191,7 +203,7 @@ def generer_json(prompt, system=None, temperature=0.3, max_tentatives=3, modele=
 
     for tentative in range(1, max_tentatives + 1):
 
-        texte = generer(prompt, system=system, temperature=temperature, modele=modele)
+        texte = generer(prompt, system=system, temperature=temperature, modele=modele, effort=effort)
 
         texte_nettoye = (
             texte.strip()

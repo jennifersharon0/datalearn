@@ -44,6 +44,11 @@ const CLE_INVITATION = "datalearn-assistant-invitation-vue";
 // Doit correspondre à la valeur utilisée dans AssistantGlobal.css.
 const REQUETE_TELEPHONE = "(max-width: 639px)";
 
+// Si la fenêtre reste fermée plus longtemps que ce délai, la conversation
+// est effacée et l'assistant repart de l'accueil à la prochaine ouverture.
+// Une fermeture courte (le temps de lire la leçon citée) garde l'échange.
+const DELAI_OUBLI_MS = 30 * 60 * 1000; // 30 minutes
+
 // Un message de la conversation.
 type Message =
   | { id: number; auteur: "utilisateur"; texte: string }
@@ -90,6 +95,9 @@ export function AssistantGlobal() {
   const champRef = useRef<HTMLTextAreaElement>(null);
   const lanceurRef = useRef<HTMLButtonElement>(null);
 
+  // Le moment où la fenêtre a été fermée pour la dernière fois.
+  const fermeeLe = useRef<number | null>(null);
+
   // Le dernier message reste visible : on descend en bas de la liste à
   // chaque nouveau message.
   useEffect(() => {
@@ -127,6 +135,14 @@ export function AssistantGlobal() {
   }, [saisie, ouvert]);
 
   function ouvrir() {
+    // Fermée depuis trop longtemps : on repart d'une conversation vide.
+    // Sauf si une réponse est encore en route, pour ne pas la perdre.
+    const fermeeDepuis = fermeeLe.current === null ? 0 : Date.now() - fermeeLe.current;
+    if (fermeeDepuis > DELAI_OUBLI_MS && !enAttente) {
+      setMessages([]);
+      setSaisie("");
+    }
+
     setOuvert(true);
     if (invitation) {
       setInvitation(false);
@@ -136,6 +152,7 @@ export function AssistantGlobal() {
 
   // Ferme la fenêtre et rend le focus clavier au bouton de la mascotte.
   function fermer() {
+    fermeeLe.current = Date.now();
     setOuvert(false);
     // Le bouton réapparaît après la fermeture : on attend qu'il soit affiché.
     window.setTimeout(() => lanceurRef.current?.focus(), 0);
@@ -186,7 +203,10 @@ export function AssistantGlobal() {
   // Sur téléphone, ouvrir une leçon citée referme la fenêtre pour qu'on
   // voie la leçon. Sur ordinateur, la fenêtre reste ouverte à côté.
   function surLienLecon() {
-    if (estTelephone()) setOuvert(false);
+    if (estTelephone()) {
+      fermeeLe.current = Date.now();
+      setOuvert(false);
+    }
   }
 
   if (!ouvert) {
